@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Roboto'; font-weight: 400; font-style: normal;
+  src: url('./assets/fonts/roboto-400.woff2') format('woff2'); font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto'; font-weight: 500; font-style: normal;
+  src: url('./assets/fonts/roboto-500.woff2') format('woff2'); font-display: swap;
+}
+@font-face {
+  font-family: 'Roboto'; font-weight: 700; font-style: normal;
+  src: url('./assets/fonts/roboto-700.woff2') format('woff2'); font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat'; font-weight: 600 800; font-style: normal;
+  src: url('./assets/fonts/montserrat-var.woff2') format('woff2'); font-display: swap;
+}
+
+html, body, #root { height: 100%; margin: 0; }
+body {
+  font-family: 'Roboto', system-ui, sans-serif;
+  color: #1f2933;
+  background: #0f1830;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* ============================================================
+   ESCALA TIPOGRÁFICA CENTRAL de las slides.
+   Para agrandar/achicar TODO el texto de TODAS las clases,
+   cambiá un solo número: --type-scale (1 = base, 1.1 = +10%).
+   Cada clase semántica calcula su tamaño desde acá.
+   ============================================================ */
+:root { --type-scale: 1.06; }
+
+.t-label    { font-size: calc(13px  * var(--type-scale)); }  /* kickers, labels en mayúscula */
+.t-body-sm  { font-size: calc(15.5px * var(--type-scale)); } /* texto chico (notas, pies) */
+.t-body     { font-size: calc(17.5px * var(--type-scale)); } /* cuerpo estándar (antes/después, tarjetas, ejemplo) */
+.t-body-lg  { font-size: calc(20px  * var(--type-scale)); }  /* cuerpo grande (bullets, citas) */
+.t-card-t   { font-size: calc(22px  * var(--type-scale)); }  /* títulos de tarjeta/sub-bloque */
+.t-step-t   { font-size: calc(19px  * var(--type-scale)); }  /* título de paso */
+.t-mono     { font-size: calc(14.5px * var(--type-scale)); } /* bloques de código/prompt */
+
+/* perspectiva para el flip 3D de las cartas */
+.card-3d { perspective: 1400px; }
+.card-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.card-back { transform: rotateY(180deg); }
+
+/* el visor de material permite scroll (el resto de la app no) */
+.material-scroll { overflow-y: auto; }
+
+/* ============================================================
+   Estilos del material (markdown) — identidad UdeSA
+   ============================================================ */
+.markdown { color: #1f2933; font-size: 11pt; line-height: 1.65; }
+.markdown h1 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 24pt; color: #00529B; margin: 0 0 .5em; line-height: 1.15; }
+.markdown h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16pt; color: #1D294D; margin: 1.4em 0 .5em; padding-bottom: 4px; border-bottom: 2px solid #e2e8f0; }
+.markdown h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 12.5pt; color: #00529B; margin: 1.1em 0 .4em; }
+.markdown h4 { font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 11pt; color: #1D294D; margin: 1em 0 .3em; }
+.markdown p { margin: .6em 0; }
+.markdown a { color: #00529B; text-decoration: none; border-bottom: 1px solid rgba(0,82,155,.3); }
+.markdown strong { font-weight: 700; color: #1D294D; }
+.markdown ul, .markdown ol { margin: .5em 0; padding-left: 1.4em; }
+.markdown li { margin: .25em 0; }
+.markdown li::marker { color: #3C8DBC; }
+.markdown blockquote { margin: 1em 0; padding: .6em 1em; background: #f5f8fb; border-left: 4px solid #3C8DBC; color: #52606d; border-radius: 0 4px 4px 0; }
+.markdown code { font-family: 'SF Mono', Menlo, monospace; font-size: .86em; background: #eef2f6; color: #1D294D; padding: 1px 5px; border-radius: 4px; }
+.markdown pre { background: #1D294D; color: #e8eef5; padding: 14px 16px; border-radius: 8px; border-left: 4px solid #3C8DBC; white-space: pre-wrap; word-break: break-word; font-size: 9.5pt; line-height: 1.5; overflow: hidden; }
+.markdown pre code { background: none; color: inherit; padding: 0; }
+.markdown table { width: 100%; border-collapse: collapse; margin: 1em 0; font-size: 9.5pt; }
+.markdown thead th { background: #00529B; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 600; text-align: left; padding: 8px 10px; }
+.markdown tbody td { padding: 7px 10px; border-bottom: 1px solid #e2e8f0; vertical-align: top; }
+.markdown tbody tr:nth-child(even) { background: #f5f8fb; }
+.markdown img { max-width: 100%; border-radius: 8px; border: 1px solid #e2e8f0; }
+.markdown hr { border: none; border-top: 1.5px solid #e2e8f0; margin: 1.6em 0; }
+
+/* ============================================================
+   Impresión: solo la hoja A4 del material, sin la UI
+   ============================================================ */
+@media print {
+  html, body, #root { overflow: visible !important; height: auto !important; background: #fff; }
+  .no-print { display: none !important; }
+  .material-scroll { overflow: visible !important; position: static !important; }
+  .print-sheet { box-shadow: none !important; margin: 0 !important; width: auto !important; }
+  .markdown pre, .markdown table, .markdown img { break-inside: avoid; }
+  .markdown h1, .markdown h2, .markdown h3 { break-after: avoid; }
+  @page { size: A4; margin: 16mm 14mm; }
+}
+
+/* mazo de slides para imprimir: oculto en pantalla, 1 slide por hoja al imprimir */
+.print-deck { display: none; }
+@media print {
+  /* el contenedor del deck (y el wrapper de App) dejan de ser fixed para fluir por páginas */
+  .deck-root, .deck-root-wrap { position: static !important; display: block !important; height: auto !important; background: #fff !important; }
+  /* cuando hay un .print-deck en la página, imprimimos apaisado y a página completa */
+  .print-deck { display: block !important; }
+  .print-slide {
+    display: block;
+    width: 297mm;
+    height: 208mm;            /* A4 landscape, un pelín menos para no generar hoja en blanco */
+    page-break-after: always;
+    break-after: page;
+    overflow: hidden;
+    position: relative;
+  }
+  .print-slide:last-child { page-break-after: auto; break-after: auto; }
+  /* el contenido de la slide llena la hoja de forma absoluta */
+  .print-slide > * {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
