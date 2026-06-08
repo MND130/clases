@@ -65,7 +65,7 @@ export function Deck({ slides, onHome, clase }: Props) {
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); ir(i - 1) }
       else if (e.key === 'Home') ir(0)
       else if (e.key === 'End') ir(n - 1)
-      else if (e.key === 'Escape') { if (!document.fullscreenElement) onHome?.() }
+      else if (e.key === 'Escape') { if (!document.fullscreenElement && !(document as any).webkitFullscreenElement) onHome?.() }
       else if (e.key.toLowerCase() === 'f') toggleFs()
     }
     window.addEventListener('keydown', onKey)
