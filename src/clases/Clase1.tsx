@@ -1,6 +1,6 @@
 import { Portada, Seccion, SlideClara, SlideOscura, Bullets, BulletsIcono, Tarjetas, Cronograma, DosCols, Cita, Glosario, Ejemplo, AntesDespues, Pasos, Codigo, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
 import { GeneradorIdeas } from '../components/GeneradorIdeas'
-import { Target, Rocket, Layers, Smartphone, Users, Clock, Wallet, Compass, Server, FileCode2, ListChecks, ShieldCheck } from 'lucide-react'
+import { Target, Rocket, Layers, Smartphone, Users, Clock, Wallet, Compass, Server, FileCode2, ListChecks, ShieldCheck, MessageCircle, Wrench, Bot } from 'lucide-react'
 
 export const clase1 = [
   <Portada
@@ -26,7 +26,7 @@ export const clase1 = [
     />
   </SlideClara>,
 
-  <Seccion kicker="El método" titulo="The MND130 Way: 4 fases, una idea" />,
+  <Seccion kicker="El método" titulo={<>The MND130 Way:<br />4 fases, una idea</>} />,
 
   <SlideClara titulo="The MND130 Way" kicker="El hilo de todo el curso">
     <Fases />
@@ -89,35 +89,39 @@ export const clase1 = [
 
   <Seccion kicker="Bloque 2" titulo="El vocabulario mínimo para dirigir a la IA" />,
 
-  <SlideClara titulo="No hace falta saber programar. Sí saber qué pedir.">
+  <SlideClara titulo="Vocabulario (1/2): de qué está hecha una app">
     <Glosario items={[
       { t: 'Frontend', d: 'lo que el usuario ve y toca: pantallas, botones, formularios.' },
       { t: 'Backend', d: 'la lógica que corre por detrás: cálculos, reglas, permisos.' },
       { t: 'Base de datos', d: 'donde se guarda la info de forma permanente (usuarios, registros).' },
       { t: 'API', d: 'la forma en que dos sistemas se hablan entre sí.' },
       { t: 'Auth', d: 'autenticación: quién puede entrar y a qué tiene acceso.' },
-      { t: 'Deploy', d: 'publicar la app para que viva online y otros la usen.' },
-      { t: 'Repo / commit', d: 'el historial versionado de tu código; cada commit es un “punto de guardado”.' },
+      { t: 'Framework', d: 'una estructura pre-armada para construir apps (ej: Next.js). Te da las bases hechas.' },
+      { t: 'CRUD', d: 'las 4 cosas básicas con datos: crear, leer, editar y borrar. La base de casi toda app.' },
     ]} />
+    <div className="mt-4 t-body-sm text-ink-soft">No hace falta saber programar. Sí saber qué pedir — y para eso alcanza con conocer estas palabras.</div>
   </SlideClara>,
 
-  <SlideClara titulo="El mismo pedido, con y sin vocabulario">
-    <AntesDespues
-      tituloAntes="Pedido vago"
-      tituloDespues="Pedido con vocabulario"
-      antes={
-        <>
-          <span className="font-mono text-[14px] block bg-white/60 rounded px-3 py-2 mb-3">"Necesito una app para gestionar clientes."</span>
-          La IA adivina pantallas, datos y stack. Te da algo genérico que no era, y corregís desde cero.
-        </>
-      }
-      despues={
-        <>
-          <span className="font-mono text-[14px] block bg-white/60 rounded px-3 py-2 mb-3">"App web con Next.js: una pantalla que liste clientes desde Supabase, con auth para que cada uno vea los suyos."</span>
-          La IA sabe qué construir y cómo. Sale parecido a lo que tenías en la cabeza.
-        </>
-      }
-    />
+  <SlideClara titulo="Vocabulario (2/2): cómo vive online y cómo no perderla">
+    <Glosario items={[
+      { t: 'Deploy', d: 'publicar la app para que viva online y otros la usen.' },
+      { t: 'Hosting', d: 'el servicio que mantiene tu app prendida 24/7 (ej: Vercel). Casi siempre gratis para un MVP.' },
+      { t: 'Dominio', d: 'la dirección web de tu app (ej: miapp.com). Se compra aparte, ~15 USD/año.' },
+      { t: 'Variable de entorno', d: 'dónde guardás las claves secretas (.env), separadas del código. NUNCA en el código.' },
+      { t: 'Repo', d: 'la carpeta de tu proyecto versionada. Vive en GitHub y guarda todo el historial.' },
+      { t: 'Commit', d: 'un "punto de guardado" de tu código, con una nota de qué cambiaste. Podés volver atrás.' },
+    ]} />
+    <div className="mt-4 t-body-sm text-ink-soft">El glosario completo (más términos) está en el cheatsheet del material, para consultar cuando estés solo.</div>
+  </SlideClara>,
+
+  <SlideClara titulo="Las 3 formas en que la IA trabaja para vos">
+    <Tarjetas cols={3} items={[
+      { icon: MessageCircle, t: '1. Conversa', d: 'Le preguntás, te responde texto. Te aconseja, redacta, explica. Es el ChatGPT de toda la vida: no toca nada por sí solo.' },
+      { icon: Wrench, t: '2. Usa herramientas', d: 'Además de responder, ejecuta acciones reales: crea un repo, escribe en la base, publica la app. Eso es lo que habilita MCP. La IA pasa de aconsejar a hacer.' },
+      { icon: Bot, t: '3. Es un agente', d: 'Encadena varias acciones sola para cumplir un objetivo: "agendá una demo con este lead" → busca el lead, crea el evento, confirma. Decide los pasos, no solo uno.' },
+    ]} />
+    <div className="mt-5"><Ejemplo titulo="Por qué te importa hoy">Dirigir a la IA es saber qué nivel le estás pidiendo. En este curso vas a usar los tres. El salto de "conversa" a "hace" es lo que convierte a la IA en alguien que construye tu MVP, no que te lo explica.</Ejemplo></div>
+    <div className="mt-3 t-body-sm text-ink-soft">Las formas 2 y 3 —herramientas y agentes— son el corazón de la <b>Clase 3 (Sumar IA)</b>: ahí las metés adentro de TU MVP. Por ahora alcanza con tener el mapa.</div>
   </SlideClara>,
 
   <Seccion kicker="Bloque 3" titulo="Fase 1 — Decidir: las 8 decisiones del brief" />,
@@ -180,7 +184,7 @@ export const clase1 = [
         { t: 'Scope', d: '3-5 features core y, explícito, qué NO entra en la v1.' },
         { t: 'Pantallas y estados', d: 'no solo el happy path: vacío, error, cargando.' },
       ]} />
-      <Pasos pasos={[
+      <Pasos inicio={5} pasos={[
         { t: 'Datos', d: 'qué guardás y cómo se relaciona.' },
         { t: 'Stack', d: 'con qué lo construís (árbol de decisión).' },
         { t: 'Riesgos', d: 'qué es lo más difícil y qué hacés si falla.' },
@@ -374,6 +378,8 @@ Riesgo: la lógica de horarios ocupados
   // --- Pieza interactiva: sale la idea al azar que el profe va a construir en vivo ---
   <SlideOscura><GeneradorIdeas /></SlideOscura>,
 
+  <Break minutos={15} etiqueta="Break 1 de 2" />,
+
   <DemoEnVivo
     titulo="Les muestro: completo el brief de la idea que salió, en vivo"
     prompt={`Quiero construir el MVP que salió en el generador.
@@ -386,8 +392,6 @@ datos, stack, riesgos y criterios de éxito).
 Hacelo de a una pregunta, no todo junto.`}
     mirar={<>Tomo <b>la idea que acaba de salir al azar</b> y armo su brief en vivo: cómo Claude me <b>cuestiona</b> cada decisión, cómo separo <b>lo core de lo que NO va</b>, y cómo queda escrito en el CLAUDE.md antes de tocar código. Después lo hacen ustedes con la suya.</>}
   />,
-
-  <Break minutos={15} etiqueta="Break 1 de 2" />,
 
   <Seccion kicker="Bloque 5 · Manos a la obra" titulo="Completá el brief de TU MVP" />,
 

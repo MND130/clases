@@ -72,7 +72,7 @@ export function Portada({ titulo, subtitulo, profes }: { titulo: string; subtitu
   )
 }
 
-export function Seccion({ kicker, titulo }: { kicker: string; titulo: string }) {
+export function Seccion({ kicker, titulo }: { kicker: string; titulo: ReactNode }) {
   return (
     <SlideOscura seccion>
       <div className="h-full flex flex-col justify-center px-20">
@@ -267,13 +267,14 @@ export function Ejemplo({ titulo = 'Ejemplo', children }: { titulo?: string; chi
   )
 }
 
-/** Pasos numerados con título + explicación (no bullets pelados). */
-export function Pasos({ pasos }: { pasos: { t: string; d: ReactNode }[] }) {
+/** Pasos numerados con título + explicación (no bullets pelados).
+ *  `inicio` arranca la numeración en otro número (útil al partir una lista en 2 columnas). */
+export function Pasos({ pasos, inicio = 1 }: { pasos: { t: string; d: ReactNode }[]; inicio?: number }) {
   return (
     <ol className="space-y-3.5">
       {pasos.map((p, i) => (
         <li key={i} className="flex gap-4">
-          <span className="grid place-items-center w-8 h-8 rounded-lg font-display font-extrabold text-white bg-udesa-blue shrink-0">{i + 1}</span>
+          <span className="grid place-items-center w-8 h-8 rounded-lg font-display font-extrabold text-white bg-udesa-blue shrink-0">{inicio + i}</span>
           <div className="pt-0.5">
             <span className="font-bold text-udesa-dark t-step-t">{p.t}</span>
             <span className="text-ink-soft t-body"> — {p.d}</span>

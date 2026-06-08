@@ -62,6 +62,13 @@ Si lo que estamos por construir contradice algo de la PARTE 2, **avisame antes d
 Si hay que cambiar una decisión, primero la actualizamos acá y después la construimos — nunca al revés.
 *Por qué: el archivo es la fuente de verdad. Si el código y la spec divergen en silencio, perdemos el control del proyecto.*
 
+## 10. Las herramientas tienen que estar conectadas antes de construir
+Este proyecto necesita **GitHub** (el código), **Supabase** (base de datos y login) y **Vercel** (publicar) conectados a Claude Code por MCP.
+- **Antes de empezar a construir, verificá que estén conectados:** corré `claude mcp list` y fijate que GitHub, Supabase y Vercel digan **Connected**.
+- Si **falta alguno o dice "Needs authentication"**, frená y avisame: tengo que conectarlo yo siguiendo la **Guía de Setup (paso 7)** — vos no podés hacerlo solo (requiere que yo genere un token o autorice un login en el navegador).
+- No empieces a construir features que dependan de la base de datos o del deploy si la herramienta correspondiente no está conectada.
+*Por qué: sin estas herramientas enchufadas, el build se traba a mitad de camino. Es parte del método decidir y dejar listo el setup ANTES de construir, no descubrir que falta algo cuando ya estás en la mitad.*
+
 ---
 
 # PARTE 2 — Mi proyecto (se completa en la fase Decidir)

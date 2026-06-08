@@ -52,6 +52,21 @@ export const clase2 = [
     </div>
   </SlideClara>,
 
+  <SlideClara titulo="MCP: el enchufe que conecta la IA con tus herramientas">
+    <DosCols
+      izq={<>
+        Pensalo como el <b>USB-C de la IA</b>: un enchufe estándar para conectar Claude con herramientas reales (tu GitHub, tu base de datos, tu plataforma para publicar).<br /><br />
+        Sin MCP, la IA solo <b>conversa</b>: te dice qué hacer. Con MCP, la IA <b>hace</b>: crea el repo, toca la base, publica la app. Vos no aprendés comandos — <b>conectás la herramienta una vez y le hablás</b>.
+      </>}
+      der={<Glosario items={[
+        { t: 'MCP', d: 'el estándar que deja a la IA usar herramientas externas. "Model Context Protocol".' },
+        { t: 'Quién lo hace', d: 'el dueño de cada herramienta: GitHub escribió el suyo, Supabase el suyo. No es Anthropic integrando todo a mano.' },
+        { t: 'Por qué importa', d: 'cada app lo publica una vez y cualquier IA lo aprovecha. Por eso ya hay miles.' },
+      ]} />}
+    />
+    <div className="mt-5"><Ejemplo titulo="Lo conectás en el setup">En la Guía de Setup conectás GitHub, Supabase y Vercel a Claude Code por MCP. Es pegar una línea y autorizar en el navegador, una sola vez. Después le pedís las cosas en español.</Ejemplo></div>
+  </SlideClara>,
+
   <SlideClara titulo="Local vs. producción: dos lugares, no se mezclan">
     <AntesDespues
       tituloAntes="Local (tu máquina)"
@@ -236,14 +251,14 @@ máquina. No avances a la Fase 2 sin mi OK.`}
   />,
 
   <Checkpoint
-    titulo="Pará a mitad de camino: ¿quién tiene la base andando?"
+    titulo="¿Quién tiene la base andando?"
     items={[
       'Tu proyecto corre en local (lo ves en localhost).',
       'Auth funciona: te podés registrar y entrar.',
       'Supabase de prueba conectado, con al menos una tabla.',
       'Hiciste al menos un commit en Git.',
     ]}
-    mostrar={<>Poné ✅ en el chat si tu base ya corre en local. Si estás trabado, compartí pantalla ahora — es el momento de resolver bloqueos juntos antes de seguir.</>}
+    mostrar={<>Avisá en el chat si tu base ya corre en local. Si estás trabado, compartí pantalla ahora — es el momento de resolver bloqueos juntos antes de seguir.</>}
   />,
 
   <Break minutos={15} etiqueta="Break 2 de 2" />,

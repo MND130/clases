@@ -63,8 +63,10 @@ body {
 .markdown p { margin: .6em 0; }
 .markdown a { color: #00529B; text-decoration: none; border-bottom: 1px solid rgba(0,82,155,.3); }
 .markdown strong { font-weight: 700; color: #1D294D; }
-.markdown ul, .markdown ol { margin: .5em 0; padding-left: 1.4em; }
-.markdown li { margin: .25em 0; }
+.markdown ul, .markdown ol { margin: .5em 0; padding-left: 1.5em; }
+.markdown ul { list-style: disc; }
+.markdown ol { list-style: decimal; }
+.markdown li { margin: .25em 0; padding-left: .15em; }
 .markdown li::marker { color: #3C8DBC; }
 .markdown blockquote { margin: 1em 0; padding: .6em 1em; background: #f5f8fb; border-left: 4px solid #3C8DBC; color: #52606d; border-radius: 0 4px 4px 0; }
 .markdown code { font-family: 'SF Mono', Menlo, monospace; font-size: .86em; background: #eef2f6; color: #1D294D; padding: 1px 5px; border-radius: 4px; }

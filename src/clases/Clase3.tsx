@@ -129,6 +129,30 @@ usuario. Mostrame el flujo completo.`}
     />
   </SlideClara>,
 
+  <SlideClara titulo="MCP: enchufar herramientas que ya existen" kicker="Esto ya lo hiciste en el setup">
+    <DosCols
+      izq={<>
+        Vos ya conectaste <b>GitHub, Supabase y Vercel</b> a Claude Code en la guía de setup. Eso <b>es</b> tool use: le diste herramientas reales y ahora las usa por vos.<br /><br />
+        <b>MCP</b> es el "enchufe universal" que hace esa conexión. Cada herramienta publica su MCP <b>una vez</b>, y cualquier IA que lo soporte la puede usar. No hay que programar la integración.
+      </>}
+      der={<Glosario items={[
+        { t: 'Chatbot', d: 'te responde.' },
+        { t: 'Tool use', d: 'usa herramientas que vos le declarás en tu app.' },
+        { t: 'MCP', d: 'la herramienta ya viene "lista para enchufar". La conectás, no la programás.' },
+      ]} />}
+    />
+    <div className="mt-5"><Cita>El que escribe el MCP es el dueño de la herramienta (GitHub, Supabase…), no Anthropic. Por eso hay miles: cada app lo implementa una vez y todas las IAs lo aprovechan.</Cita></div>
+  </SlideClara>,
+
+  <DemoEnVivo
+    titulo="Conecto un MCP y le pido algo, en vivo"
+    prompt={`Conectá GitHub a Claude Code y, cuando esté
+listo, creá un repositorio nuevo llamado
+"mi-mvp-demo" y subí un README que diga
+de qué se trata mi proyecto.`}
+    mirar={<>Que <b>no abro la terminal a programar</b>: pego una línea, autorizo en el navegador, y después le hablo en español. Si no llegaste a hacer el setup en casa, mirá los pasos exactos acá para hacerlo después: están en la <b>Guía de Setup</b> (paso 7).</>}
+  />,
+
   <Seccion kicker="Bloque 3" titulo="Que la IA lea tus documentos (RAG)" />,
 
   <SlideClara titulo="El problema: tu info está en PDFs, el modelo no la conoce">

@@ -1,7 +1,7 @@
 # Guía de Setup — MND130 (Posgrado UdeSA)
 
-> **Objetivo:** tener todo instalado y configurado ANTES de la Clase 2.
-> **Tiempo total estimado:** 45-60 minutos.
+> **Objetivo:** tener todo instalado y configurado ANTES de la Clase 1.
+> **Tiempo total estimado:** 60-75 minutos.
 > **Requisitos:** una computadora (Mac o Windows), conexión a internet y una cuenta de email.
 >
 > El curso es **virtual y en vivo** (videollamada por Zoom/Meet). Como no estamos en la misma sala, llegar con todo esto resuelto es clave: en una clase online un problema de instalación te puede dejar trabado un buen rato. Si algo no te sale, mandales un mail a los profesores y lo resolvemos antes de la clase.
@@ -16,7 +16,8 @@
 4. [Crear cuenta de Vercel](#4-crear-cuenta-de-vercel) (~5 min)
 5. [Crear cuenta de Supabase](#5-crear-cuenta-de-supabase) (~5 min)
 6. [Crear cuenta de Claude e instalar Claude Code](#6-crear-cuenta-de-claude-e-instalar-claude-code) (~15 min)
-7. [Test de que todo funciona](#7-test-de-que-todo-funciona) (~5 min)
+7. [Conectar tus herramientas a Claude Code (MCP)](#7-conectar-tus-herramientas-a-claude-code-mcp) (~15 min)
+8. [Test de que todo funciona](#8-test-de-que-todo-funciona) (~5 min)
 
 ---
 
@@ -207,7 +208,7 @@ Claude es un asistente de inteligencia artificial de la empresa Anthropic. Lo va
 5. Suscribite al **plan Pro** desde la configuración de tu cuenta
 
 
-> **Importante:** el **plan Pro de Claude es requisito para cursar la materia**. Es lo que habilita a Claude Code, que vamos a usar en todas las clases. Aseguráte de tenerlo activo antes de la Clase 2.
+> **Importante:** el **plan Pro de Claude es requisito para cursar la materia**. Es lo que habilita a Claude Code, que vamos a usar en todas las clases. Aseguráte de tenerlo activo antes de la Clase 1.
 
 ---
 
@@ -235,7 +236,115 @@ Claude Code es Claude trabajando directamente dentro de tu editor: en lugar de c
 
 ---
 
-## 7. Test de que todo funciona
+## 7. Conectar tus herramientas a Claude Code (MCP)
+
+**Tiempo estimado: 15 minutos**
+
+### Qué vamos a hacer (y por qué importa)
+
+Hasta acá creaste varias cuentas sueltas: GitHub, Supabase, Vercel. El problema es que Claude Code todavía **no sabe que existen**. Es como tener el celular y los auriculares, pero sin emparejarlos por Bluetooth.
+
+En este paso los **conectamos**. Una vez conectados, en lugar de aprender comandos vas a poder pedirle a Claude Code cosas como *"creá un repositorio para mi proyecto"*, *"creá una tabla de usuarios en la base de datos"* o *"publicá la app"*, y él lo hace por vos.
+
+### Qué es MCP (en una frase)
+
+**MCP** es el "enchufe universal" que le permite a Claude Code conectarse con otras herramientas. Lo importante para vos: **no tenés que aprender a usar la terminal**. Cada conexión es **pegar una línea, una sola vez, y hacer un login en el navegador**. Te damos las líneas exactas acá abajo para copiar y pegar.
+
+> **Importante, leé esto:** conectar una herramienta es **pegar exactamente lo que te damos** y apretar Enter. No tenés que entender el comando ni escribir nada propio. Si te sentís incómodo con la terminal, es totalmente normal: copiá, pegá, Enter, y seguí. En la Clase 1 repasamos todo esto juntos.
+
+### Dónde se pega todo esto
+
+Todos los comandos de este paso van en la **terminal integrada** de Cursor (la misma que usaste recién, o que vas a usar en el paso 8):
+
+- Abrí Cursor.
+- Menú superior > **Terminal** > **New Terminal** (o presioná `` Ctrl+` ``).
+- Ahí pegás cada comando y apretás Enter.
+
+> **Importante (esto confunde a todos):** después de agregar un MCP con el comando, **NO va a aparecer en el chat que tenés abierto**. Claude Code carga las herramientas al iniciar. Para verlas, **abrí un chat nuevo de Claude Code** (o cerrá y volvé a abrir Cursor). Recién ahí, al escribir `/mcp`, vas a ver la herramienta que agregaste. Si no la ves, no hiciste nada mal: abrí un chat nuevo.
+
+---
+
+### 7a. Conectar Supabase (la base de datos) — el más fácil
+
+1. En la terminal, pegá esta línea **tal cual** y apretá Enter:
+
+```
+claude mcp add --transport http supabase https://mcp.supabase.com/mcp
+```
+
+2. Ahora abrí Claude Code (el panel de chat en Cursor) y escribí:
+
+```
+/mcp
+```
+
+3. Se abre una lista con las herramientas. Elegí **supabase** y hacé clic en **Authenticate**.
+4. Se te va a abrir el navegador pidiéndote permiso para conectar tu cuenta de Supabase. Hacé clic en **Authorize** / **Allow**.
+5. Volvé a Cursor. Listo: Supabase quedó conectado.
+
+> **Login con OAuth**: "OAuth" es el mismo mecanismo de cuando entrás a una web con "Continuar con Google". No compartís tu contraseña: solo autorizás la conexión desde el navegador.
+
+---
+
+### 7b. Conectar Vercel (la publicación) — igual de fácil
+
+1. En la terminal, pegá esta línea y apretá Enter:
+
+```
+claude mcp add --transport http vercel https://mcp.vercel.com
+```
+
+2. En el chat de Claude Code, escribí `/mcp` de nuevo.
+3. Elegí **vercel** y hacé clic en **Authenticate**.
+4. Autorizá en el navegador (**Authorize** / **Allow**).
+5. Volvé a Cursor. Vercel conectado.
+
+---
+
+### 7c. Conectar GitHub (donde vive el código) — este pide un paso extra
+
+GitHub es un poquito más manual que los otros dos: en vez de un login en el navegador, te pide generar una **"llave"** (un token) y pegarla. Seguí los pasos sin apuro.
+
+**Primero, generá la llave (token) en GitHub:**
+
+1. Entrá a **[github.com/settings/personal-access-tokens](https://github.com/settings/personal-access-tokens)** (tenés que estar logueado).
+2. Hacé clic en **Generate new token** → elegí **Fine-grained token**.
+3. Ponele un nombre, por ejemplo `claude-code`.
+4. En **Expiration** elegí algo cómodo (ej: 90 días).
+5. En **Repository access** elegí **All repositories**.
+6. **El paso clave (no lo saltees):** bajá hasta **Permissions → Repository permissions** y hacé clic en **Add permissions**. Agregá estos dos y ponelos en **Read and write**:
+   - **Administration** → **Read and write** (le permite **crear** repos)
+   - **Contents** → **Read and write** (le permite **subir y editar** archivos)
+
+   Antes de seguir, fijate que arriba diga **Repositories 2** (o más), **no 0**. Si dice 0, los permisos no quedaron agregados y el token no va a servir para crear repos.
+7. Bajá hasta el final y hacé clic en **Generate token**.
+8. **Copiá el token que aparece** (empieza con `github_pat_...`). **Ojo: solo se muestra una vez.** Si lo perdés, generás otro y listo.
+
+**Ahora conectalo a Claude Code:**
+
+9. En la terminal de Cursor, pegá esta línea **reemplazando `PEGÁ_TU_TOKEN_ACÁ`** por el token que copiaste:
+
+```
+claude mcp add --transport http github https://api.githubcopilot.com/mcp/ --header "Authorization: Bearer PEGÁ_TU_TOKEN_ACÁ"
+```
+
+10. Apretá Enter. Deberías ver el mensaje `Added HTTP MCP server github`. Listo: GitHub conectado.
+
+> **¿Qué es un token?** Es como una contraseña descartable y limitada: le da a Claude Code permiso para tocar tus repos, sin entregarle tu contraseña real de GitHub. Tratalo como una contraseña: no lo compartas ni lo pegues en lugares públicos.
+
+### Troubleshooting
+
+- **`command not found: claude`**: Claude Code no está instalado o el editor no lo detecta todavía. Volvé al paso 6, y después de instalarlo **cerrá y volvé a abrir Cursor**.
+- **El `/mcp` no me muestra la herramienta que agregué**: cerrá y volvé a abrir Cursor para que tome los cambios, y volvé a escribir `/mcp`.
+- **GitHub: no me deja crear repos (error "403" o "permission")**: al token le faltaron permisos. Es el error más común. Generá uno nuevo y, en el paso 6, asegurate de que **Repositories** diga 2 (no 0) con **Administration** y **Contents** en **Read and write**.
+- **GitHub: "Bad credentials"**: el token está mal copiado o venció. Copiá el token completo (sin espacios) o generá uno nuevo.
+- **No me abre el navegador al hacer Authenticate**: copiá el link que aparece en el chat y pegalo a mano en tu navegador.
+- **Me sale "Streamable HTTP error" o un error al autenticar Supabase/Vercel**: es un error transitorio del login. **Reintentá** (volvé a darle Authenticate): suele funcionar en el segundo o tercer intento.
+- **Me trabé y no avanzo**: no pasa nada, dejalo así y avisanos. Esto lo terminamos de ajustar juntos en la Clase 1.
+
+---
+
+## 8. Test de que todo funciona
 
 **Tiempo estimado: 5 minutos**
 
@@ -274,20 +383,32 @@ Abrí cada uno de estos links y verificá que podés entrar (que estás logueado
 - [ ] **Supabase:** [supabase.com/dashboard](https://supabase.com/dashboard) - deberías ver el dashboard
 - [ ] **Claude:** [claude.ai](https://claude.ai) - deberías poder iniciar un chat
 
+### Verificar los MCP conectados
+
+En el chat de Claude Code (dentro de Cursor), escribí:
+
+```
+/mcp
+```
+
+Deberías ver listadas las tres herramientas que conectaste en el paso 7: **supabase**, **vercel** y **github**. Si alguna no aparece, abrí un **chat nuevo** de Claude Code y volvé a escribir `/mcp` (las herramientas recién agregadas no aparecen en chats viejos). Si figura como no autenticada, volvé al paso 7 correspondiente para hacer el login.
+
 ### Checklist final
 
 Marcá cada item que tengas listo:
 
 - [ ] Cuenta de GitHub creada
 - [ ] Node.js instalado (el comando `node --version` muestra un número)
-- [ ] VS Code instalado
-- [ ] Extensiones de VS Code instaladas (Prettier, ESLint, Live Server)
+- [ ] Cursor instalado y con cuenta creada
 - [ ] Cuenta de Vercel creada y conectada a GitHub
 - [ ] Cuenta de Supabase creada
-- [ ] Cuenta de Claude creada
-- [ ] Cursor instalado y con cuenta creada
+- [ ] Cuenta de Claude creada (plan Pro activo)
+- [ ] Claude Code instalado y logueado en Cursor
+- [ ] Supabase conectado a Claude Code (aparece en `/mcp`)
+- [ ] Vercel conectado a Claude Code (aparece en `/mcp`)
+- [ ] GitHub conectado a Claude Code (aparece en `/mcp`)
 
-**Si todos los items están tildados, estás listo para la Clase 2.**
+**Si todos los items están tildados, estás listo para la Clase 1.**
 
 ---
 
