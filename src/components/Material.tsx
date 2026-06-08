@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
-import { ArrowLeft, Download, BookOpen, Wrench, MessageSquareText, Lightbulb, FileCode2 } from 'lucide-react'
+import { ArrowLeft, Download, FileDown, BookOpen, Wrench, MessageSquareText, Lightbulb, FileCode2 } from 'lucide-react'
 import logoNegro from '../assets/logo_udesa.png'
 
 import cheatsheet from '../material/cheatsheet.md?raw'
@@ -12,10 +12,10 @@ import prompts from '../material/prompt_templates.md?raw'
 import ejercicios from '../material/ejercicios_proyectos.md?raw'
 import claudeMd from '../material/claude_md.md?raw'
 
-type Doc = { id: string; titulo: string; desc: string; icon: typeof BookOpen; md: string }
+type Doc = { id: string; titulo: string; desc: string; icon: typeof BookOpen; md: string; archivo?: string }
 
 const DOCS: Doc[] = [
-  { id: 'claude', titulo: 'CLAUDE.md — The MND130 Way', desc: 'El archivo que dirige a la IA con nuestro método. La doctrina arriba, tu proyecto abajo.', icon: FileCode2, md: claudeMd },
+  { id: 'claude', titulo: 'CLAUDE.md — The MND130 Way', desc: 'El archivo que dirige a la IA con nuestro método. La doctrina arriba, tu proyecto abajo.', icon: FileCode2, md: claudeMd, archivo: 'CLAUDE.md' },
   { id: 'cheatsheet', titulo: 'Cheatsheet', desc: 'Glosario, stacks, checklist de calidad y red flags.', icon: BookOpen, md: cheatsheet },
   { id: 'setup', titulo: 'Guía de Setup', desc: 'GitHub, Node, Cursor, Vercel, Supabase y Claude Code.', icon: Wrench, md: guiaSetup },
   { id: 'prompts', titulo: 'Prompt Templates', desc: 'Prompts modelo para cada etapa del MVP.', icon: MessageSquareText, md: prompts },
@@ -53,6 +53,18 @@ export function Material({ onHome }: { onHome: () => void }) {
   )
 }
 
+function descargarMd(nombre: string, contenido: string) {
+  const blob = new Blob([contenido], { type: 'text/markdown;charset=utf-8' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = nombre
+  document.body.appendChild(a)
+  a.click()
+  document.body.removeChild(a)
+  URL.revokeObjectURL(url)
+}
+
 function DocVista({ doc, onVolver }: { doc: Doc; onVolver: () => void }) {
   return (
     <div className="fixed inset-0 bg-[#0b1020] overflow-y-auto material-scroll">
@@ -61,9 +73,15 @@ function DocVista({ doc, onVolver }: { doc: Doc; onVolver: () => void }) {
         <button onClick={onVolver} className="inline-flex items-center gap-2 text-white/80 hover:text-white transition text-sm font-medium">
           <ArrowLeft size={16} /> Material
         </button>
-        <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg bg-udesa-sigedu px-4 py-2 text-white text-sm font-semibold hover:brightness-110 transition">
-          <Download size={16} /> Descargar PDF
-        </button>
+        {doc.archivo ? (
+          <button onClick={() => descargarMd(doc.archivo!, doc.md)} className="inline-flex items-center gap-2 rounded-lg bg-udesa-sigedu px-4 py-2 text-white text-sm font-semibold hover:brightness-110 transition">
+            <FileDown size={16} /> Descargar .md
+          </button>
+        ) : (
+          <button onClick={() => window.print()} className="inline-flex items-center gap-2 rounded-lg bg-udesa-sigedu px-4 py-2 text-white text-sm font-semibold hover:brightness-110 transition">
+            <Download size={16} /> Descargar PDF
+          </button>
+        )}
       </div>
 
       {/* hoja A4 vertical, centrada — es lo que se imprime */}
