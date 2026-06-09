@@ -4,7 +4,6 @@ import { Deck } from './components/Deck'
 import { Inicio } from './components/Inicio'
 import { Material } from './components/Material'
 import { Bienvenida } from './components/Bienvenida'
-import { useFullscreen } from './lib/useFullscreen'
 import { clase1 } from './clases/Clase1'
 import { clase2 } from './clases/Clase2'
 import { clase3 } from './clases/Clase3'
@@ -16,7 +15,6 @@ type Vista = { tipo: 'bienvenida' } | { tipo: 'inicio' } | { tipo: 'clase'; n: n
 
 export default function App() {
   const [vista, setVista] = useState<Vista>({ tipo: 'bienvenida' })
-  const { enter } = useFullscreen()
 
   return (
     <AnimatePresence mode="wait">
@@ -24,7 +22,7 @@ export default function App() {
         <motion.div key="bienvenida" className="fixed inset-0"
           initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}>
-          <Bienvenida onEntrar={() => { enter(); setVista({ tipo: 'inicio' }) }} />
+          <Bienvenida onEntrar={() => setVista({ tipo: 'inicio' })} />
         </motion.div>
       )}
       {vista.tipo === 'inicio' && (

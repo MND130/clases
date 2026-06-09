@@ -1,15 +1,8 @@
 # CLAUDE.md — The MND130 Way
 
-> Este archivo es la **doctrina fija** de tu proyecto. Claude Code lo lee al inicio de cada sesión.
-> **No se completa ni se edita:** es igual para todos los proyectos. Lo que cambia (tu producto, tus
-> decisiones, en qué fase vas) vive en la carpeta `docs/`, que Claude crea y mantiene actualizada.
->
-> Regla de oro del método: **primero se decide, después se construye.** Las decisiones se escriben en
-> `docs/` a medida que las tomás — no se improvisan ni se dejan para el final.
-
 ---
 
-# PARTE 1 — Cómo trabajamos (doctrina del método)
+# PARTE 1 — Cómo trabajamos
 
 > Estas reglas son innegociables. Vienen de nuestra forma de construir MVPs con IA.
 > Claude: seguilas siempre, aunque yo no las repita en cada pedido.
@@ -61,9 +54,8 @@ Frená, explicame en una línea qué estás intentando lograr, y proponé un app
 
 # PARTE 2 — La documentación viva del proyecto (carpeta `docs/`)
 
-> Esta es la parte que reemplaza al viejo "llená el brief al final". El producto, las decisiones y el
-> estado del proyecto **no viven en este archivo**: viven en `docs/`, y los vas construyendo *mientras
-> conversás conmigo*. Claude: esto es tan importante como la PARTE 1.
+> El producto, las decisiones y en qué fase vamos **no viven en este archivo**: viven en `docs/`, y los
+> vas construyendo *mientras conversás conmigo*. Claude: esto es tan importante como la PARTE 1.
 
 ## 9. Creá y mantené la carpeta `docs/`
 Apenas arrancamos un proyecto, si no existe, **creá la carpeta `docs/`** con estos tres archivos:
