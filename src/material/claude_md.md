@@ -1,11 +1,11 @@
 # CLAUDE.md — The MND130 Way
 
-> Este archivo es la **fuente de verdad** de tu proyecto. Claude Code lo lee al inicio de cada sesión.
-> La PARTE 1 es la **doctrina del método** — es igual para todos los proyectos y NO se toca.
-> La PARTE 2 es **tu proyecto** — la completás vos en la fase Decidir y la mantenés actualizada.
+> Este archivo es la **doctrina fija** de tu proyecto. Claude Code lo lee al inicio de cada sesión.
+> **No se completa ni se edita:** es igual para todos los proyectos. Lo que cambia (tu producto, tus
+> decisiones, en qué fase vas) vive en la carpeta `docs/`, que Claude crea y mantiene actualizada.
 >
-> Regla de oro del método: **primero se decide, después se construye.** Cuando algo no está claro,
-> la respuesta está en este archivo — no se improvisa.
+> Regla de oro del método: **primero se decide, después se construye.** Las decisiones se escriben en
+> `docs/` a medida que las tomás — no se improvisan ni se dejan para el final.
 
 ---
 
@@ -16,7 +16,7 @@
 
 ## 1. Primero entender, después escribir
 Antes de escribir una sola línea de código, confirmá que entendés QUÉ te estoy pidiendo y por qué.
-Si algo del proyecto (PARTE 2) no está claro o falta, **preguntá — no inventes**.
+Si algo del proyecto no está claro o falta en `docs/`, **preguntá — no inventes**.
 *Por qué: en este método las decisiones se toman antes de construir. Un build que arranca sobre una duda termina en un producto que no era el que queríamos.*
 
 ## 2. Trabajamos en fases, con checkpoints
@@ -57,72 +57,53 @@ Si después de ~3 intentos un problema no se resuelve, **no insistas con el mism
 Frená, explicame en una línea qué estás intentando lograr, y proponé un approach distinto.
 *Por qué: la IA dando vueltas sobre el mismo error casi siempre significa que el camino está mal, no que falta un intento más.*
 
-## 9. La spec manda
-Si lo que estamos por construir contradice algo de la PARTE 2, **avisame antes de hacerlo**.
-Si hay que cambiar una decisión, primero la actualizamos acá y después la construimos — nunca al revés.
-*Por qué: el archivo es la fuente de verdad. Si el código y la spec divergen en silencio, perdemos el control del proyecto.*
+---
 
-## 10. Las herramientas tienen que estar conectadas antes de construir
-Este proyecto necesita **GitHub** (el código), **Supabase** (base de datos y login) y **Vercel** (publicar) conectados a Claude Code por MCP.
-- **Antes de empezar a construir, verificá que estén conectados:** corré `claude mcp list` y fijate que GitHub, Supabase y Vercel digan **Connected**.
-- Si **falta alguno o dice "Needs authentication"**, frená y avisame: tengo que conectarlo yo siguiendo la **Guía de Setup (paso 7)** — vos no podés hacerlo solo (requiere que yo genere un token o autorice un login en el navegador).
-- No empieces a construir features que dependan de la base de datos o del deploy si la herramienta correspondiente no está conectada.
-*Por qué: sin estas herramientas enchufadas, el build se traba a mitad de camino. Es parte del método decidir y dejar listo el setup ANTES de construir, no descubrir que falta algo cuando ya estás en la mitad.*
+# PARTE 2 — La documentación viva del proyecto (carpeta `docs/`)
+
+> Esta es la parte que reemplaza al viejo "llená el brief al final". El producto, las decisiones y el
+> estado del proyecto **no viven en este archivo**: viven en `docs/`, y los vas construyendo *mientras
+> conversás conmigo*. Claude: esto es tan importante como la PARTE 1.
+
+## 9. Creá y mantené la carpeta `docs/`
+Apenas arrancamos un proyecto, si no existe, **creá la carpeta `docs/`** con estos tres archivos:
+
+- **`docs/brief.md`** — qué es el producto. Contiene, a medida que las vamos decidiendo:
+  - Nombre y una frase (qué es y para quién).
+  - Problema que resuelve y usuario principal (quién exactamente, no "todos").
+  - Features CORE (lo mínimo para validar) y, explícito, **lo que NO va en la v1**.
+  - Pantallas y estados (no solo el happy path: vacío, cargando, error, sin permiso).
+  - Datos (qué se guarda y cómo se relaciona).
+  - Stack (frontend/backend, base de datos + auth, UI, deploy).
+  - Riesgos (lo más difícil y el plan B) y criterios de éxito (cómo sé que validó algo).
+- **`docs/fases.md`** — el plan de construcción por fases. Cada fase: qué incluye, cómo se prueba, y si está **pendiente / en curso / hecha**.
+- **`docs/decisiones.md`** — un registro corto de las decisiones que vamos tomando y por qué. Cuando algo cambia, se anota acá (qué cambió, por qué, qué reemplaza).
+
+> Si alguno de estos archivos todavía no existe cuando lo necesitás, crealo. No me pidas que lo arme yo a mano.
+
+## 10. Actualizá la documentación SOBRE LA MARCHA, no al final
+Esto es un comportamiento central, no opcional:
+
+- **Mientras conversamos las decisiones, escribilas en `docs/brief.md` en el momento.** No esperes a que "terminemos de decidir": cada decisión que cerramos se anota ya.
+- **Cada vez que avanzamos o cerramos una fase, actualizá `docs/fases.md`** (marcá qué quedó hecho y qué sigue).
+- **Cada vez que cambiamos un rumbo, registralo en `docs/decisiones.md`** antes de construir el cambio.
+- Si te pido algo y la documentación quedaría desactualizada, **actualizala como parte de la tarea**, no después.
+
+*Por qué: si la documentación se llena al final, no sirve — para entonces ya nos olvidamos de la mitad y el proyecto se desincronizó. La doc que se escribe mientras se decide es la que nos mantiene en control.*
+
+## 11. Sé el safeguard del proyecto (coherencia ante todo)
+Tu trabajo no es solo construir: es **cuidar que el proyecto no se contradiga**. Antes de construir algo, chequeá contra `docs/`:
+
+- Si lo que estamos por hacer **contradice** algo ya decidido en `docs/`, **frená y avisame** antes de tocar código. No lo construyas en silencio.
+- Si una decisión nueva **invalida** una vieja, no dejes las dos: actualizá `docs/decisiones.md` y `docs/brief.md` para que quede una sola versión coherente.
+- Si detectás que `docs/` y el código **divergieron** (el código hace algo que la doc no dice, o al revés), señalámelo y propongamos cómo realinear.
+- Si te pido algo ambiguo o que se pisa con el scope, **preguntá antes** en vez de elegir por mí.
+
+*Por qué: la documentación es la fuente de verdad. Si las decisiones se contradicen entre sí o el código se aleja de la spec en silencio, perdemos el control del proyecto. Vos sos la primera línea de defensa contra ese desorden.*
 
 ---
 
-# PARTE 2 — Mi proyecto (se completa en la fase Decidir)
-
-> Esto lo definís vos, con la IA como copiloto de pensamiento, ANTES de construir.
-> Reemplazá todo lo que está entre [corchetes]. Mantenelo actualizado: si una decisión cambia, cambiala acá primero.
-
-## Qué es
-**Nombre del proyecto:** [nombre]
-**En una frase:** [qué es y para quién, en una oración]
-
-## El problema y el usuario
-**Problema que resuelve:** [el dolor real, concreto]
-**Usuario principal:** [quién exactamente, no "todos"]
-**Qué quiere lograr ese usuario (job-to-be-done):** [la tarea que viene a resolver]
-
-## Scope del MVP
-**Features CORE (lo mínimo para validar la idea):**
-- [feature 1]
-- [feature 2]
-- [feature 3]
-
-**Lo que NO va en la v1 (explícito — para no caer en la tentación):**
-- [nice-to-have 1]
-- [nice-to-have 2]
-
-## Pantallas y estados
-**Pantallas principales:** [listado]
-**Estados que hay que contemplar (no solo el happy path):** [vacío, cargando, error, sin permiso, etc.]
-
-## Datos
-**Qué necesito guardar:** [entidades principales y sus campos clave]
-**Cómo se relacionan:** [ej: un usuario tiene muchos turnos]
-
-## Stack
-- **Frontend/Backend:** [ej: Next.js (App Router)]
-- **Base de datos + Auth:** [ej: Supabase]
-- **UI:** [ej: shadcn/ui + Tailwind]
-- **Deploy:** [ej: Vercel]
-*(Si no sé qué stack usar, Claude: ayudame a elegir según el tipo de proyecto, y explicámelo simple.)*
-
-## Riesgos
-**Lo más difícil / lo que más puede salir mal:** [ej: la lógica de disponibilidad de turnos]
-**Qué hago si eso falla:** [plan B simple]
-
-## Criterios de éxito
-**Sé que el MVP validó algo si:** [métrica o señal concreta, ej: "10 personas reservan un turno sin ayuda"]
-
----
-
-## Estado actual del build
-> Esta sección la vas actualizando a medida que avanzás. Le dice a Claude en qué punto estamos.
-
-**Fase actual:** [ej: Fase 2 — feature principal]
-**Lo que ya funciona:** [listado]
-**Lo próximo:** [lo que sigue]
-**Decisiones que cambiaron sobre la marcha:** [si ajustaste algo del plan original, anotalo acá]
+> **Cómo empieza todo (fase Decidir):** abrimos el proyecto con este CLAUDE.md adentro y empezamos a
+> conversar la idea. A medida que respondés mis preguntas y yo las tuyas, **vas escribiendo `docs/brief.md`**.
+> Cuando el brief está, armás `docs/fases.md`. De ahí en más, en cada sesión, mantenés los tres docs al día.
+> Este archivo (CLAUDE.md) no se toca: es el método. Lo que evoluciona es `docs/`.

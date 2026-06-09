@@ -25,7 +25,7 @@ export const clase4 = [
         <Bullets items={[
           <>La IA te da código que <b>funciona</b>. No siempre te da código <b>bueno</b>.</>,
           <>Hoy revisás con <b>criterio</b> — sin ser ingeniero.</>,
-          <>Y revisás contra una vara concreta: <b>tu CLAUDE.md</b>. ¿Cumple lo que decidiste?</>,
+          <>Y revisás contra una vara concreta: <b>tu brief</b> (docs/brief.md). ¿Cumple lo que decidiste?</>,
         ]} />
       }
       der={
@@ -50,9 +50,9 @@ export const clase4 = [
   <SlideClara titulo="Revisar contra tu brief (no en abstracto)">
     <AntesDespues
       tituloAntes="Review genérico"
-      tituloDespues="Review contra el CLAUDE.md"
+      tituloDespues="Review contra tu brief"
       antes={<>"¿Está bien este código?"<br /><br />Vago. La IA te dice que sí casi siempre. No tenés con qué comparar.</>}
-      despues={<>"Según los criterios de éxito y el scope de mi CLAUDE.md, ¿esto cumple? ¿Quedó algo del 'NO va en v1' que se coló?"<br /><br />Concreto. Revisás contra lo que vos decidiste, no contra un ideal.</>}
+      despues={<>"Según los criterios de éxito y el scope de mi docs/brief.md, ¿esto cumple? ¿Quedó algo del 'NO va en v1' que se coló?"<br /><br />Concreto. Revisás contra lo que vos decidiste, no contra un ideal.</>}
     />
   </SlideClara>,
 
@@ -95,7 +95,7 @@ problemas antes de tocar nada.`}
   <DemoEnVivo
     titulo="Les muestro: reviso mi código contra el brief, en vivo"
     prompt={`Revisá este componente con ojo crítico, según
-los criterios de éxito y el scope de mi CLAUDE.md:
+los criterios de éxito y el scope de mi docs/brief.md:
 ¿hay código repetido, datos hardcodeados, o algo
 que falle en mobile? ¿Se coló algo del "NO va en
 v1"? Listame los problemas antes de tocar nada.`}
@@ -110,7 +110,7 @@ v1"? Listame los problemas antes de tocar nada.`}
     objetivo={<>Primera mitad: encontrás qué falla y qué no cumple lo que decidiste. Después paramos y lo arreglás.</>}
     pasos={[
       { t: 'Auditá con la checklist', d: 'pasá tu proyecto por los 5 puntos. Anotá lo que falla.' },
-      { t: 'Revisá contra el CLAUDE.md', d: '¿cumple los criterios de éxito? ¿se respetó el scope?' },
+      { t: 'Revisá contra tu brief (docs/brief.md)', d: '¿cumple los criterios de éxito? ¿se respetó el scope?' },
       { t: 'Anotá 2-3 mejoras prioritarias', d: 'las que más impactan. No intentes arreglar todo.' },
     ]}
   />,
@@ -209,12 +209,12 @@ Acá está el código relevante:
     <DosCols
       izq={
         <Bullets items={[
-          <>Tu <b>CLAUDE.md</b> es la versión MVP de algo más grande.</>,
+          <>Tu <b>CLAUDE.md + tus docs/</b> son la versión MVP de algo más grande.</>,
           <>Las empresas que usan IA en serio tienen <b>repositorios enteros</b> de conocimiento versionado.</>,
           <>Sus agentes <b>consultan ese conocimiento</b> para no inventar. Se llama knowledge management para IA.</>,
         ]} />
       }
-      der={<Ejemplo titulo="El horizonte">Una fintech real organiza cada documento (specs, procesos, legal) con metadatos para que la IA los lea con precisión. Vos hiciste el primer paso con un archivo. Es hacia donde va la industria.</Ejemplo>}
+      der={<Ejemplo titulo="El horizonte">Una fintech real organiza cada documento (specs, procesos, legal) con metadatos para que la IA los lea con precisión. Vos hiciste el primer paso con tu método y tus docs. Es hacia donde va la industria.</Ejemplo>}
     />
   </SlideClara>,
 
@@ -253,7 +253,7 @@ Acá está el código relevante:
           <Checklist items={[
             'Un MVP real en producción, con URL pública.',
             'El método (The MND130 Way) para repetirlo solo.',
-            'Tu CLAUDE.md y el cheatsheet como referencia.',
+            'El CLAUDE.md, tus docs y el cheatsheet como referencia.',
             'Saber qué hacer cuando algo se rompe.',
           ]} />
         </>
@@ -273,7 +273,7 @@ Acá está el código relevante:
 
   <SlideClara titulo="Para seguir después del curso">
     <Tarjetas items={[
-      { icon: GraduationCap, t: 'Repetí el método', d: 'Tu próxima idea: abrí un CLAUDE.md, tomá las 8 decisiones, construí en fases. Ya sabés cómo.' },
+      { icon: GraduationCap, t: 'Repetí el método', d: 'Tu próxima idea: sumá el CLAUDE.md, armá tus docs con las 8 decisiones, construí en fases. Ya sabés cómo.' },
       { icon: Users, t: 'La comunidad', d: 'El grupo del curso sigue activo. Mostrá lo que hacés, pedí ayuda cuando te trabes, aprendé de los demás.' },
       { icon: GitBranch, t: 'Subí un escalón', d: 'Cuando tu MVP valide, ahí pensás en escalar: un dev, más features, o profundizar lo técnico vos.' },
     ]} />

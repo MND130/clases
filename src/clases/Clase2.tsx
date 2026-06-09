@@ -64,7 +64,7 @@ export const clase2 = [
         { t: 'Por qué importa', d: 'cada app lo publica una vez y cualquier IA lo aprovecha. Por eso ya hay miles.' },
       ]} />}
     />
-    <div className="mt-5"><Ejemplo titulo="Lo conectás en el setup">En la Guía de Setup conectás GitHub, Supabase y Vercel a Claude Code por MCP. Es pegar una línea y autorizar en el navegador, una sola vez. Después le pedís las cosas en español.</Ejemplo></div>
+    <div className="mt-5"><Ejemplo titulo="Lo conectás hoy">Hoy conectás GitHub y Supabase a Claude Code por MCP (cada una con su guía en el material). Es pegar una línea y autorizar en el navegador, una sola vez. Después le pedís las cosas en español. Vercel se publica solo desde GitHub.</Ejemplo></div>
   </SlideClara>,
 
   <SlideClara titulo="Local vs. producción: dos lugares, no se mezclan">
@@ -79,7 +79,7 @@ export const clase2 = [
 
   <SlideClara titulo="El setup, en orden">
     <Pasos pasos={[
-      { t: 'Crear las cuentas', d: 'GitHub, Vercel y Supabase (con la guía de setup que mandamos antes).' },
+      { t: 'Crear las cuentas', d: 'GitHub, Vercel y Supabase, hoy en clase (cada una tiene su guía en el material).' },
       { t: 'Levantar el proyecto en local', d: 'que corra en tu máquina y lo veas en localhost. Primero acá.' },
       { t: 'Conectar GitHub con Vercel', d: 'para que el deploy sea automático cuando vos decidas subir.' },
       { t: 'Conectar Supabase', d: 'crear el proyecto de prueba y guardar las claves en variables de entorno.' },

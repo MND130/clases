@@ -1,4 +1,4 @@
-import { Portada, Seccion, SlideClara, SlideOscura, Bullets, BulletsIcono, Tarjetas, Cronograma, DosCols, Cita, Glosario, Ejemplo, AntesDespues, Pasos, Codigo, Fases, DemoEnVivo, Break, ManosALaObra } from '../components/Slides'
+import { Portada, Seccion, SlideClara, SlideOscura, Bullets, BulletsIcono, Tarjetas, Cronograma, DosCols, Cita, Glosario, Ejemplo, AntesDespues, Pasos, Codigo, Fases, DemoEnVivo, Break, ManosALaObra, DescargarClaudeMd } from '../components/Slides'
 import { GeneradorIdeas } from '../components/GeneradorIdeas'
 import { Target, Rocket, Layers, Smartphone, Users, Clock, Wallet, Compass, Server, FileCode2, ListChecks, ShieldCheck, AppWindow, Terminal, FolderOpen, PanelLeft } from 'lucide-react'
 
@@ -67,7 +67,7 @@ export const clase1 = [
       der={
         <BulletsIcono items={[
           { icon: FolderOpen, children: <>Si no ves tus archivos, es porque no abriste la <b>carpeta</b>. Volvé a File → Open Folder.</> },
-          { icon: PanelLeft, children: <>El chat de Claude Code es un <b>panel</b> dentro de Cursor. No es otra app que se abre aparte.</> },
+          { icon: PanelLeft, children: <>Usá el panel de <b>Claude Code</b>, no el <b>agente propio de Cursor</b>. Fijate que arriba diga "Claude Code". Es el error más común.</> },
           { icon: ShieldCheck, children: <>Si algo no abre o pide instalar, lo resolvemos <b>ahora</b>, antes de seguir. Nadie avanza sin esto listo.</> },
         ]} />
       }
@@ -206,58 +206,58 @@ export const clase1 = [
     <div className="mt-5"><Cita>Cada decisión es una conversación con la IA, no un formulario que se llena solo. Ahí está el "dirigir, no programar".</Cita></div>
   </SlideClara>,
 
-  <Seccion kicker="Bloque 3b" titulo="El CLAUDE.md: tu proyecto le habla a la IA" />,
+  <Seccion kicker="Bloque 3b" titulo="El CLAUDE.md y los docs: el proyecto le habla a la IA" />,
 
-  <SlideClara titulo="Dónde viven esas 8 decisiones: el CLAUDE.md">
+  <SlideClara titulo="El CLAUDE.md: el método fijo que dirige a la IA">
     <DosCols
       izq={
         <BulletsIcono items={[
-          { icon: FileCode2, children: <>Un solo archivo de texto en tu proyecto. La IA lo <b>lee en cada sesión</b>, sola.</> },
-          { icon: ListChecks, children: <>Arriba: <b>nuestro método</b> (reglas fijas). Abajo: <b>tu brief</b> (las 8 decisiones).</> },
-          { icon: ShieldCheck, children: <>Volvés tres días después y la IA <b>ya sabe</b> tu stack y qué decidiste. No reinventa.</> },
+          { icon: FileCode2, children: <>Un archivo de texto en tu proyecto. La IA lo <b>lee en cada sesión</b>, sola.</> },
+          { icon: ListChecks, children: <>Es el <b>método</b> (reglas fijas). <b>No se completa ni se toca</b>: es igual para todos. Lo descargás hecho.</> },
+          { icon: ShieldCheck, children: <>Le ordena a la IA ser tu <b>safeguard</b>: que mantenga todo al día y avise si dos decisiones se contradicen.</> },
         ]} />
       }
       der={
         <Ejemplo titulo="La idea robada a las empresas en serio">
-          Las fintech y empresas que usan IA para programar tienen repositorios enteros de contexto para que sus agentes no inventen. Vos hacés la versión MVP: <b>un archivo</b>. El 20% que da el 80% del valor.
+          Las fintech y empresas que usan IA para programar tienen repositorios enteros de contexto para que sus agentes no inventen. Vos hacés la versión MVP: <b>un archivo de método + tus docs</b>. El 20% que da el 80% del valor.
         </Ejemplo>
       }
     />
+    <div className="mt-7"><DescargarClaudeMd /></div>
   </SlideClara>,
 
-  <SlideClara titulo="Cómo se ve el CLAUDE.md (las dos partes)">
+  <SlideClara titulo="Dos cosas: el método (fijo) y los docs (vivos)">
     <DosCols
       izq={
         <>
-          <div className="text-[12px] font-bold tracking-widest uppercase text-udesa-sigedu mb-2">Parte 1 — El método (fija)</div>
+          <div className="text-[12px] font-bold tracking-widest uppercase text-udesa-sigedu mb-2">CLAUDE.md — el método (NO se toca)</div>
           <Codigo>{`# Cómo trabajamos
 1. Primero entender, después escribir.
-   Si algo no está claro, preguntá.
 2. En fases. No avances sin mi OK.
 3. Local primero. Producción al final.
 4. Nunca claves en el código.
-5. Mobile-first. Código que no se repita.
-6. Si en 3 intentos no sale, cambiá
-   de enfoque.`}</Codigo>
+...
+# Sé el safeguard:
+- Mantené docs/ siempre al día.
+- Avisá si dos decisiones se
+  contradicen.
+- Actualizá las fases sobre la marcha.`}</Codigo>
         </>
       }
       der={
         <>
-          <div className="text-[12px] font-bold tracking-widest uppercase text-udesa-sigedu mb-2">Parte 2 — Tu proyecto (lo llenás vos)</div>
-          <Codigo>{`# Mi proyecto
-Problema: [...]
-Usuario: [...]
-Features core: [...]
-NO va en v1: [...]
-Pantallas y estados: [...]
-Datos: [...]
-Stack: Next.js + Supabase + Vercel
-Riesgos: [...]
-Criterios de éxito: [...]`}</Codigo>
+          <div className="text-[12px] font-bold tracking-widest uppercase text-udesa-sigedu mb-2">docs/ — tu proyecto (lo arma la IA)</div>
+          <Codigo>{`docs/
+├── brief.md      ← qué es, usuario,
+│                   scope, datos, stack
+├── fases.md      ← el plan por fases
+│                   y en qué punto vas
+└── decisiones.md ← qué se decidió
+                    y por qué`}</Codigo>
         </>
       }
     />
-    <div className="mt-4"><Ejemplo titulo="Te lo damos hecho">El CLAUDE.md con la Parte 1 ya escrita está en el Material del curso. Hoy completás la Parte 2 con tu idea.</Ejemplo></div>
+    <div className="mt-4"><Ejemplo titulo="La diferencia clave">El CLAUDE.md te lo damos hecho y no lo editás. Los <b>docs</b> los va escribiendo la IA <b>mientras conversás</b> — no al final. Esa es la documentación viva de tu producto.</Ejemplo></div>
   </SlideClara>,
 
   <Seccion kicker="Bloque 4" titulo="Decidir el stack + demo en vivo" />,
@@ -295,36 +295,37 @@ Criterios de éxito: [...]`}</Codigo>
   <SlideOscura><GeneradorIdeas /></SlideOscura>,
 
   <DemoEnVivo
-    titulo="Les muestro: completo el brief de la idea que salió, en vivo"
+    titulo="Les muestro: armo los docs de la idea que salió, en vivo"
     prompt={`Quiero construir el MVP que salió en el generador.
+Ya tengo el CLAUDE.md con el método en el proyecto.
 
 Trabajamos con The MND130 Way: primero decidimos,
 después construimos. Antes de escribir código,
-ayudame a completar el brief en mi CLAUDE.md
+creá la carpeta docs/ y, conversando conmigo de a
+una pregunta, andá completando docs/brief.md
 (problema, usuario, scope, pantallas y estados,
-datos, stack, riesgos y criterios de éxito).
-Hacelo de a una pregunta, no todo junto.`}
-    mirar={<>Tomo <b>la idea que acaba de salir al azar</b> y armo su brief en vivo: cómo Claude me <b>cuestiona</b> cada decisión, cómo separo <b>lo core de lo que NO va</b>, y cómo queda escrito en el CLAUDE.md antes de tocar código. Después lo hacen ustedes con la suya.</>}
+datos, stack, riesgos y criterios de éxito).`}
+    mirar={<>Tomo <b>la idea que acaba de salir al azar</b> y armo sus docs en vivo: cómo la IA <b>crea la carpeta docs/</b>, cómo me <b>cuestiona</b> cada decisión y la <b>va escribiendo en docs/brief.md mientras hablamos</b>, separando lo core de lo que NO va. Después lo hacen ustedes con la suya.</>}
   />,
 
-  <Seccion kicker="Bloque 5 · Manos a la obra" titulo="Completá el brief de TU MVP" />,
+  <Seccion kicker="Bloque 5 · Manos a la obra" titulo="Armá los docs de TU MVP" />,
 
   <ManosALaObra
     minutos="65 min"
-    titulo="Arrancá tu CLAUDE.md y cerrá el brief completo"
-    objetivo={<>De una, todo el brief: tomás tu idea y completás las 8 decisiones con Claude. Salís con el CLAUDE.md terminado — es el entregable de hoy.</>}
+    titulo="Armá tus docs conversando con la IA"
+    objetivo={<>Tomás tu idea y, conversando con Claude, vas armando <b>docs/brief.md</b> y <b>docs/fases.md</b>. Salís con tu documentación viva del producto — es el entregable de hoy.</>}
     pasos={[
-      { t: 'Tomá tu idea y abrí el CLAUDE.md', d: 'la que trajiste o sorteá una en el generador. El archivo del material ya tiene el método arriba: solo llenás la Parte 2.' },
-      { t: 'Problema, usuario y scope', d: 'las primeras decisiones, con Claude. Que te cuestione, no que te dé la razón.' },
-      { t: 'Pantallas, estados y datos', d: 'no solo el happy path: vacío, error, cargando. Y qué guardás.' },
-      { t: 'Stack, riesgos y criterios de éxito', d: 'con qué lo construís, qué puede salir mal, cómo sabés que validó algo.' },
-      { t: 'Cerrá scope', d: 'dejá explícito qué NO entra en la v1. Si lleva IA adentro, anotalo.' },
+      { t: 'Descargá el CLAUDE.md y abrí tu proyecto', d: 'el del material (botón de descarga en la slide del CLAUDE.md o en Material). Es el método: no se toca.' },
+      { t: 'Tomá tu idea y pedile que cree docs/', d: 'la que trajiste o sorteá una. Pedile a Claude que cree la carpeta docs/ y arranque docs/brief.md con vos.' },
+      { t: 'Problema, usuario y scope', d: 'las primeras decisiones. Que te cuestione, no que te dé la razón. Se van escribiendo en el brief al toque.' },
+      { t: 'Pantallas, estados, datos, stack y riesgos', d: 'no solo el happy path: vacío, error, cargando. Y dejá explícito qué NO va en la v1.' },
+      { t: 'Cerrá con docs/fases.md', d: 'con el brief listo, pedile que arme el plan por fases. Ese es tu mapa para la Clase 2.' },
     ]}
   />,
 
   <SlideClara titulo="El recorrido completo del curso" kicker="Para que veas el hilo">
     <Cronograma bloques={[
-      { dur: 'Clase 1', t: 'Decidir: el método, las 8 decisiones y tu CLAUDE.md. ← estás acá' },
+      { dur: 'Clase 1', t: 'Decidir: el método, las 8 decisiones y los docs de tu proyecto. ← estás acá' },
       { dur: 'Clase 2', t: 'Construir: setup, prompting y build en fases, en local.' },
       { dur: 'Clase 3', t: 'Sumar IA: chatbots y agentes adentro de tu producto.' },
       { dur: 'Clase 4', t: 'Revisar y publicar: calidad, deploy a producción y presentación.' },
@@ -332,5 +333,5 @@ Hacelo de a una pregunta, no todo junto.`}
     <div className="mt-7"><Cita>Cada clase es una fase del método y deja un entregable. Salís con algo real en la mano, no con apuntes.</Cita></div>
   </SlideClara>,
 
-  <Seccion kicker="Cierre" titulo="Ya decidiste. Tenés tu CLAUDE.md. La próxima lo construimos." />,
+  <Seccion kicker="Cierre" titulo="Ya decidiste. Tenés tus docs. La próxima lo construimos." />,
 ]

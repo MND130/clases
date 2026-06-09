@@ -1,9 +1,10 @@
 import { type ReactNode, useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { LucideIcon } from 'lucide-react'
-import { MonitorPlay, Coffee, Play, Pause, RotateCcw, Copy, Check, Minus, Plus } from 'lucide-react'
+import { MonitorPlay, Coffee, Play, Pause, RotateCcw, Copy, Check, Minus, Plus, FileDown } from 'lucide-react'
 import logoBlanco from '../assets/logo_udesa_blanco.png'
 import logoNegro from '../assets/logo_udesa.png'
+import claudeMdRaw from '../material/claude_md.md?raw'
 
 const MATERIA = 'MND130 · Cómo acelerar el ciclo de desarrollo de un MVP con IA'
 
@@ -185,6 +186,27 @@ export function Checklist({ items }: { items: string[] }) {
         </li>
       ))}
     </ul>
+  )
+}
+
+/** Botón para descargar el CLAUDE.md del material (el mismo que se entrega en Material de referencia). */
+export function DescargarClaudeMd({ etiqueta = 'Descargar CLAUDE.md' }: { etiqueta?: string }) {
+  const descargar = () => {
+    const blob = new Blob([claudeMdRaw], { type: 'text/markdown;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'CLAUDE.md'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+  return (
+    <button onClick={descargar}
+      className="inline-flex items-center gap-2 rounded-lg bg-udesa-sigedu px-4 py-2.5 text-white t-label font-semibold hover:brightness-110 transition">
+      <FileDown size={18} /> {etiqueta}
+    </button>
   )
 }
 

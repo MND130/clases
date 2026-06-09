@@ -8,6 +8,9 @@ import logoNegro from '../assets/logo_udesa.png'
 
 import cheatsheet from '../material/cheatsheet.md?raw'
 import guiaSetup from '../material/guia_setup.md?raw'
+import guiaGithub from '../material/guia_github.md?raw'
+import guiaVercel from '../material/guia_vercel.md?raw'
+import guiaSupabase from '../material/guia_supabase.md?raw'
 import prompts from '../material/prompt_templates.md?raw'
 import ejercicios from '../material/ejercicios_proyectos.md?raw'
 import claudeMd from '../material/claude_md.md?raw'
@@ -15,9 +18,12 @@ import claudeMd from '../material/claude_md.md?raw'
 type Doc = { id: string; titulo: string; desc: string; icon: typeof BookOpen; md: string; archivo?: string }
 
 const DOCS: Doc[] = [
-  { id: 'claude', titulo: 'CLAUDE.md — The MND130 Way', desc: 'El archivo que dirige a la IA con nuestro método. La doctrina arriba, tu proyecto abajo.', icon: FileCode2, md: claudeMd, archivo: 'CLAUDE.md' },
+  { id: 'claude', titulo: 'CLAUDE.md — The MND130 Way', desc: 'El método fijo que dirige a la IA. No se edita: ordena crear y mantener tus docs/.', icon: FileCode2, md: claudeMd, archivo: 'CLAUDE.md' },
   { id: 'cheatsheet', titulo: 'Cheatsheet', desc: 'Glosario, stacks, checklist de calidad y red flags.', icon: BookOpen, md: cheatsheet },
-  { id: 'setup', titulo: 'Guía de Setup', desc: 'GitHub, Node, Cursor, Vercel, Supabase y Claude Code.', icon: Wrench, md: guiaSetup },
+  { id: 'setup', titulo: 'Guía de Setup', desc: 'Lo previo a la Clase 1: Cursor y Claude Code.', icon: Wrench, md: guiaSetup },
+  { id: 'github', titulo: 'Guía — GitHub', desc: 'Crear la cuenta y conectarla a Claude Code (Clase 2).', icon: Wrench, md: guiaGithub },
+  { id: 'vercel', titulo: 'Guía — Vercel', desc: 'Crear la cuenta y publicar tu app desde GitHub (Clase 2).', icon: Wrench, md: guiaVercel },
+  { id: 'supabase', titulo: 'Guía — Supabase', desc: 'Crear la cuenta y conectarla a Claude Code (Clase 2).', icon: Wrench, md: guiaSupabase },
   { id: 'prompts', titulo: 'Prompt Templates', desc: 'Prompts modelo para cada etapa del MVP.', icon: MessageSquareText, md: prompts },
   { id: 'ejercicios', titulo: 'Proyectos de ejemplo', desc: 'Ideas de MVP desarrolladas como referencia.', icon: Lightbulb, md: ejercicios },
 ]

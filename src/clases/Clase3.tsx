@@ -129,10 +129,10 @@ usuario. Mostrame el flujo completo.`}
     />
   </SlideClara>,
 
-  <SlideClara titulo="MCP: enchufar herramientas que ya existen" kicker="Esto ya lo hiciste en el setup">
+  <SlideClara titulo="MCP: enchufar herramientas que ya existen" kicker="Esto ya lo hiciste en la Clase 2">
     <DosCols
       izq={<>
-        Vos ya conectaste <b>GitHub, Supabase y Vercel</b> a Claude Code en la guía de setup. Eso <b>es</b> tool use: le diste herramientas reales y ahora las usa por vos.<br /><br />
+        Vos ya conectaste <b>GitHub y Supabase</b> a Claude Code en la Clase 2. Eso <b>es</b> tool use: le diste herramientas reales y ahora las usa por vos.<br /><br />
         <b>MCP</b> es el "enchufe universal" que hace esa conexión. Cada herramienta publica su MCP <b>una vez</b>, y cualquier IA que lo soporte la puede usar. No hay que programar la integración.
       </>}
       der={<Glosario items={[
@@ -150,7 +150,7 @@ usuario. Mostrame el flujo completo.`}
 listo, creá un repositorio nuevo llamado
 "mi-mvp-demo" y subí un README que diga
 de qué se trata mi proyecto.`}
-    mirar={<>Que <b>no abro la terminal a programar</b>: pego una línea, autorizo en el navegador, y después le hablo en español. Si no llegaste a hacer el setup en casa, mirá los pasos exactos acá para hacerlo después: están en la <b>Guía de Setup</b> (paso 7).</>}
+    mirar={<>Que <b>no abro la terminal a programar</b>: pego una línea, autorizo en el navegador, y después le hablo en español. Si te quedó pendiente de la Clase 2, los pasos exactos están en la <b>Guía de GitHub</b> del material.</>}
   />,
 
   <Seccion kicker="Bloque 3" titulo="Que la IA lea tus documentos (RAG)" />,
@@ -200,7 +200,7 @@ de qué se trata mi proyecto.`}
           { icon: FileText, children: <>¿Necesita <b>tus documentos</b> (RAG) o le alcanza con el system prompt?</> },
         ]} />
       }
-      der={<Ejemplo titulo="Anotalo en tu CLAUDE.md">La feature de IA es una decisión más del brief. Definila arriba y la IA la construye coherente con el resto de tu producto.</Ejemplo>}
+      der={<Ejemplo titulo="Anotalo en tu brief">La feature de IA es una decisión más del brief. Definila en <b>docs/brief.md</b> y la IA la construye coherente con el resto de tu producto.</Ejemplo>}
     />
   </SlideClara>,
 
@@ -242,7 +242,7 @@ arrancá por la versión más simple.`}
     pasos={[
       { t: 'Decidí qué bot querés', d: 'chatbot simple, agente con herramientas, o asistente sobre documentos.' },
       { t: 'Conseguí tu API key', d: 'de Claude o OpenAI, y guardala en variables de entorno.' },
-      { t: 'Pedíselo a la IA con contexto', d: 'apoyado en tu CLAUDE.md. Empezá por la versión más simple.' },
+      { t: 'Pedíselo a la IA con contexto', d: 'apoyado en tus docs (brief y fases). Empezá por la versión más simple.' },
     ]}
   />,
 
@@ -306,7 +306,7 @@ arrancá por la versión más simple.`}
     <Checklist items={[
       'Una feature de IA andando en local (chatbot, agente o RAG).',
       'API key en variables de entorno.',
-      'Decidido en el CLAUDE.md qué hace y qué no hace el bot.',
+      'Decidido en docs/brief.md qué hace y qué no hace el bot.',
       'Probado que responde con sentido y sin inventar.',
     ]} />
   </SlideClara>,

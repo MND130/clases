@@ -11,7 +11,7 @@ El que decide bien antes, construye 10x mejor con IA. El que decide *mientras* c
 
 | Fase | Qué hacés |
 |---|---|
-| **1. Decidir** | Antes de codear, tomás las 8 decisiones del brief (abajo) y las dejás escritas en tu `CLAUDE.md`. |
+| **1. Decidir** | Antes de codear, tomás las 8 decisiones del brief (abajo). La IA las va escribiendo en `docs/brief.md` mientras las conversás. |
 | **2. Construir** | En fases incrementales y **en local primero** (probás en tu máquina; publicás solo lo que ya funciona). |
 | **3. Sumar IA** | Si tu producto lo pide: un chatbot, un agente o un asistente sobre tus documentos (RAG). |
 | **4. Revisar y publicar** | Auditás contra tu brief, sumás analytics, y deployás a producción. |
@@ -27,7 +27,7 @@ El que decide bien antes, construye 10x mejor con IA. El que decide *mientras* c
 7. **Riesgos** — qué es lo más difícil y qué hacés si falla.
 8. **Criterios de éxito** — cómo sabés que el MVP validó algo.
 
-> El `CLAUDE.md` (en el material) ya trae la doctrina escrita arriba; vos solo completás estas 8 decisiones abajo. La IA lo lee en cada sesión y construye respetando lo que decidiste.
+> El `CLAUDE.md` (en el material) es el método y **no se edita**: lo descargás y lo dejás en tu proyecto. La IA lo lee en cada sesión y, conversando con vos, va escribiendo estas 8 decisiones en `docs/brief.md`. Esa carpeta `docs/` (brief, fases, decisiones) es la documentación viva de tu producto.
 
 ### La regla del scope
 

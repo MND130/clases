@@ -200,7 +200,7 @@ Para cada paso:
 2. Si me va a preguntar opciones, decime cual elegir
 3. Las variables de entorno que necesito configurar (y donde las encuentro en Supabase)
 
-Asumo que ya tengo Node.js instalado y una cuenta en Supabase.
+Asumo que ya tengo una cuenta en Supabase.
 ```
 
 > Por qué funciona: Pedir "los comandos exactos" y anticipar las preguntas interactivas de los instaladores evita que te quedes trabado en un paso intermedio.
@@ -221,7 +221,7 @@ Para cada paso:
 2. Si me va a preguntar opciones, decime cual elegir
 3. Las variables de entorno que necesito configurar (y donde las encuentro en Supabase)
 
-Asumo que ya tengo Node.js instalado y una cuenta en Supabase.
+Asumo que ya tengo una cuenta en Supabase.
 ```
 
 ---
@@ -881,11 +881,11 @@ Revisame:
 3. Performance: imagenes optimizadas, fonts, bundle size
 4. Errores comunes: cosas que funcionan en dev pero rompen en produccion con Next.js
 
-Ademas, dame los comandos para:
-- Hacer un build local y verificar que no hay errores
-- Conectar con Vercel y hacer el primer deploy
+Ademas:
+- Dame el comando para hacer un build local y verificar que no hay errores
+- Explicame como hacer el primer deploy importando mi repo de GitHub desde la web de Vercel (vercel.com)
 
-Asumo que ya tengo cuenta en Vercel y el Vercel CLI instalado.
+Asumo que ya tengo cuenta en Vercel conectada a mi GitHub, y que el deploy se hace desde la web (no por CLI).
 ```
 
 > Por qué funciona: "Cosas que funcionan en dev pero rompen en producción" es oro. Variables de entorno olvidadas, mixed content, y RLS desactivado son los errores más comunes.
@@ -901,11 +901,11 @@ Revisame:
 3. Performance: imagenes optimizadas, fonts, bundle size
 4. Errores comunes: cosas que funcionan en dev pero rompen en produccion con Next.js
 
-Ademas, dame los comandos para:
-- Hacer un build local y verificar que no hay errores
-- Conectar con Vercel y hacer el primer deploy
+Ademas:
+- Dame el comando para hacer un build local y verificar que no hay errores
+- Explicame como hacer el primer deploy importando mi repo de GitHub desde la web de Vercel (vercel.com)
 
-Asumo que ya tengo cuenta en Vercel y el Vercel CLI instalado.
+Asumo que ya tengo cuenta en Vercel conectada a mi GitHub, y que el deploy se hace desde la web (no por CLI).
 ```
 
 ---
