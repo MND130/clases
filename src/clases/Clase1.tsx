@@ -1,6 +1,6 @@
-import { Portada, Seccion, SlideClara, SlideOscura, Bullets, BulletsIcono, Tarjetas, Cronograma, DosCols, Cita, Glosario, Ejemplo, AntesDespues, Pasos, Codigo, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
+import { Portada, Seccion, SlideClara, SlideOscura, Bullets, BulletsIcono, Tarjetas, Cronograma, DosCols, Cita, Glosario, Ejemplo, AntesDespues, Pasos, Codigo, Fases, DemoEnVivo, Break, ManosALaObra } from '../components/Slides'
 import { GeneradorIdeas } from '../components/GeneradorIdeas'
-import { Target, Rocket, Layers, Smartphone, Users, Clock, Wallet, Compass, Server, FileCode2, ListChecks, ShieldCheck, MessageCircle, Wrench, Bot } from 'lucide-react'
+import { Target, Rocket, Layers, Smartphone, Users, Clock, Wallet, Compass, Server, FileCode2, ListChecks, ShieldCheck, AppWindow, Terminal, FolderOpen, PanelLeft } from 'lucide-react'
 
 export const clase1 = [
   <Portada
@@ -44,6 +44,37 @@ export const clase1 = [
     />
   </SlideClara>,
 
+  <Seccion kicker="Antes de arrancar" titulo="Las dos herramientas que vas a usar todo el curso" />,
+
+  <SlideClara titulo="Cursor y Claude Code: qué es cada uno">
+    <Tarjetas cols={2} items={[
+      { icon: AppWindow, t: 'Cursor', d: 'El editor donde vive tu proyecto: la ventana con tus archivos y carpetas. Es como un Word para código, pero hecho para programar con IA. Acá ves y guardás todo lo que construís.' },
+      { icon: Terminal, t: 'Claude Code', d: 'La IA que construye por vos. Corre adentro de Cursor, en un panel de chat (la "terminal"). Le hablás en español y ella escribe el código, crea archivos y publica. Es tu copiloto que sí toca el teclado.' },
+    ]} />
+    <div className="mt-6"><Ejemplo titulo="Cómo se relacionan">Cursor es el <b>taller</b> (la mesa, las herramientas, tu proyecto a la vista). Claude Code es el <b>que construye</b> ahí adentro mientras vos dirigís. No vas a escribir código: vas a darle instrucciones a Claude Code, en el chat, dentro de Cursor.</Ejemplo></div>
+  </SlideClara>,
+
+  <SlideClara titulo="Cómo abrir todo y empezar a trabajar">
+    <DosCols
+      izq={
+        <Pasos pasos={[
+          { t: 'Abrí Cursor', d: 'el ícono que instalaste en el setup. Es la ventana donde vas a trabajar toda la clase.' },
+          { t: 'Abrí la carpeta de tu proyecto', d: 'File → Open Folder. Elegís la carpeta del material que descargaste. Tus archivos aparecen a la izquierda.' },
+          { t: 'Abrí el panel de Claude Code', d: 'el panel de chat (ícono de Claude o el atajo). Ahí le vas a escribir. Si pide login, entrás con tu cuenta de Claude.' },
+          { t: 'Escribile en español', d: 'le hablás como a una persona. Empieza a construir desde tu instrucción. No tocás código a mano.' },
+        ]} />
+      }
+      der={
+        <BulletsIcono items={[
+          { icon: FolderOpen, children: <>Si no ves tus archivos, es porque no abriste la <b>carpeta</b>. Volvé a File → Open Folder.</> },
+          { icon: PanelLeft, children: <>El chat de Claude Code es un <b>panel</b> dentro de Cursor. No es otra app que se abre aparte.</> },
+          { icon: ShieldCheck, children: <>Si algo no abre o pide instalar, lo resolvemos <b>ahora</b>, antes de seguir. Nadie avanza sin esto listo.</> },
+        ]} />
+      }
+    />
+    <div className="mt-5"><Cita>Si algo de esto no te quedó instalado en el setup previo, frená y avisá. Mejor perder 5 minutos acá que quedar trabado toda la clase.</Cita></div>
+  </SlideClara>,
+
   <Seccion kicker="Bloque 1" titulo="Qué cambió: ahora lo construís vos" />,
 
   <SlideClara titulo="Lo que antes necesitabas para construir un producto">
@@ -78,12 +109,27 @@ export const clase1 = [
     <div className="mt-7"><Cita>Alguien de negocio ahora puede llevar una idea a producción sin un equipo técnico. Eso es lo que vamos a aprovechar — con método.</Cita></div>
   </SlideClara>,
 
-  <SlideClara titulo="El alcance: qué entra y qué no en tu MVP">
+  <SlideClara titulo="No seas un cliente caprichoso con la IA">
+    <p className="t-body-lg text-ink-soft mb-5">Vibecodear es ser ese cliente que dice <i>"quiero esto… ah, y aquello… no, mejor así"</i>. ¿El resultado? La IA se confunde — igual que te confundirías vos con un cliente que no sabe lo que quiere. <b className="text-ink">Y ojo: no es que la IA se confunde sola. La confundimos nosotros.</b></p>
     <AntesDespues
-      tituloAntes="Lo que NO es el MVP"
-      tituloDespues="Lo que SÍ es"
-      antes={<>El producto completo, con todas las features que imaginás, pulido para escalar a 100.000 usuarios.<br /><br />Eso viene después — y muchas veces nunca, porque la hipótesis no se valida.</>}
-      despues={<>La versión más chica que prueba tu hipótesis más riesgosa, <b>en manos de usuarios reales</b>.<br /><br />Una cosa, bien hecha, online. El resto se decide con datos, no con suposiciones.</>}
+      tituloAntes="Cliente caprichoso (vibecoding)"
+      tituloDespues="Cliente prolijo (el método)"
+      antes={<>Le vas tirando ideas sueltas a medida que se te ocurren. Cambiás de opinión a mitad de camino.<br /><br />La IA acumula contradicciones, parcha sobre parches, y el proyecto se ensucia.</>}
+      despues={<>Sabés qué querés <b>antes</b> de hablarle, porque ya lo decidiste. Le das un pedido claro.<br /><br />La IA no tiene que adivinar tu intención: la ejecuta.</>}
+    />
+  </SlideClara>,
+
+  <SlideClara titulo="Y si se ensució todo: dinamitá sin miedo">
+    <DosCols
+      izq={
+        <Bullets items={[
+          <>A veces el proyecto se enredó tanto que <b>arreglarlo cuesta más</b> que volver a empezar.</>,
+          <>Cuesta aceptarlo: <b>"le metí horas, no quiero borrarlo"</b>. Es la trampa.</>,
+          <>Pero ahora ya <b>sabés más</b>: la segunda vez sale en una fracción del tiempo.</>,
+          <>Tenés Git: <b>volver a un punto limpio</b> no es perder, es no arrastrar el problema.</>,
+        ]} />
+      }
+      der={<Ejemplo titulo="La regla">Si después de varios intentos la IA da vueltas sobre el mismo enredo, no insistas: <b>dinamitá y volvé a arrancar</b> desde el último punto que funcionaba, con lo que aprendiste. Da miedo, pero es más rápido que parchar un desastre.</Ejemplo>}
     />
   </SlideClara>,
 
@@ -114,17 +160,7 @@ export const clase1 = [
     <div className="mt-4 t-body-sm text-ink-soft">El glosario completo (más términos) está en el cheatsheet del material, para consultar cuando estés solo.</div>
   </SlideClara>,
 
-  <SlideClara titulo="Las 3 formas en que la IA trabaja para vos">
-    <Tarjetas cols={3} items={[
-      { icon: MessageCircle, t: '1. Conversa', d: 'Le preguntás, te responde texto. Te aconseja, redacta, explica. Es el ChatGPT de toda la vida: no toca nada por sí solo.' },
-      { icon: Wrench, t: '2. Usa herramientas', d: 'Además de responder, ejecuta acciones reales: crea un repo, escribe en la base, publica la app. Eso es lo que habilita MCP. La IA pasa de aconsejar a hacer.' },
-      { icon: Bot, t: '3. Es un agente', d: 'Encadena varias acciones sola para cumplir un objetivo: "agendá una demo con este lead" → busca el lead, crea el evento, confirma. Decide los pasos, no solo uno.' },
-    ]} />
-    <div className="mt-5"><Ejemplo titulo="Por qué te importa hoy">Dirigir a la IA es saber qué nivel le estás pidiendo. En este curso vas a usar los tres. El salto de "conversa" a "hace" es lo que convierte a la IA en alguien que construye tu MVP, no que te lo explica.</Ejemplo></div>
-    <div className="mt-3 t-body-sm text-ink-soft">Las formas 2 y 3 —herramientas y agentes— son el corazón de la <b>Clase 3 (Sumar IA)</b>: ahí las metés adentro de TU MVP. Por ahora alcanza con tener el mapa.</div>
-  </SlideClara>,
-
-  <Seccion kicker="Bloque 3" titulo="Fase 1 — Decidir: las 8 decisiones del brief" />,
+  <Seccion kicker="Bloque 3" titulo="Fase 1 — Decidir" />,
 
   <SlideClara titulo="El costo de NO decidir antes">
     <DosCols
@@ -152,30 +188,6 @@ export const clase1 = [
     </div>
   </SlideClara>,
 
-  <SlideClara titulo="No seas un cliente caprichoso con la IA">
-    <p className="t-body-lg text-ink-soft mb-5">Vibecodear es ser ese cliente que dice <i>"quiero esto… ah, y aquello… no, mejor así"</i>. ¿El resultado? La IA se confunde — igual que te confundirías vos con un cliente que no sabe lo que quiere. <b className="text-ink">Y ojo: no es que la IA se confunde sola. La confundimos nosotros.</b></p>
-    <AntesDespues
-      tituloAntes="Cliente caprichoso (vibecoding)"
-      tituloDespues="Cliente prolijo (el método)"
-      antes={<>Le vas tirando ideas sueltas a medida que se te ocurren. Cambiás de opinión a mitad de camino.<br /><br />La IA acumula contradicciones, parcha sobre parches, y el proyecto se ensucia.</>}
-      despues={<>Sabés qué querés <b>antes</b> de hablarle, porque ya lo decidiste. Le das un pedido claro.<br /><br />La IA no tiene que adivinar tu intención: la ejecuta.</>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="Y si se ensució todo: dinamitá sin miedo">
-    <DosCols
-      izq={
-        <Bullets items={[
-          <>A veces el proyecto se enredó tanto que <b>arreglarlo cuesta más</b> que volver a empezar.</>,
-          <>Cuesta aceptarlo: <b>"le metí horas, no quiero borrarlo"</b>. Es la trampa.</>,
-          <>Pero ahora ya <b>sabés más</b>: la segunda vez sale en una fracción del tiempo.</>,
-          <>Tenés Git: <b>volver a un punto limpio</b> no es perder, es no arrastrar el problema.</>,
-        ]} />
-      }
-      der={<Ejemplo titulo="La regla">Si después de varios intentos la IA da vueltas sobre el mismo enredo, no insistas: <b>dinamitá y volvé a arrancar</b> desde el último punto que funcionaba, con lo que aprendiste. Da miedo, pero es más rápido que parchar un desastre.</Ejemplo>}
-    />
-  </SlideClara>,
-
   <SlideClara titulo="Las 8 decisiones que tomás antes de construir">
     <div className="grid grid-cols-2 gap-x-10 gap-y-3.5">
       <Pasos pasos={[
@@ -192,71 +204,6 @@ export const clase1 = [
       ]} />
     </div>
     <div className="mt-5"><Cita>Cada decisión es una conversación con la IA, no un formulario que se llena solo. Ahí está el "dirigir, no programar".</Cita></div>
-  </SlideClara>,
-
-  <SlideClara titulo="Una spec floja vs. una que la IA puede ejecutar">
-    <AntesDespues
-      tituloAntes="Spec vaga"
-      tituloDespues="Spec accionable"
-      antes={<>"Quiero una herramienta de scoring que también haga forecast, mande mails, se integre al CRM y arme reportes…"<br /><br />Demasiado, sin prioridad. La IA construye 5 cosas a medias.</>}
-      despues={<>"MVP: cargar leads + definir pesos + ver ranking. Datos: lead, criterio, score. <b>Después</b>: forecast. <b>Más tarde</b>: integración al CRM."<br /><br />Una cosa a la vez, priorizada. La IA construye algo que funciona.</>}
-    />
-    <div className="mt-5"><Cita>La spec no es burocracia: es lo que separa "la IA me hizo un quilombo" de "la IA me hizo lo que pedí".</Cita></div>
-  </SlideClara>,
-
-  <SlideClara titulo="La decisión que todos se olvidan: los estados">
-    <DosCols
-      izq={
-        <>
-          <div className="text-udesa-sigedu font-bold uppercase tracking-wide text-sm mb-3">No solo el "todo salió bien"</div>
-          <Bullets items={[
-            <><b>Vacío:</b> la pantalla cuando todavía no hay datos. ¿Qué ve el usuario el primer día?</>,
-            <><b>Cargando:</b> mientras la app busca o guarda. ¿Spinner? ¿Skeleton?</>,
-            <><b>Error:</b> falló algo. ¿Qué mensaje? ¿Puede reintentar?</>,
-            <><b>Sin permiso:</b> entró alguien que no debería. ¿Qué pasa?</>,
-          ]} />
-        </>
-      }
-      der={<Ejemplo titulo="Por qué importa decidirlo ANTES">La IA por default te construye solo el camino feliz. Si no le decís los estados, tu MVP se rompe feo el primer día real — pantalla en blanco, errores sin mensaje. Decidirlos en el brief es 2 minutos; descubrirlos en producción es un papelón.</Ejemplo>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="Cómo la IA te ayuda a decidir mejor (si la dejás)">
-    <AntesDespues
-      tituloAntes="Le pedís que te dé la razón"
-      tituloDespues="Le pedís que te cuestione"
-      antes={<><span className="font-mono text-[13px]">"Mi idea es genial, armame el plan."</span><br /><br />La IA es complaciente: te dice que sí, infla el scope, y no te avisa de los riesgos. Salís con un plan lindo y frágil.</>}
-      despues={<><span className="font-mono text-[13px]">"Antes de planear: ¿qué de mi idea es ambiguo o riesgoso? ¿Qué feature estoy metiendo que NO debería ir en un MVP?"</span><br /><br />La IA actúa como un PM crítico. Recortás antes de construir, no después.</>}
-    />
-    <div className="mt-5"><Cita>El valor no es que la IA diga que sí. Es que la uses para encontrar los agujeros de tu idea antes de gastar tiempo construyéndola.</Cita></div>
-  </SlideClara>,
-
-  <SlideClara titulo="El scope: qué entra y qué NO (lo más difícil)">
-    <p className="t-body-lg text-ink-soft mb-5">Decidir qué features van es fácil. Lo difícil — y lo más valioso — es decidir <b className="text-ink">qué dejás afuera</b>. Un MVP no es tu producto chiquito: es la <b className="text-ink">prueba más rápida</b> de tu idea más riesgosa.</p>
-    <DosCols
-      izq={
-        <div className="rounded-xl border border-rule bg-[#fdf2f2] p-5" style={{ borderLeft: '4px solid #d64545' }}>
-          <div className="t-label font-bold uppercase text-[#b13434] mb-2">La trampa de la feature linda</div>
-          <div className="t-body text-ink">La feature que más te entusiasma suele ser la que <b>NO va</b> en la v1. Te enamorás de ella y le metés semanas… antes de saber si alguien quiere el producto.</div>
-        </div>
-      }
-      der={
-        <div className="rounded-xl border border-rule bg-[#f0f8f3] p-5" style={{ borderLeft: '4px solid #2f9e6b' }}>
-          <div className="t-label font-bold uppercase text-[#1f7a51] mb-2">El test para recortar</div>
-          <div className="t-body text-ink">Por cada feature, preguntá: <b>"¿sin esto puedo validar mi hipótesis?"</b> Si la respuesta es sí, va a la lista de DESPUÉS. Sé brutal.</div>
-        </div>
-      }
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="Cómo achicar una idea grande (con la IA)">
-    <Pasos pasos={[
-      { t: 'Escribí TODO lo que se te ocurre', d: 'sin filtro. Volcá la idea completa, con todas las features que imaginás.' },
-      { t: 'Pedile a la IA que la ataque', d: '"De todo esto, ¿qué es lo MÍNIMO para validar la idea? ¿Qué sacarías?"' },
-      { t: 'Quedate con 3-5 features core', d: 'si te quedan más de 5, todavía no recortaste suficiente. Volvé al paso 2.' },
-      { t: 'El resto va a "DESPUÉS"', d: 'no lo borrás: lo guardás en el CLAUDE.md como "no va en v1". Existe, pero después.' },
-    ]} />
-    <div className="mt-4"><Cita>"If you are not embarrassed by the first version of your product, you've launched too late." — <b>Reid Hoffman</b>, fundador de LinkedIn.</Cita></div>
   </SlideClara>,
 
   <Seccion kicker="Bloque 3b" titulo="El CLAUDE.md: tu proyecto le habla a la IA" />,
@@ -313,39 +260,6 @@ Criterios de éxito: [...]`}</Codigo>
     <div className="mt-4"><Ejemplo titulo="Te lo damos hecho">El CLAUDE.md con la Parte 1 ya escrita está en el Material del curso. Hoy completás la Parte 2 con tu idea.</Ejemplo></div>
   </SlideClara>,
 
-  <SlideClara titulo="Un brief real, completo (así se ve bien hecho)">
-    <DosCols
-      izq={
-        <Codigo>{`Problema: las peluquerías pierden turnos
-  por WhatsApp desorganizado.
-Usuario: dueño de una peluquería chica.
-Job: que el cliente reserve solo, sin
-  que yo conteste mensajes todo el día.
-
-Features core:
-  - el cliente ve horarios libres y reserva
-  - el dueño ve su agenda del día
-  - cancelar / reprogramar un turno
-NO va en v1: pagos, recordatorios SMS,
-  varias sucursales, programa de puntos.`}</Codigo>
-      }
-      der={
-        <Codigo>{`Pantallas: home con horarios, mis turnos,
-  panel del dueño.
-Estados: sin turnos aún, horario lleno,
-  reserva fallida, turno cancelado.
-Datos: turno (fecha, hora, cliente,
-  estado), servicio, dueño.
-Stack: Next.js + Supabase + Vercel.
-Riesgo: la lógica de horarios ocupados
-  → plan B: bloquear franjas a mano.
-Éxito: 10 turnos reservados sin que el
-  dueño toque el teléfono.`}</Codigo>
-      }
-    />
-    <div className="mt-4"><Cita>Mirá lo concreto que es. Cualquiera — o cualquier IA — puede construir esto sin preguntarte nada. Eso es un brief que sirve.</Cita></div>
-  </SlideClara>,
-
   <Seccion kicker="Bloque 4" titulo="Decidir el stack + demo en vivo" />,
 
   <SlideClara titulo="El stack por defecto del curso (y por qué)">
@@ -375,10 +289,10 @@ Riesgo: la lógica de horarios ocupados
     ]} />
   </SlideClara>,
 
+  <Break minutos={15} etiqueta="Break" />,
+
   // --- Pieza interactiva: sale la idea al azar que el profe va a construir en vivo ---
   <SlideOscura><GeneradorIdeas /></SlideOscura>,
-
-  <Break minutos={15} etiqueta="Break 1 de 2" />,
 
   <DemoEnVivo
     titulo="Les muestro: completo el brief de la idea que salió, en vivo"
@@ -396,38 +310,16 @@ Hacelo de a una pregunta, no todo junto.`}
   <Seccion kicker="Bloque 5 · Manos a la obra" titulo="Completá el brief de TU MVP" />,
 
   <ManosALaObra
-    minutos="30 min"
-    titulo="Arrancá tu CLAUDE.md: las primeras decisiones"
-    objetivo={<>Primera mitad: idea + las primeras decisiones del brief. Después paramos y seguimos.</>}
+    minutos="65 min"
+    titulo="Arrancá tu CLAUDE.md y cerrá el brief completo"
+    objetivo={<>De una, todo el brief: tomás tu idea y completás las 8 decisiones con Claude. Salís con el CLAUDE.md terminado — es el entregable de hoy.</>}
     pasos={[
-      { t: 'Tomá tu idea (5 min)', d: 'la que trajiste, o sorteá una en el generador. No le des más vueltas.' },
-      { t: 'Abrí el CLAUDE.md del material', d: 'ya tiene el método arriba. Solo llenás la Parte 2.' },
-      { t: 'Problema, usuario y scope (25 min)', d: 'las primeras decisiones, con Claude. Que te cuestione, no que te dé la razón.' },
+      { t: 'Tomá tu idea y abrí el CLAUDE.md', d: 'la que trajiste o sorteá una en el generador. El archivo del material ya tiene el método arriba: solo llenás la Parte 2.' },
+      { t: 'Problema, usuario y scope', d: 'las primeras decisiones, con Claude. Que te cuestione, no que te dé la razón.' },
+      { t: 'Pantallas, estados y datos', d: 'no solo el happy path: vacío, error, cargando. Y qué guardás.' },
+      { t: 'Stack, riesgos y criterios de éxito', d: 'con qué lo construís, qué puede salir mal, cómo sabés que validó algo.' },
+      { t: 'Cerrá scope', d: 'dejá explícito qué NO entra en la v1. Si lleva IA adentro, anotalo.' },
     ]}
-  />,
-
-  <Break minutos={15} etiqueta="Break 2 de 2" />,
-
-  <ManosALaObra
-    minutos="35 min"
-    titulo="Terminá tu CLAUDE.md: cerrá el brief"
-    objetivo={<>Segunda mitad: completás las decisiones que faltan. Salís con el brief terminado — es el entregable de hoy.</>}
-    pasos={[
-      { t: 'Pantallas, estados y datos (15 min)', d: 'no solo el happy path: vacío, error, cargando. Y qué guardás.' },
-      { t: 'Stack, riesgos y criterios de éxito (15 min)', d: 'con qué lo construís, qué puede salir mal, cómo sabés que validó algo.' },
-      { t: 'Cerrá scope (5 min)', d: 'dejá explícito qué NO entra en la v1. Si lleva IA adentro, anotalo.' },
-    ]}
-  />,
-
-  <Checkpoint
-    titulo="Antes de cerrar, chequeá tu brief"
-    items={[
-      'Tu CLAUDE.md con las 8 decisiones completas (problema → criterios de éxito).',
-      'Stack elegido y justificado.',
-      'Definido si tu MVP lleva IA adentro y para qué.',
-      'Lo más riesgoso identificado (el "qué puede salir mal").',
-    ]}
-    mostrar={<><b>Ronda rápida:</b> cada uno comparte pantalla y presenta su MVP en 1 minuto. Si a alguien le falta una decisión, la cerramos entre todos ahora — así nadie se va sin el brief.</>}
   />,
 
   <SlideClara titulo="El recorrido completo del curso" kicker="Para que veas el hilo">
