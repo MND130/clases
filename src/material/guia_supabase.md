@@ -29,6 +29,27 @@ Supabase es tu base de datos y tu sistema de login, todo en uno. Cuando tu app n
 
 ---
 
+## 2. Dos proyectos: prueba y producción
+
+Una aclaración importante para que no te confundas: tu app corre en **local** (en tu máquina), pero la base de datos vive siempre en la nube, en Supabase. Tu app local se conecta a Supabase por internet.
+
+Por eso trabajás con **dos proyectos** de Supabase (el plan gratis te da 2, justo):
+
+- **Proyecto de prueba** — al que apunta tu app mientras construís en local. Lo llenás de datos truchos, lo rompés, no importa. **Este es el que creás en la Clase 2.**
+- **Proyecto de producción** — los datos reales, el que usan tus usuarios. **Lo creás recién en la Clase 4**, cuando publicás. Nunca lo tocás a mano.
+
+> No hace falta una "base de datos local": montar eso en tu máquina es complejo y no aporta. Con el proyecto de prueba ya experimentás tranquilo, sin tocar nada real.
+
+Cómo crear el proyecto de prueba (en la Clase 2):
+
+1. En tu dashboard de Supabase, hacé clic en **New project**.
+2. Ponele un nombre claro, por ejemplo `mi-mvp-dev` (dev = de prueba).
+3. Elegí una contraseña para la base y guardala.
+4. Elegí la región más cercana y creá el proyecto.
+5. Cuando esté listo, las **claves de conexión** (URL y API key) las vas a guardar en tu archivo `.env`. Pedile a Claude Code que te ayude: "conectá mi proyecto de Supabase, las claves van en variables de entorno".
+
+---
+
 ## 2. Conectar Supabase a Claude Code
 
 Abrí la terminal integrada de Cursor (menú **Terminal → New Terminal**, o `` Ctrl+` ``) y pegá esta línea **tal cual**:

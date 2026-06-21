@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Deck } from './components/Deck'
 import { Inicio } from './components/Inicio'
 import { Material } from './components/Material'
-import { Bienvenida } from './components/Bienvenida'
 import { clase1 } from './clases/Clase1'
 import { clase2 } from './clases/Clase2'
 import { clase3 } from './clases/Clase3'
@@ -11,20 +10,13 @@ import { clase4 } from './clases/Clase4'
 
 const DECKS: Record<number, React.ReactNode[]> = { 1: clase1, 2: clase2, 3: clase3, 4: clase4 }
 
-type Vista = { tipo: 'bienvenida' } | { tipo: 'inicio' } | { tipo: 'clase'; n: number } | { tipo: 'material' }
+type Vista = { tipo: 'inicio' } | { tipo: 'clase'; n: number } | { tipo: 'material' }
 
 export default function App() {
-  const [vista, setVista] = useState<Vista>({ tipo: 'bienvenida' })
+  const [vista, setVista] = useState<Vista>({ tipo: 'inicio' })
 
   return (
     <AnimatePresence mode="wait">
-      {vista.tipo === 'bienvenida' && (
-        <motion.div key="bienvenida" className="fixed inset-0"
-          initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}>
-          <Bienvenida onEntrar={() => setVista({ tipo: 'inicio' })} />
-        </motion.div>
-      )}
       {vista.tipo === 'inicio' && (
         <motion.div key="inicio" className="fixed inset-0"
           initial={{ opacity: 0, scale: 1.04 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.96 }}

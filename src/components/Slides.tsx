@@ -204,8 +204,8 @@ export function DescargarClaudeMd({ etiqueta = 'Descargar CLAUDE.md' }: { etique
   }
   return (
     <button onClick={descargar}
-      className="inline-flex items-center gap-2 rounded-lg bg-udesa-sigedu px-4 py-2.5 text-white t-label font-semibold hover:brightness-110 transition">
-      <FileDown size={18} /> {etiqueta}
+      className="inline-flex items-center gap-2 rounded-lg bg-udesa-sigedu px-4 py-2 text-white text-sm font-semibold hover:brightness-110 transition">
+      <FileDown size={15} /> {etiqueta}
     </button>
   )
 }
@@ -374,7 +374,7 @@ export function Checkpoint({ titulo, items, mostrar }: { titulo: string; items: 
 
 /** Slide de DEMO EN VIVO: "ahora me ven a MÍ construir". Muestra el aviso de cambio
  *  a Cursor/Claude Code, el prompt que voy a pegar, y qué mirar mientras lo hago. */
-export function DemoEnVivo({ titulo, prompt, mirar }: { titulo: string; prompt: string; mirar?: ReactNode }) {
+export function DemoEnVivo({ titulo, prompt, mirar, descargaClaudeMd }: { titulo: string; prompt: string; mirar?: ReactNode; descargaClaudeMd?: boolean }) {
   const [copiado, setCopiado] = useState(false)
   async function copiar() {
     try { await navigator.clipboard.writeText(prompt); setCopiado(true); setTimeout(() => setCopiado(false), 2000) } catch { /* noop */ }
@@ -395,10 +395,13 @@ export function DemoEnVivo({ titulo, prompt, mirar }: { titulo: string; prompt: 
           <div>
             <div className="t-label font-bold tracking-widest uppercase text-[#c89bf0] mb-1.5">El prompt que pego</div>
             <pre className="bg-[#1a0f2e] text-[#ecdcff] rounded-lg border-l-4 border-[#a86bd8] px-5 py-4 t-mono leading-relaxed whitespace-pre-wrap font-mono overflow-hidden">{prompt}</pre>
-            <button onClick={copiar}
-              className={`mt-3 inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition ${copiado ? 'bg-[#2f9e6b] text-white' : 'bg-[#a86bd8] text-white hover:brightness-110'}`}>
-              {copiado ? <><Check size={15} /> Copiado</> : <><Copy size={15} /> Copiar prompt</>}
-            </button>
+            <div className="mt-3 flex items-center gap-3">
+              <button onClick={copiar}
+                className={`inline-flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition ${copiado ? 'bg-[#2f9e6b] text-white' : 'bg-[#a86bd8] text-white hover:brightness-110'}`}>
+                {copiado ? <><Check size={15} /> Copiado</> : <><Copy size={15} /> Copiar prompt</>}
+              </button>
+              {descargaClaudeMd && <DescargarClaudeMd />}
+            </div>
           </div>
           <div>
             <div className="t-label font-bold tracking-widest uppercase text-[#c89bf0] mb-1.5">Qué mirar mientras construyo</div>

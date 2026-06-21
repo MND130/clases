@@ -1,5 +1,5 @@
-import { Portada, Seccion, SlideClara, Bullets, Tarjetas, Checklist, DosCols, Cita, Codigo, Glosario, Ejemplo, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
-import { FolderGit2, Triangle, Database, MessageSquare, ListOrdered, RefreshCw, AlertTriangle, Laptop, ShieldAlert } from 'lucide-react'
+import { Portada, Seccion, SlideClara, Bullets, Tarjetas, DosCols, Cita, Codigo, Glosario, Ejemplo, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
+import { FolderGit2, Database, ListOrdered, RefreshCw, AlertTriangle, Laptop, ShieldAlert } from 'lucide-react'
 
 export const clase2 = [
   <Portada
@@ -12,7 +12,7 @@ export const clase2 = [
     <Fases activa={2} />
     <div className="mt-7">
       <Ejemplo titulo="Por qué hoy es más fácil de lo que parece">
-        Ya hiciste lo difícil: <b>decidir</b>. Tu CLAUDE.md tiene el brief completo. Hoy la IA construye con ese contexto — y vos dirigís el ritmo, en fases y en local.
+        Ya hiciste lo difícil: <b>decidir</b>. Tenés tu CLAUDE.md y tus docs (brief y fases) de la Clase 1. Hoy la IA construye con ese contexto — y vos dirigís el ritmo, en fases y en local.
       </Ejemplo>
     </div>
   </SlideClara>,
@@ -34,22 +34,35 @@ export const clase2 = [
         </div>
       }
     />
-    <div className="mt-6"><Cita>El amateur escribe directo en producción y reza. Vos construís en privado, rompés en privado, y publicás solo lo que ya funciona.</Cita></div>
+    <div className="mt-6"><Cita>Construís en privado, rompés en privado, y publicás solo lo que ya funciona. Romper en local no cuesta nada; romper en producción, sí.</Cita></div>
   </SlideClara>,
 
   <Seccion kicker="Bloque 1" titulo="Setup del entorno" />,
 
-  <SlideClara titulo="Las tres cuentas y para qué sirve cada una">
-    <Tarjetas items={[
+  <SlideClara titulo="Las dos cuentas que usás para construir">
+    <Tarjetas cols={2} items={[
       { icon: FolderGit2, t: 'GitHub', d: 'El repositorio: guarda tu código y su historial. Cada cambio queda versionado y podés volver atrás.' },
-      { icon: Triangle, t: 'Vercel', d: 'Donde vive tu app online. Se conecta a GitHub: subís un cambio y se actualiza solo.' },
       { icon: Database, t: 'Supabase', d: 'Base de datos + login, sin servidor propio. Donde se guarda la info de tu app.' },
     ]} />
     <div className="mt-6">
-      <Ejemplo titulo="Cómo se conectan">
-        Escribís código → lo subís a <b>GitHub</b> → <b>Vercel</b> lo publica → tu app, online, lee y guarda datos en <b>Supabase</b>. Ese es el circuito completo.
+      <Ejemplo titulo="El circuito mientras construís">
+        Escribís código en tu máquina (<span className="font-mono text-[13px]">localhost</span>) → lo guardás en <b>GitHub</b> → tu app lee y guarda datos en <b>Supabase</b>. Todo en local. <b>Publicar online es la Clase 4</b> (ahí entra Vercel).
       </Ejemplo>
     </div>
+  </SlideClara>,
+
+  <SlideClara titulo="Supabase: la base de datos y el login, ya hechos">
+    <DosCols
+      izq={
+        <Glosario items={[
+          { t: 'Base de datos', d: 'donde tu app guarda la info de forma permanente. Pensá en una planilla de Excel, pero a la que la app consulta y escribe sola.' },
+          { t: 'Tabla', d: 'una "hoja" de esa planilla para un tipo de cosa: una tabla de usuarios, una de turnos. Filas = registros, columnas = campos.' },
+          { t: 'Auth (login)', d: 'el sistema de "quién entra y a qué accede". Registrarse, iniciar sesión, recuperar contraseña.' },
+        ]} />
+      }
+      der={<Ejemplo titulo="Qué te ahorra Supabase">Armar una base de datos y un login seguro desde cero es de lo más difícil y peligroso de una app. Supabase te lo da <b>listo</b>: vos le pedís a la IA "creá una tabla de turnos" o "sumá login", y se apoya en Supabase. No programás el sistema de usuarios: ya está resuelto.</Ejemplo>}
+    />
+    <div className="mt-5"><Cita>Para vos, Supabase son dos cosas: dónde viven los datos de tu app, y quién puede entrar. Las dos, sin montar ni mantener un servidor.</Cita></div>
   </SlideClara>,
 
   <SlideClara titulo="MCP: el enchufe que conecta la IA con tus herramientas">
@@ -64,25 +77,25 @@ export const clase2 = [
         { t: 'Por qué importa', d: 'cada app lo publica una vez y cualquier IA lo aprovecha. Por eso ya hay miles.' },
       ]} />}
     />
-    <div className="mt-5"><Ejemplo titulo="Lo conectás hoy">Hoy conectás GitHub y Supabase a Claude Code por MCP (cada una con su guía en el material). Es pegar una línea y autorizar en el navegador, una sola vez. Después le pedís las cosas en español. Vercel se publica solo desde GitHub.</Ejemplo></div>
+    <div className="mt-5"><Ejemplo titulo="Lo conectás hoy">Hoy conectás GitHub y Supabase a Claude Code por MCP (cada una con su guía en el material). Es pegar una línea y autorizar en el navegador, una sola vez. Después le pedís las cosas en español.</Ejemplo></div>
   </SlideClara>,
 
   <SlideClara titulo="Local vs. producción: dos lugares, no se mezclan">
     <AntesDespues
       tituloAntes="Local (tu máquina)"
       tituloDespues="Producción (online)"
-      antes={<>Donde <b>construís y probás</b>. Corre en <span className="font-mono text-[13px]">localhost</span>, solo lo ves vos.<br /><br />Una base de datos <b>de prueba</b>: la llenás de datos truchos, la rompés, no importa.</>}
-      despues={<>Donde vive la app <b>para los usuarios</b>. Es lo que está en Vercel con tu dominio.<br /><br />La base de datos <b>real</b>. Acá no se experimenta: llega lo que ya probaste en local.</>}
+      antes={<>La app <b>construís y probás</b> en tu máquina: corre en <span className="font-mono text-[13px]">localhost</span>, solo la ves vos.<br /><br />Apunta a tu <b>proyecto de prueba</b> de Supabase: lo llenás de datos truchos, lo rompés, no importa.</>}
+      despues={<>Donde vivirá la app <b>para los usuarios</b>, online, cuando la publiques (eso es la Clase 4).<br /><br />Apuntará a tu <b>proyecto de producción</b> de Supabase: los datos reales. Acá no se experimenta.</>}
     />
-    <div className="mt-5"><Cita>Regla simple para no-técnicos: tenés un proyecto de Supabase para probar y otro para producción. Nunca toques el de producción a mano.</Cita></div>
+    <div className="mt-5"><Cita>Ojo: lo "local" es la <b>app</b>; la base de datos vive siempre en la nube (Supabase). Por eso tenés <b>dos proyectos</b> de Supabase — prueba y producción (el plan gratis te da 2, justo) — y nunca tocás el de producción a mano. No hace falta montar una base en tu máquina: con el de prueba ya rompés y experimentás tranquilo.</Cita></div>
   </SlideClara>,
 
   <SlideClara titulo="El setup, en orden">
     <Pasos pasos={[
-      { t: 'Crear las cuentas', d: 'GitHub, Vercel y Supabase, hoy en clase (cada una tiene su guía en el material).' },
-      { t: 'Levantar el proyecto en local', d: 'que corra en tu máquina y lo veas en localhost. Primero acá.' },
-      { t: 'Conectar GitHub con Vercel', d: 'para que el deploy sea automático cuando vos decidas subir.' },
-      { t: 'Conectar Supabase', d: 'crear el proyecto de prueba y guardar las claves en variables de entorno.' },
+      { t: 'Crear las cuentas', d: 'GitHub y Supabase, hoy en clase (cada una tiene su guía en el material).' },
+      { t: 'Levantar el proyecto en local', d: 'que la app corra en tu máquina y la veas en localhost. Primero acá.' },
+      { t: 'Conectar GitHub y Supabase a Claude Code', d: 'por MCP: pegás una línea y autorizás en el navegador, una sola vez.' },
+      { t: 'Crear el proyecto de prueba en Supabase', d: 'tu app local apunta a él. Guardás las claves en variables de entorno (.env).' },
     ]} />
     <div className="mt-6"><Cita>Lo hacemos con pantalla compartida, todos a la vez. Quien se traba comparte su pantalla; los bloqueos chicos van por el chat en paralelo.</Cita></div>
   </SlideClara>,
@@ -116,40 +129,40 @@ export const clase2 = [
     />
   </SlideClara>,
 
+  <SlideClara titulo="Git y GitHub: tu botón de guardado con historial">
+    <DosCols
+      izq={
+        <Glosario items={[
+          { t: 'Commit', d: 'un punto de guardado de tu código, con una nota de qué cambiaste. Podés volver a cualquiera.' },
+          { t: 'Git', d: 'la herramienta que guarda esos puntos en tu máquina y arma el historial.' },
+          { t: 'Repo (GitHub)', d: 'la copia de tu proyecto en la nube, con todo el historial. Es "subir" tus commits.' },
+          { t: 'Push', d: 'mandar tus commits locales a GitHub, para tenerlos a salvo y compartibles.' },
+        ]} />
+      }
+      der={<Ejemplo titulo="Por qué commiteás cada fase">Cada vez que una fase anda, hacés un commit. Así, si la próxima cosa rompe algo, <b>volvés al último punto que funcionaba</b> sin perder nada. No tenés que aprender comandos: le pedís a la IA <i>"commiteá esto"</i> y lo hace. Vos decidís cuándo guardar.</Ejemplo>}
+    />
+    <div className="mt-5"><Cita>Pensalo como el "guardar" de un videojuego: antes de algo arriesgado, guardás. Si sale mal, cargás la última partida.</Cita></div>
+  </SlideClara>,
+
   <Seccion kicker="Bloque 2" titulo="Cómo promptear para desarrollo" />,
 
-  <SlideClara titulo="Las 3 reglas del buen prompt">
-    <Tarjetas items={[
-      { icon: MessageSquare, t: '1. Contexto', d: 'Ya lo tenés resuelto: tu CLAUDE.md. La IA lee tu brief y tu stack sola, en cada sesión.' },
-      { icon: ListOrdered, t: '2. Estructura', d: 'Pedí de a un paso. Un objetivo por prompt. "Hacé todo" produce todo a medias.' },
-      { icon: RefreshCw, t: '3. Iteración', d: 'No tires y empieces de cero. Corregí lo que ya hay: "esto está bien, pero cambiá X".' },
-    ]} />
-    <div className="mt-5"><Ejemplo titulo="La ventaja de venir con el método">Quien no tiene CLAUDE.md repite el contexto en cada prompt (y se olvida la mitad). Vos no: ya está escrito y la IA lo respeta.</Ejemplo></div>
-  </SlideClara>,
-
-  <SlideClara titulo="La misma tarea, dos prompts, dos resultados">
-    <AntesDespues
-      tituloAntes="Prompt pobre"
-      tituloDespues="Prompt con método"
-      antes={<><span className="font-mono text-[13px]">"Hacé una pantalla de login"</span><br /><br />La IA elige el stack que quiere, inventa un diseño, quizás no usa tu Supabase. Tenés que rehacer la mitad.</>}
-      despues={<><span className="font-mono text-[13px]">"Según mi CLAUDE.md, agregá la pantalla de login con Supabase Auth. Solo eso. Decime cómo probarla antes de seguir."</span><br /><br />Hace exactamente eso, sobre lo que ya tenés.</>}
-    />
-  </SlideClara>,
-
   <SlideClara titulo="El prompt para arrancar el build">
-    <Codigo>{`Según mi CLAUDE.md, armemos el plan de fases.
-Cada fase tiene que terminar con algo que
-funcione y se pueda probar en local.
+    <Codigo>{`Mirá mi docs/fases.md (el plan que armamos
+en la Clase 1) y mi docs/brief.md. Si hace
+falta, ajustá el plan. Cada fase tiene que
+terminar con algo que funcione y se pueda
+probar en local.
 
-Empecemos por la Fase 1: scaffold del proyecto
-+ la estructura base. Explicame las carpetas
-antes de seguir, y decime cómo lo corro en mi
-máquina. No avances a la Fase 2 sin mi OK.`}</Codigo>
-    <div className="mt-5"><Ejemplo titulo="Por qué funciona">Apoya en el <b>CLAUDE.md</b> (contexto), pide <b>fases</b> (estructura) y un <b>paso</b> ("antes de seguir"). El método hecho prompt.</Ejemplo></div>
+Empecemos por la Fase 1: armá la estructura
+base del proyecto (el esqueleto vacío que ya
+corre). Explicame las carpetas antes de seguir,
+y decime cómo lo corro en mi máquina. No avances
+a la Fase 2 sin mi OK.`}</Codigo>
+    <div className="mt-5"><Ejemplo titulo="Por qué funciona">No repetís el contexto: la IA lee tus <b>docs</b> sola. El prompt solo apunta a tu <b>plan</b> (fases), pide de a un <b>paso</b> ("antes de seguir") y se construye en local. El método hecho prompt.</Ejemplo></div>
   </SlideClara>,
 
   <SlideClara titulo="No le pidas todo de una: corregí en el camino">
-    <p className="t-body-lg text-ink-soft mb-5">Construir con IA es como dirigir a alguien que tipea rapidísimo: le pedís algo, mirás lo que hizo, y le decís qué ajustar. <b className="text-ink">Una cosa a la vez.</b> No tires un pedido gigante y reces.</p>
+    <p className="t-body-lg text-ink-soft mb-5">Construir con IA es como dirigir a alguien que tipea rapidísimo: le pedís algo, mirás lo que hizo, y le decís qué ajustar. <b className="text-ink">Una cosa a la vez.</b> No le tires un pedido gigante de una.</p>
     <div className="rounded-xl border border-rule overflow-hidden">
       {[
         { vos: 'Armá la pantalla de turnos.', ia: 'La construye. La mirás en tu compu.' },
@@ -183,16 +196,15 @@ máquina. No avances a la Fase 2 sin mi OK.`}</Codigo>
   <Seccion kicker="Bloque 3 · Construir" titulo="Construí tu MVP en local" />,
 
   <DemoEnVivo
-    titulo="Les muestro: armo el scaffold en vivo, en Cursor"
-    prompt={`Según mi CLAUDE.md, armemos el plan de fases.
-Cada fase tiene que terminar con algo que
-funcione y se pueda probar en local.
-
-Empecemos por la Fase 1: scaffold del proyecto
-+ la estructura base. Explicame las carpetas
-antes de seguir, y decime cómo lo corro en mi
-máquina. No avances a la Fase 2 sin mi OK.`}
-    mirar={<>Cómo pido <b>de a una fase</b>, cómo la IA me explica la estructura, cómo lo <b>corro en local</b> y verifico que anda — y recién ahí sigo. Después van ustedes.</>}
+    titulo="Les muestro: armo la estructura base en vivo, en Cursor"
+    prompt={`Mirá mi docs/fases.md y mi docs/brief.md.
+Empecemos por la Fase 1: armá la estructura
+base del proyecto (el esqueleto vacío que ya
+corre). Explicame las carpetas antes de seguir,
+y decime cómo lo corro en mi máquina. Actualizá
+docs/fases.md cuando la Fase 1 esté lista.
+No avances a la Fase 2 sin mi OK.`}
+    mirar={<>Cómo arranco desde <b>mi plan de fases</b>, cómo la IA me explica la estructura, cómo lo <b>corro en local</b> y verifico que anda — y cómo va <b>actualizando docs/fases.md</b>. Después van ustedes.</>}
   />,
 
   <SlideClara titulo="Leer la estructura sin asustarte (no hace falta entender el código)">
@@ -212,7 +224,7 @@ máquina. No avances a la Fase 2 sin mi OK.`}
 
   <SlideClara titulo="El plan de fases típico (el skate → el auto)">
     <Pasos pasos={[
-      { t: 'Fase 1 — La base (el skate)', d: 'scaffold + estructura + auth. Verificás: te registrás y entrás a un dashboard vacío, en local.' },
+      { t: 'Fase 1 — La base (el skate)', d: 'estructura base + auth. Verificás: te registrás y entrás a un dashboard vacío, en local.' },
       { t: 'Fase 2 — La feature principal (el monopatín)', d: 'el CRUD de tu entidad core. Verificás: creás, ves, editás y borrás.' },
       { t: 'Fase 3 — Integración (la moto)', d: 'conectás las partes, permisos. Verificás: el flujo completo de punta a punta.' },
       { t: 'Fase 4 — Pulido (el auto)', d: 'estados de carga y error, mobile. Recién acá pensamos en deploy (Clase 4).' },
@@ -242,10 +254,10 @@ máquina. No avances a la Fase 2 sin mi OK.`}
   <ManosALaObra
     minutos="40 min"
     titulo="Construí la base de tu MVP, en local"
-    objetivo={<>Primera mitad: del scaffold a tu feature core andando en local. Después paramos y seguimos.</>}
+    objetivo={<>Primera mitad: de la estructura base a tu feature core andando en local. Después paramos y seguimos.</>}
     pasos={[
-      { t: 'Armá el plan de fases', d: 'con la IA, a partir de tu CLAUDE.md. Que sea incremental.' },
-      { t: 'Fase 1: scaffold + auth', d: 'que corra en local. Pedile que te explique la estructura.' },
+      { t: 'Abrí tu docs/fases.md', d: 'el plan que armaste en la Clase 1. Revisalo con la IA y ajustalo si hace falta.' },
+      { t: 'Fase 1: estructura base + auth', d: 'que corra en local. Pedile que te explique las carpetas y que actualice docs/fases.md.' },
       { t: 'Fase 2: arrancá tu feature core', d: 'el CRUD de tu entidad principal, contra Supabase de prueba.' },
     ]}
   />,
@@ -258,7 +270,6 @@ máquina. No avances a la Fase 2 sin mi OK.`}
       'Supabase de prueba conectado, con al menos una tabla.',
       'Hiciste al menos un commit en Git.',
     ]}
-    mostrar={<>Avisá en el chat si tu base ya corre en local. Si estás trabado, compartí pantalla ahora — es el momento de resolver bloqueos juntos antes de seguir.</>}
   />,
 
   <Break minutos={15} etiqueta="Break 2 de 2" />,
@@ -314,17 +325,6 @@ máquina. No avances a la Fase 2 sin mi OK.`}
       antes={<><span className="inline-flex items-center gap-1"><ShieldAlert size={16} className="text-[#b13434]" /> Pegar tu API key o la contraseña de la base <b>directo en el código</b>.</span><br /><br />Cuando subís a GitHub, queda pública. Cualquiera la usa y te llega la factura.</>}
       despues={<>Guardar las claves en <b>variables de entorno</b> (un archivo que no se sube).<br /><br />Tu CLAUDE.md ya lo pide. Igual, verificá: "¿usaste variables de entorno para las claves?"</>}
     />
-  </SlideClara>,
-
-  <SlideClara titulo="Tu entregable de hoy" kicker="Cierre">
-    <Checklist items={[
-      'Repositorio en GitHub con el código del proyecto.',
-      'El MVP corre en local con auth funcionando.',
-      'Al menos 2-3 pantallas y tu feature core (CRUD) andando.',
-      'Supabase de prueba conectado.',
-      'Commits en Git al cerrar cada fase.',
-    ]} />
-    <div className="mt-5"><Ejemplo titulo="Ojo">Hoy NO buscamos estar en producción. Buscamos que ande <b>en local</b>, bien. Publicar es la Clase 4, y es un paso deliberado.</Ejemplo></div>
   </SlideClara>,
 
   <Seccion kicker="Cierre" titulo="Tu MVP corre en local. La próxima: le metemos IA adentro." />,

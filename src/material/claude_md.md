@@ -4,11 +4,11 @@
 
 # PARTE 1 — Cómo trabajamos
 
-> Estas reglas son innegociables. Vienen de nuestra forma de construir MVPs con IA.
+> Así trabajamos en todos los proyectos. Vienen de nuestra forma de construir MVPs con IA.
 > Claude: seguilas siempre, aunque yo no las repita en cada pedido.
 
 ## 1. Primero entender, después escribir
-Antes de escribir una sola línea de código, confirmá que entendés QUÉ te estoy pidiendo y por qué.
+Antes de escribir una sola línea de código, confirmá que entendés **qué** te estoy pidiendo y por qué.
 Si algo del proyecto no está claro o falta en `docs/`, **preguntá — no inventes**.
 *Por qué: en este método las decisiones se toman antes de construir. Un build que arranca sobre una duda termina en un producto que no era el que queríamos.*
 
@@ -23,7 +23,7 @@ Construimos en fases incrementales. Cada fase tiene que terminar con **algo que 
 Todo corre **primero en mi máquina**, contra una base de datos de prueba. Rompé, experimentá y arreglá ahí, donde el error es gratis y nadie lo ve.
 - No toques producción ni datos reales hasta que yo lo diga explícitamente.
 - El deploy es un paso deliberado, no algo que pasa solo.
-*Por qué: el amateur escribe directo en producción y reza. Nosotros publicamos sólo lo que ya funciona en privado.*
+*Por qué: publicamos sólo lo que ya probamos en privado. Romper en local no cuesta nada; romper en producción, sí.*
 
 ## 4. Seguridad mínima, siempre
 - **Nunca** pongas claves, tokens o API keys en el código. Usá variables de entorno (`.env`) y avisame si necesito crear una.
@@ -71,27 +71,27 @@ Apenas arrancamos un proyecto, si no existe, **creá la carpeta `docs/`** con es
 - **`docs/fases.md`** — el plan de construcción por fases. Cada fase: qué incluye, cómo se prueba, y si está **pendiente / en curso / hecha**.
 - **`docs/decisiones.md`** — un registro corto de las decisiones que vamos tomando y por qué. Cuando algo cambia, se anota acá (qué cambió, por qué, qué reemplaza).
 
-> Si alguno de estos archivos todavía no existe cuando lo necesitás, crealo. No me pidas que lo arme yo a mano.
+> Si alguno de estos archivos todavía no existe cuando lo necesitás, crealo vos.
 
-## 10. Actualizá la documentación SOBRE LA MARCHA, no al final
-Esto es un comportamiento central, no opcional:
+## 10. Actualizá la documentación sobre la marcha, no al final
+Mantener los docs al día es parte del trabajo, no un extra:
 
-- **Mientras conversamos las decisiones, escribilas en `docs/brief.md` en el momento.** No esperes a que "terminemos de decidir": cada decisión que cerramos se anota ya.
+- **Mientras conversamos las decisiones, escribilas en `docs/brief.md` en el momento.** Sin esperar a que "terminemos de decidir": cada decisión que cerramos se anota ya.
 - **Cada vez que avanzamos o cerramos una fase, actualizá `docs/fases.md`** (marcá qué quedó hecho y qué sigue).
 - **Cada vez que cambiamos un rumbo, registralo en `docs/decisiones.md`** antes de construir el cambio.
 - Si te pido algo y la documentación quedaría desactualizada, **actualizala como parte de la tarea**, no después.
 
 *Por qué: si la documentación se llena al final, no sirve — para entonces ya nos olvidamos de la mitad y el proyecto se desincronizó. La doc que se escribe mientras se decide es la que nos mantiene en control.*
 
-## 11. Sé el safeguard del proyecto (coherencia ante todo)
-Tu trabajo no es solo construir: es **cuidar que el proyecto no se contradiga**. Antes de construir algo, chequeá contra `docs/`:
+## 11. Cuidá que el proyecto no se contradiga
+Tu trabajo no es solo construir: también es **mantener todo coherente**. Antes de construir algo, chequealo contra `docs/`:
 
-- Si lo que estamos por hacer **contradice** algo ya decidido en `docs/`, **frená y avisame** antes de tocar código. No lo construyas en silencio.
-- Si una decisión nueva **invalida** una vieja, no dejes las dos: actualizá `docs/decisiones.md` y `docs/brief.md` para que quede una sola versión coherente.
-- Si detectás que `docs/` y el código **divergieron** (el código hace algo que la doc no dice, o al revés), señalámelo y propongamos cómo realinear.
-- Si te pido algo ambiguo o que se pisa con el scope, **preguntá antes** en vez de elegir por mí.
+- Si lo que estamos por hacer **contradice** algo ya decidido en `docs/`, **avisame antes** de tocar código, así lo resolvemos juntos.
+- Si una decisión nueva **reemplaza** a una vieja, actualizá `docs/decisiones.md` y `docs/brief.md` para que quede una sola versión coherente.
+- Si ves que `docs/` y el código **divergieron** (el código hace algo que la doc no dice, o al revés), señalámelo y vemos cómo realinear.
+- Si te pido algo ambiguo o que se pisa con el scope, preguntame antes de elegir.
 
-*Por qué: la documentación es la fuente de verdad. Si las decisiones se contradicen entre sí o el código se aleja de la spec en silencio, perdemos el control del proyecto. Vos sos la primera línea de defensa contra ese desorden.*
+*Por qué: la documentación es la fuente de verdad. Si las decisiones se contradicen entre sí o el código se aleja de la spec, perdemos el control del proyecto. Mantener esto alineado es lo que nos deja avanzar tranquilos.*
 
 ---
 

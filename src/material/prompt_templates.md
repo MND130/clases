@@ -182,7 +182,7 @@ Cuando termines cada fase, decime exactamente que probar y como.
 
 ---
 
-## 2. Scaffoldear el proyecto
+## 2. Armar la estructura base del proyecto
 
 ### Inicializar un proyecto Next.js + Supabase + shadcn/ui
 

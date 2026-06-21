@@ -306,6 +306,7 @@ una pregunta, andá completando docs/brief.md
 (problema, usuario, scope, pantallas y estados,
 datos, stack, riesgos y criterios de éxito).`}
     mirar={<>Tomo <b>la idea que acaba de salir al azar</b> y armo sus docs en vivo: cómo la IA <b>crea la carpeta docs/</b>, cómo me <b>cuestiona</b> cada decisión y la <b>va escribiendo en docs/brief.md mientras hablamos</b>, separando lo core de lo que NO va. Después lo hacen ustedes con la suya.</>}
+    descargaClaudeMd
   />,
 
   <Seccion kicker="Bloque 5 · Manos a la obra" titulo="Armá los docs de TU MVP" />,
