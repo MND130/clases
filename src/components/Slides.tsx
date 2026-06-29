@@ -134,9 +134,9 @@ export function Tarjetas({ cols = 3, items }: { cols?: 2 | 3; items: Tarjeta[] }
  *  `activa` (1-4) resalta la fase de la clase actual. */
 const FASES_MND = [
   { n: 1, t: 'Decidir', d: 'Antes de codear, decidís todo con la IA.' },
-  { n: 2, t: 'Construir', d: 'En fases y en local. Romper acá es gratis.' },
-  { n: 3, t: 'Sumar IA', d: 'Chatbots y agentes adentro del producto.' },
-  { n: 4, t: 'Revisar y publicar', d: 'Que esté bien hecho, y a producción.' },
+  { n: 2, t: 'Construir', d: 'La app navegable en local, con datos de prueba.' },
+  { n: 3, t: 'Publicar', d: 'Datos reales, login y la app online.' },
+  { n: 4, t: 'Sumar IA', d: 'Chatbots y agentes adentro del producto.' },
 ]
 
 export function Fases({ activa }: { activa?: number }) {

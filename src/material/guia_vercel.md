@@ -1,6 +1,6 @@
 # Guía — Vercel (MND130)
 
-> **Cuándo usás esto:** en la Clase 4, cuando publiques tu app para que viva online. En la Clase 2 trabajás solo en local, así que no hace falta antes.
+> **Cuándo usás esto:** en la Clase 3, cuando publiques tu app para que viva online. En la Clase 2 trabajás solo en local, así que no hace falta antes.
 > **Qué vas a lograr:** tener una cuenta de Vercel conectada a tu GitHub, para que cada vez que subas cambios tu app se publique sola.
 > **Tiempo estimado:** ~5 minutos.
 

@@ -1,315 +1,289 @@
-import { Portada, Seccion, SlideClara, Bullets, BulletsIcono, Tarjetas, Checklist, DosCols, Cita, Glosario, Ejemplo, PromptRespuesta, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
-import { Bot, FileText, MessageSquare, Wrench, Sparkles, ShieldAlert } from 'lucide-react'
+import { Portada, Seccion, SlideClara, Bullets, BulletsIcono, Tarjetas, DosCols, Cita, Glosario, Ejemplo, AntesDespues, Pasos, Codigo, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
+import { Database, ShieldCheck, KeyRound, RefreshCw, Globe, ShieldAlert } from 'lucide-react'
 
 export const clase3 = [
   <Portada
-    titulo="Sumar IA: chatbots y agentes"
+    titulo="Publicar: datos reales y online"
     subtitulo="Clase 3 · MND130"
     profes={['Damián Sztarkman', 'Fermín Rodríguez Del Castillo']}
   />,
 
-  <SlideClara titulo="Fase 3 del método: Sumar IA" kicker="Acá estamos">
+  <SlideClara titulo="Fase 3 del método: Publicar" kicker="Acá estamos">
     <Fases activa={3} />
     <div className="mt-7">
-      <Ejemplo titulo="La clase más de moda — y más simple de lo que parece">
-        Hoy le metemos IA <b>adentro</b> del producto: un asistente, un agente que hace cosas, un bot que lee tus documentos. Vas a ver que, técnicamente, es tu app + una llamada a un modelo.
+      <Ejemplo titulo="De qué se trata hoy">
+        Tu app ya se navega en local, pero con <b>datos de mentira</b> y solo en tu compu. Hoy le damos las dos cosas que le faltan para ser un producto real: una <b>base de datos</b> (datos de verdad + login) y una <b>dirección online</b> para que otros la usen.
       </Ejemplo>
     </div>
   </SlideClara>,
 
-  <SlideClara titulo="Dos formas de usar IA (no las confundas)">
+  <SlideClara titulo="Dónde quedamos y qué falta">
     <AntesDespues
-      tituloAntes="IA como herramienta"
-      tituloDespues="IA dentro del producto"
-      antes={<><b>Para construir</b> el MVP.<br />Claude Code y Cursor escriben el código, explican errores, refactorean.<br /><br />Es lo que usás <b>vos</b>, el constructor. (Las clases 1, 2 y 4.)</>}
-      despues={<><b>Como feature</b> del MVP.<br />Tu app llama a un modelo para responder, clasificar, resumir o redactar.<br /><br />Es lo que usa <b>tu cliente</b>. (La clase de hoy.)</>}
+      tituloAntes="Lo que tenés (Clase 2)"
+      tituloDespues="Lo que sumamos hoy"
+      antes={<>Tu app <b>navegable en local</b>: todas las pantallas, con datos <b>mock</b> (falsos, escritos en el código).<br /><br />Solo la ves vos, en localhost. Nadie más puede entrar.</>}
+      despues={<><b>Datos reales</b> en una base (Supabase): lo que se carga se guarda y persiste. Más <b>login</b> de usuarios.<br /><br />Y la app <b>publicada</b>: una URL que cualquiera abre desde su celular.</>}
     />
+    <div className="mt-5"><Cita>Es el salto de "una maqueta que se ve linda" a "un producto que la gente usa de verdad".</Cita></div>
   </SlideClara>,
 
-  <Seccion kicker="Bloque 1" titulo="El chatbot: la versión más simple" />,
+  <Seccion kicker="Bloque 1" titulo="Conectar la base de datos: Supabase" />,
 
-  <SlideClara titulo="Una feature de IA es, técnicamente, esto">
+  <SlideClara titulo="Supabase: la base de datos y el login, ya hechos">
     <DosCols
       izq={
-        <>
-          <div className="inline-flex items-center gap-2 text-udesa-blue font-bold mb-3"><Bot size={20} /> Los 3 pasos</div>
-          <Pasos pasos={[
-            { t: 'Tu app arma un texto', d: 'con lo que escribió el usuario + una instrucción tuya (el system prompt).' },
-            { t: 'Lo manda al modelo', d: 'por la API de Claude o GPT, con tu API key.' },
-            { t: 'Muestra la respuesta', d: 'que devuelve el modelo, en tu pantalla.' },
-          ]} />
-        </>
-      }
-      der={
         <Glosario items={[
-          { t: 'API key', d: 'tu credencial para usar el modelo. Va en variables de entorno, NUNCA en el código.' },
-          { t: 'system prompt', d: 'la instrucción fija que define cómo se comporta tu bot.' },
-          { t: 'prompt', d: 'lo que tu app le manda al modelo (no lo que vos le decís a Cursor).' },
-          { t: 'token', d: 'la unidad que se cobra. Más texto = más tokens = más costo.' },
+          { t: 'Base de datos', d: 'donde tu app guarda la info de forma permanente. Pensá en una planilla de Excel, pero a la que la app consulta y escribe sola.' },
+          { t: 'Tabla', d: 'una "hoja" de esa planilla para un tipo de cosa: una tabla de usuarios, una de turnos. Filas = registros, columnas = campos.' },
+          { t: 'Auth (login)', d: 'el sistema de "quién entra y a qué accede". Registrarse, iniciar sesión, recuperar contraseña.' },
         ]} />
       }
+      der={<Ejemplo titulo="Qué te ahorra Supabase">Armar una base de datos y un login seguro desde cero es de lo más difícil y peligroso de una app. Supabase te lo da <b>listo</b>: vos le pedís a la IA "creá una tabla de turnos" o "sumá login", y se apoya en Supabase. No programás el sistema de usuarios: ya está resuelto.</Ejemplo>}
     />
+    <div className="mt-5"><Cita>Para vos, Supabase son dos cosas: dónde viven los datos de tu app, y quién puede entrar. Las dos, sin montar ni mantener un servidor.</Cita></div>
   </SlideClara>,
 
-  <SlideClara titulo="Ejemplo: un asistente que responde sobre tu negocio">
-    <PromptRespuesta
-      prompt={`En mi app Next.js, agregá un endpoint que
-reciba la pregunta del usuario, le sume el
-contexto de mis productos (de Supabase), y
-llame a la API de Claude para responder.
-Mostrá la respuesta en una pantalla de chat.`}
-      respuesta={<>La IA te arma el endpoint, la llamada al modelo y la pantalla de chat. Vos pegás tu API key en las variables de entorno y ya tenés un asistente sobre tus propios datos.</>}
-      nota={<>Esto es un "chatbot" en su versión más simple. No hay magia: es tu app + una llamada a un modelo. Ahora le damos poderes.</>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="El system prompt: la personalidad de tu bot">
-    <DosCols
-      izq={
-        <>
-          <div className="inline-flex items-center gap-2 text-udesa-blue font-bold mb-3"><MessageSquare size={20} /> Qué definís ahí</div>
-          <Bullets items={[
-            <><b>Quién es:</b> "Sos el asistente de [tu empresa], experto en [tema]."</>,
-            <><b>Cómo habla:</b> formal, cercano, breve, con emojis o sin.</>,
-            <><b>Qué NO hace:</b> "No des consejo legal. No inventes precios."</>,
-            <><b>Qué hace si no sabe:</b> "Si no tenés el dato, decí que no sabés."</>,
-          ]} />
-        </>
-      }
-      der={<Ejemplo titulo="Es donde está tu criterio">El mismo modelo, con dos system prompts distintos, es dos productos distintos. Acá no programás: escribís en español cómo querés que se comporte. Ese es tu trabajo, y es donde un MVP se siente profesional o amateur.</Ejemplo>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="Casos reales: chatbots simples que ya aportan valor">
-    <Tarjetas items={[
-      { icon: MessageSquare, t: 'Atención 24/7', d: 'Responde las dudas frecuentes de tus clientes a cualquier hora, sin que esté nadie.' },
-      { icon: FileText, t: 'Onboarding interno', d: 'Un empleado nuevo le pregunta al bot en vez de interrumpir a un compañero.' },
-      { icon: Bot, t: 'Pre-calificación', d: 'Hace 3 preguntas a un lead y lo clasifica antes de que lo vea un vendedor.' },
-    ]} />
-    <div className="mt-5"><Cita>No hace falta un agente complejo para aportar valor. Un chatbot bien apuntado a UN problema concreto ya cambia la experiencia.</Cita></div>
-  </SlideClara>,
-
-  <Seccion kicker="Bloque 2" titulo="De responder a hacer: agentes" />,
-
-  <SlideClara titulo="Qué es un agente (y en qué se diferencia de un chatbot)">
-    <AntesDespues
-      tituloAntes="Un chatbot"
-      tituloDespues="Un agente"
-      antes={<>Recibe una pregunta y <b>responde texto</b>. Nada más.<br /><br />"¿Cuánto cuesta el plan Pro?" → te tira la respuesta.</>}
-      despues={<>Puede <b>decidir y hacer cosas</b>: buscar en tu base, guardar un registro, mandar un mail, consultar un documento.<br /><br />"Agendá una demo con este lead" → busca el lead, crea el evento, confirma.</>}
-    />
-    <div className="mt-5"><Ejemplo titulo="La idea clave">Un agente es un modelo + un conjunto de <b>herramientas</b> (acciones que puede ejecutar). El modelo <b>elige cuál usar</b> según lo que le pediste. Eso es "tool use".</Ejemplo></div>
-  </SlideClara>,
-
-  <SlideClara titulo="Cómo funciona el “tool use”, sin tecnicismos">
-    <Pasos pasos={[
-      { t: 'Vos le declarás las herramientas', d: 'una lista de acciones: "buscar cliente", "crear turno", "consultar documento". Cada una con qué hace y qué datos necesita.' },
-      { t: 'El usuario pide algo', d: 'en lenguaje natural: "reservá para el martes a las 10".' },
-      { t: 'El modelo elige la herramienta', d: 'decide que tiene que usar "crear turno", y con qué datos.' },
-      { t: 'Tu app la ejecuta y devuelve el resultado', d: 'el modelo confirma al usuario con lenguaje natural.' },
-    ]} />
-    <div className="mt-5"><Cita>Vos no programás la lógica de decisión. La pone el modelo. Vos sólo definís qué herramientas existen y qué hace cada una.</Cita></div>
-  </SlideClara>,
-
-  <SlideClara titulo="Pedirle a la IA que construya un agente">
-    <PromptRespuesta
-      prompt={`En mi app Next.js + Supabase, quiero un
-agente que ayude a gestionar turnos.
-
-Definí estas herramientas para el modelo:
-- buscar_turnos(fecha)
-- crear_turno(fecha, hora, paciente)
-- cancelar_turno(id)
-
-Usá tool use de la API de Claude: el modelo
-elige la herramienta según lo que pide el
-usuario. Mostrame el flujo completo.`}
-      respuesta={<>La IA te arma las 3 funciones contra Supabase, el endpoint que conecta el modelo con esas herramientas, y el chat. El usuario escribe "cancelá mi turno del jueves" y el agente lo hace.</>}
-      nota={<>No necesitás la teoría de agentes. Necesitás saber describir bien las herramientas. Ese es tu trabajo.</>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="MCP: enchufar herramientas que ya existen" kicker="Esto ya lo hiciste en la Clase 2">
-    <DosCols
-      izq={<>
-        Vos ya conectaste <b>GitHub y Supabase</b> a Claude Code en la Clase 2. Eso <b>es</b> tool use: le diste herramientas reales y ahora las usa por vos.<br /><br />
-        <b>MCP</b> es el "enchufe universal" que hace esa conexión. Cada herramienta publica su MCP <b>una vez</b>, y cualquier IA que lo soporte la puede usar. No hay que programar la integración.
-      </>}
-      der={<Glosario items={[
-        { t: 'Chatbot', d: 'te responde.' },
-        { t: 'Tool use', d: 'usa herramientas que vos le declarás en tu app.' },
-        { t: 'MCP', d: 'la herramienta ya viene "lista para enchufar". La conectás, no la programás.' },
-      ]} />}
-    />
-    <div className="mt-5"><Cita>El que escribe el MCP es el dueño de la herramienta (GitHub, Supabase…), no Anthropic. Por eso hay miles: cada app lo implementa una vez y todas las IAs lo aprovechan.</Cita></div>
-  </SlideClara>,
-
-  <DemoEnVivo
-    titulo="Conecto un MCP y le pido algo, en vivo"
-    prompt={`Conectá GitHub a Claude Code y, cuando esté
-listo, creá un repositorio nuevo llamado
-"mi-mvp-demo" y subí un README que diga
-de qué se trata mi proyecto.`}
-    mirar={<>Que <b>no abro la terminal a programar</b>: pego una línea, autorizo en el navegador, y después le hablo en español. Si te quedó pendiente de la Clase 2, los pasos exactos están en la <b>Guía de GitHub</b> del material.</>}
-  />,
-
-  <Seccion kicker="Bloque 3" titulo="Que la IA lea tus documentos (RAG)" />,
-
-  <SlideClara titulo="El problema: tu info está en PDFs, el modelo no la conoce">
-    <DosCols
-      izq={
-        <>
-          <div className="inline-flex items-center gap-2 text-udesa-blue font-bold mb-3"><FileText size={20} /> La situación</div>
-          <Bullets items={[
-            <>Tenés manuales, contratos o catálogos en <b>PDF</b>.</>,
-            <>Querés que el asistente responda <b>usando esa info</b>, no inventando.</>,
-            <>El modelo no vio tus documentos: hay que <b>dárselos</b>.</>,
-          ]} />
-        </>
-      }
-      der={<Ejemplo titulo="Esto se llama RAG">Retrieval Augmented Generation. Suena complejo, pero es: <b>buscar</b> el pedazo relevante de tus documentos y <b>pasárselo</b> al modelo junto con la pregunta. Responde con tu info.</Ejemplo>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="RAG en 3 pasos (el flujo real)">
-    <Pasos pasos={[
-      { t: 'Extraer el texto del PDF', d: 'una librería lo lee y saca el texto plano. La IA te la conecta.' },
-      { t: 'Guardarlo troceado en Supabase', d: 'partís el texto en pedazos y los guardás con pgvector (búsqueda por significado, no por palabra exacta).' },
-      { t: 'Al preguntar, buscás los pedazos relevantes', d: 'y se los pasás al modelo con la pregunta. Responde usando solo eso, citando la fuente.' },
-    ]} />
-    <div className="mt-5"><Ejemplo titulo="Dato importante">pgvector viene <b>gratis</b> en Supabase (free tier). No pagás nada extra para tener búsqueda semántica sobre tus documentos.</Ejemplo></div>
-  </SlideClara>,
-
-  <SlideClara titulo="Juntando todo: un agente que también lee documentos">
-    <Ejemplo titulo="El combo completo">
-      "Buscar en mis documentos" es <b>una herramienta más</b> del agente. Un agente de soporte puede: buscar el ticket del cliente (herramienta 1), consultar el manual en PDF (herramienta 2 = RAG), y redactar la respuesta (el modelo). Las piezas de hoy se combinan.
-    </Ejemplo>
-    <div className="mt-6">
-      <Cita>Esto es exactamente lo que muchos vinieron a construir: asistentes y agentes que trabajan con la información real de su negocio.</Cita>
-    </div>
-  </SlideClara>,
-
-  <Seccion kicker="Bloque 4 · Manos a la obra" titulo="Metele IA a tu MVP" />,
-
-  <SlideClara titulo="Antes de codear: decidí (también acá aplica el método)">
-    <DosCols
-      izq={
-        <BulletsIcono items={[
-          { icon: MessageSquare, children: <><b>Qué hace</b> tu bot, en una frase. Y qué <b>NO</b> hace.</> },
-          { icon: Wrench, children: <>¿Es un <b>chatbot</b> (responde) o un <b>agente</b> (hace cosas)? ¿Qué herramientas?</> },
-          { icon: FileText, children: <>¿Necesita <b>tus documentos</b> (RAG) o le alcanza con el system prompt?</> },
-        ]} />
-      }
-      der={<Ejemplo titulo="Anotalo en tu brief">La feature de IA es una decisión más del brief. Definila en <b>docs/brief.md</b> y la IA la construye coherente con el resto de tu producto.</Ejemplo>}
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="El demo de hoy: un bot que se sabe este curso">
+  <SlideClara titulo="La base vive en la nube, no en tu máquina">
     <DosCols
       izq={
         <Bullets items={[
-          <><b>Qué hace:</b> responde preguntas sobre el MND130 (stacks, el método, el setup).</>,
-          <><b>De dónde saca la info:</b> le pasamos el <b>material del curso</b> como contexto.</>,
-          <><b>El truco para confiar:</b> lo conocen, así que si inventa, <b>se nota al toque</b>.</>,
+          <>Tu <b>app</b> sigue corriendo en local (localhost). Eso no cambia.</>,
+          <>La <b>base de datos</b> vive en la nube, en Supabase. Tu app local se conecta a ella por internet.</>,
+          <>Usás un <b>proyecto de prueba</b> de Supabase mientras construís: lo llenás de datos truchos, lo rompés, no importa.</>,
+          <>Para producción vas a tener un <b>proyecto aparte</b> (el plan gratis te da 2). Nunca tocás el de producción a mano.</>,
         ]} />
       }
-      der={<Ejemplo titulo="Por qué este ejemplo">Un bot sobre un tema inventado no se puede verificar: nadie sabe si miente. Uno sobre algo que ustedes conocen — este curso — es el banco de pruebas perfecto para ver cuándo la IA acierta y cuándo alucina.</Ejemplo>}
+      der={<Ejemplo titulo="Por qué dos proyectos">Si probás contra la misma base que usan tus usuarios, un experimento te puede borrar datos reales. Separando prueba y producción, rompés tranquilo en una sin tocar la otra. Es la regla "local primero" aplicada a los datos.</Ejemplo>}
+    />
+    <div className="mt-5"><Cita>No hace falta montar una base en tu máquina (es complejo y no aporta). El proyecto de prueba en la nube ya te deja experimentar sin riesgo.</Cita></div>
+  </SlideClara>,
+
+  <SlideClara titulo="Conectar Supabase: dos datos, dos usos">
+    <DosCols
+      izq={<>
+        Conectar tu app a la base es <b>copiar dos datos</b> de Supabase a tu proyecto. No hay nada que "enchufar": son credenciales que le pasás a Claude Code y él arma la conexión.<br /><br />
+        Para crear las tablas, Claude Code usa el <b>connection string</b> de tu proyecto y las crea solo: vos no escribís SQL.
+      </>}
+      der={<Pasos pasos={[
+        { t: 'Creá el proyecto de prueba', d: 'en supabase.com, con la guía del material.' },
+        { t: 'URL + anon key → al .env', d: 'es lo que tu app usa para leer y guardar. Se las pasás a Claude Code.' },
+        { t: 'Connection string → las tablas', d: 'Claude Code lo usa para crear tus tablas, solo. También va al .env.' },
+      ]} />}
+    />
+    <div className="mt-5"><Ejemplo titulo="La guía está en el material">Dónde están la URL, la anon key y el connection string (usá el <b>Session pooler</b>, que anda en cualquier red), paso a paso, en la <b>Guía de Supabase</b>. Hoy lo hacemos juntos, con pantalla compartida.</Ejemplo></div>
+  </SlideClara>,
+
+  <SlideClara titulo="Las claves: dónde van y dónde NO">
+    <AntesDespues
+      tituloAntes="Peligroso"
+      tituloDespues="Correcto"
+      antes={<><span className="inline-flex items-center gap-1"><ShieldAlert size={16} className="text-[#b13434]" /> Pegar la URL y la clave de Supabase <b>directo en el código</b>.</span><br /><br />Cuando subís a GitHub, quedan públicas. Cualquiera entra a tu base.</>}
+      despues={<>Guardarlas en el archivo <b>.env</b> (variables de entorno), que <b>no se sube</b> a GitHub.<br /><br />Tu CLAUDE.md ya lo pide. Igual verificá: <i>"¿las claves de Supabase están en variables de entorno?"</i></>}
     />
   </SlideClara>,
 
+  <Seccion kicker="Bloque 2" titulo="De datos mock a datos reales" />,
+
+  <SlideClara titulo="El cambio clave: la pantalla no cambia, los datos sí">
+    <DosCols
+      izq={
+        <BulletsIcono items={[
+          { icon: Database, children: <>En la Clase 2 tus pantallas leían <b>datos falsos</b> escritos en el código.</> },
+          { icon: RefreshCw, children: <>Hoy le pedís a la IA que esos datos vengan de <b>Supabase</b>: leer y guardar de verdad.</> },
+          { icon: ShieldCheck, children: <>Lo que cargás <b>persiste</b>: cerrás, volvés a entrar, y sigue ahí. Eso es tener una base.</> },
+        ]} />
+      }
+      der={<Ejemplo titulo="Por qué primero mock, ahora real">Como ya armaste la UI con mocks, ahora solo cambiás <b>de dónde salen los datos</b> — no rehacés las pantallas. Es enchufar la base a algo que ya funciona. Construir de a una capa: primero se ve, después es de verdad.</Ejemplo>}
+    />
+  </SlideClara>,
+
+  <SlideClara titulo="El prompt para pasar de mock a real">
+    <Codigo>{`Según mi docs/fases.md, vamos por la fase de
+datos reales. Acá están mi URL, anon key y el
+connection string de Supabase (van al .env):
+
+1. Conectá mi app a Supabase con la URL y la anon key.
+2. Con el connection string, creá las tablas que
+   pide mi docs/brief.md y cargá datos de ejemplo.
+3. Hacé que mis pantallas lean de Supabase, no del mock.
+
+Decime cómo lo pruebo en local antes de seguir.`}</Codigo>
+    <div className="mt-5"><Ejemplo titulo="Por qué funciona">Apoya en tus <b>docs</b> (las tablas salen del brief), va de a un <b>paso</b>, y termina con "cómo lo pruebo". La IA arma las tablas y el cambio; vos verificás que lo que cargás se guarda.</Ejemplo></div>
+  </SlideClara>,
+
+  <SlideClara titulo="Login: que cada usuario tenga lo suyo">
+    <DosCols
+      izq={
+        <Bullets items={[
+          <><b>Registro e inicio de sesión</b> con Supabase Auth: el usuario se crea una cuenta y entra.</>,
+          <>Cada usuario ve <b>solo sus datos</b>: sus reservas, sus registros. No los de otros.</>,
+          <>Pedíselo simple: <i>"sumá login con Supabase Auth: registro, inicio de sesión, y que cada usuario vea solo lo suyo"</i>.</>,
+        ]} />
+      }
+      der={<Ejemplo titulo="Esto antes era carísimo">Un sistema de login seguro (contraseñas encriptadas, sesiones, recuperar clave) era semanas de trabajo de un dev. Supabase te lo da hecho y la IA lo conecta. Vos decidís qué ve cada usuario.</Ejemplo>}
+    />
+    <div className="mt-5"><Cita>Ojo con los estados: ¿qué ve alguien sin login? ¿Y si la contraseña está mal? Eso ya lo decidiste en tu brief — ahora se construye.</Cita></div>
+  </SlideClara>,
+
   <DemoEnVivo
-    titulo="Les muestro: armo un bot que responde sobre ESTE curso"
-    prompt={`En mi app Next.js, agregá un chatbot que
-responda preguntas sobre este curso (MND130).
+    titulo="Les muestro: conecto la base y paso de mock a real, en vivo"
+    prompt={`Acá están mi URL, anon key y connection string
+de Supabase. Conectá mi app y, según mi
+docs/brief.md, creá las tablas que necesito
+y cargá unos datos de ejemplo.
 
-Te paso el contenido del curso (el cheatsheet,
-el método, los stacks) como contexto en el
-system prompt. Que responda SOLO con eso, y si
-no está en el material, que diga que no lo sabe.
+Después hacé que la pantalla principal lea de
+Supabase en vez del mock. Decime cómo verifico
+que lo que cargo se guarda de verdad.`}
+    mirar={<>Cómo la IA <b>crea las tablas</b> desde mi brief, carga datos de ejemplo, y cómo mis pantallas <b>dejan de leer el mock</b> y leen la base. Cargo algo, recargo la página y <b>sigue ahí</b>: eso es tener datos reales. Después van ustedes.</>}
+  />,
 
-Usá una variable de entorno para la API key.
-Mostrá la respuesta en una pantalla de chat, y
-arrancá por la versión más simple.`}
-    mirar={<>Le pregunto en vivo "<b>¿qué stack usamos?</b>" o "<b>¿qué es el CLAUDE.md?</b>" y responde con el material del curso. Ustedes saben si está bien o si <b>alucina</b> — por eso elegimos un tema que conocen. Es tu app + una llamada a un modelo, nada más.</>}
+  <Seccion kicker="Bloque 3 · Manos a la obra" titulo="Conectá tu base y sumá login" />,
+
+  <ManosALaObra
+    minutos="30 min"
+    titulo="Conectá Supabase y pasá a datos reales"
+    objetivo={<>Primera mitad: conectás la base y reemplazás los mocks por datos reales. Después paramos y sumamos login.</>}
+    pasos={[
+      { t: 'Creá el proyecto de prueba', d: 'en supabase.com, con la Guía de Supabase. Copiá la URL, la anon key y el connection string (Session pooler).' },
+      { t: 'Conectá tu app y creá las tablas', d: 'pasale esas claves a Claude Code (van al .env). Que conecte la app y cree las tablas de tu docs/brief.md con un seed.' },
+      { t: 'Pasá las pantallas de mock a Supabase', d: 'que lean y guarden de la base. Probá que lo que cargás persiste.' },
+    ]}
   />,
 
   <Break minutos={15} etiqueta="Break 1 de 2" />,
 
   <ManosALaObra
-    minutos="40 min"
-    titulo="Sumá tu primer chatbot, en local"
-    objetivo={<>Primera mitad: tu feature de IA respondiendo en local. Después paramos y la afinamos.</>}
+    minutos="20 min"
+    titulo="Sumá login a tu app"
+    objetivo={<>Segunda mitad: registro e inicio de sesión, para que cada usuario tenga lo suyo.</>}
     pasos={[
-      { t: 'Decidí qué bot querés', d: 'chatbot simple, agente con herramientas, o asistente sobre documentos.' },
-      { t: 'Conseguí tu API key', d: 'de Claude o OpenAI, y guardala en variables de entorno.' },
-      { t: 'Pedíselo a la IA con contexto', d: 'apoyado en tus docs (brief y fases). Empezá por la versión más simple.' },
+      { t: 'Sumá login con Supabase Auth', d: 'registro e inicio de sesión. Pedíselo simple a la IA.' },
+      { t: 'Que cada usuario vea solo lo suyo', d: 'sus reservas, sus registros. No los de otros.' },
+      { t: 'Probá los estados', d: 'qué ve alguien sin login, qué pasa si la contraseña está mal.' },
     ]}
   />,
 
   <Checkpoint
-    titulo="¿Tu bot ya responde?"
+    titulo="¿Tu app ya usa datos reales?"
     items={[
-      'Tenés una pantalla de chat o una feature de IA en tu app.',
-      'La API key está en variables de entorno, no en el código.',
-      'Probaste que responde con sentido (y no alucina).',
+      'Supabase conectado, con tus tablas creadas.',
+      'Lo que cargás se guarda y sigue ahí al recargar.',
+      'Login funciona: te registrás, salís y volvés a entrar.',
+      'Las claves están en variables de entorno (.env), no en el código.',
     ]}
-    mostrar={<>Un par de voluntarios comparten pantalla y le hacen una pregunta a su bot en vivo. Vemos qué funciona y qué se puede afinar.</>}
+  />,
+
+  <Seccion kicker="Bloque 4" titulo="Publicar: de local a online" />,
+
+  <SlideClara titulo="Vercel: tu app online en pocos clicks">
+    <DosCols
+      izq={
+        <Glosario items={[
+          { t: 'Vercel', d: 'el servicio que mantiene tu app prendida 24/7 y le da una dirección web. Gratis para un MVP.' },
+          { t: 'Deploy', d: 'publicar: pasar tu app de tu máquina a internet, para que otros la usen.' },
+          { t: 'Dominio', d: 'la dirección de tu app. Empezás con una gratis (tu-app.vercel.app); comprar una propia es ~15 USD/año.' },
+        ]} />
+      }
+      der={<Ejemplo titulo="Cómo se publica, sin terminal">Vercel se conecta a tu <b>GitHub</b>. Importás tu repo desde la web de Vercel, le das <b>Deploy</b>, y listo: tu app tiene URL. De ahí en más, cada cambio que subís a GitHub se publica <b>solo</b>.</Ejemplo>}
+    />
+  </SlideClara>,
+
+  <SlideClara titulo="El circuito completo, ahora sí">
+    <Pasos pasos={[
+      { t: 'Subís tus cambios a GitHub', d: 'con un commit, como venís haciendo.' },
+      { t: 'Vercel lo detecta y publica solo', d: 'cada push actualiza tu app online, automático.' },
+      { t: 'Tu app online lee y guarda en Supabase', d: 'datos reales, en la nube, para todos tus usuarios.' },
+    ]} />
+    <div className="mt-5"><Ejemplo titulo="Las piezas se juntan">GitHub (el código) → Vercel (lo publica) → Supabase (los datos). Las tres herramientas que venís usando, ahora trabajando juntas para que tu app viva online.</Ejemplo></div>
+  </SlideClara>,
+
+  <SlideClara titulo="El paso que más falla: las variables de entorno">
+    <DosCols
+      izq={
+        <>
+          <div className="inline-flex items-center gap-2 text-udesa-blue font-bold mb-3"><KeyRound size={20} /> El error clásico</div>
+          <Bullets items={[
+            <>Tu app anda perfecto en local, pero <b>falla al publicarla</b>.</>,
+            <>Casi siempre es lo mismo: las <b>claves de Supabase</b> están en tu <code>.env</code> local, pero no en Vercel.</>,
+            <>El <code>.env</code> no se sube a GitHub (¡bien!), así que Vercel no las tiene: <b>hay que cargarlas a mano</b> en Vercel.</>,
+          ]} />
+        </>
+      }
+      der={<Ejemplo titulo="La solución">En la web de Vercel: Settings → Environment Variables → cargás las mismas claves que tenés en tu <code>.env</code>. Si tu deploy falla, mirá los logs y revisá esto primero: es el 90% de los casos.</Ejemplo>}
+    />
+  </SlideClara>,
+
+  <DemoEnVivo
+    titulo="Les muestro: publico la app en Vercel, en vivo"
+    prompt={`Quiero publicar mi app en Vercel.
+
+Guiame paso a paso: subir mi código a GitHub,
+importar el repo desde la web de Vercel, cargar
+las variables de entorno (las claves de Supabase),
+y hacer el primer deploy.
+
+Si el deploy falla, ayudame a leer los logs.`}
+    mirar={<>Cómo <b>importo el repo</b> desde la web de Vercel, cargo las <b>variables de entorno</b> (el paso que más falla), y le doy Deploy. En un par de minutos la app tiene <b>URL pública</b> y la abro desde el celular. Después la publican ustedes.</>}
   />,
 
   <Break minutos={15} etiqueta="Break 2 de 2" />,
 
+  <Seccion kicker="Bloque 5 · Manos a la obra" titulo="Publicá tu MVP" />,
+
   <ManosALaObra
-    minutos="35 min"
-    titulo="Afiná tu bot y probalo a fondo"
-    objetivo={<>Segunda mitad: mejorás el system prompt, agregás lo que falte y verificás que no inventa.</>}
+    minutos="40 min"
+    titulo="Poné tu app online"
+    objetivo={<>Publicás tu app en Vercel, con datos reales. Salís con una URL que cualquiera puede abrir desde su celular.</>}
     pasos={[
-      { t: 'Ajustá el system prompt', d: 'definí bien qué hace, cómo habla y qué NO debe hacer.' },
-      { t: 'Sumá lo que tu bot necesite', d: 'una herramienta (agente) o tus documentos (RAG), si aplica.' },
-      { t: 'Probalo en local', d: 'verificá que responde con sentido y, si usa datos, que cite la fuente y no invente.' },
+      { t: 'Subí tu código a GitHub', d: 'commiteá lo que tenés y subilo a tu repo.' },
+      { t: 'Importá el repo en Vercel', d: 'desde la web de Vercel (Add New → Project). Con la Guía de Vercel.' },
+      { t: 'Cargá las variables de entorno', d: 'las claves de Supabase, en Settings → Environment Variables. El paso que más falla.' },
+      { t: 'Deploy y abrí la URL', d: 'verificá que funciona online, no solo en tu compu. Probala desde el celular.' },
     ]}
   />,
 
-  <Seccion kicker="Bloque 5" titulo="Cuidados al meter IA en un producto" />,
+  <Checkpoint
+    titulo="¿Tu app está online?"
+    items={[
+      'Tu app tiene una URL pública (tu-app.vercel.app).',
+      'La abrís desde el celular y funciona.',
+      'Los datos que cargás online se guardan en Supabase.',
+      'El login funciona también en producción.',
+    ]}
+    mostrar={<>Ronda rápida: cada uno comparte el link de su app y la abrimos entre todos. Ver tu MVP online, funcionando, es el momento del curso.</>}
+  />,
 
-  <SlideClara titulo="Cuándo NO usar IA (sí, a veces es de más)">
+  <Seccion kicker="Bloque 6" titulo="Cuidados al publicar" />,
+
+  <SlideClara titulo="Prueba en prueba, publicá lo que ya anda">
     <AntesDespues
-      tituloAntes="Metiste IA porque suena cool"
-      tituloDespues="Una solución simple alcanza"
-      antes={<>"Un chatbot para que el usuario filtre productos."<br /><br />Caro, lento, puede alucinar… para algo que un <b>par de botones de filtro</b> resuelven mejor, más rápido y gratis.</>}
-      despues={<>IA cuando el problema es <b>lenguaje, criterio o creatividad</b>: resumir, clasificar texto libre, responder preguntas abiertas.<br /><br />Para reglas claras (filtrar, ordenar, calcular): código común. Es más confiable.</>}
+      tituloAntes="Lo riesgoso"
+      tituloDespues="Lo correcto"
+      antes={<>Probar cambios <b>directo en producción</b>, contra los datos reales de tus usuarios.<br /><br />Un experimento que sale mal te rompe la app que la gente está usando.</>}
+      despues={<>Construir y probar <b>en local</b> (con tu proyecto de prueba). Cuando anda, subís a GitHub y se publica.<br /><br />Producción recibe <b>solo lo que ya verificaste</b>.</>}
     />
-    <div className="mt-5"><Cita>La pregunta no es "¿le puedo meter IA?". Es "¿este problema NECESITA IA?". Si un if/else o un formulario lo resuelve, ganó la opción aburrida.</Cita></div>
+    <div className="mt-5"><Cita>El método no cambia al publicar: local primero, producción al final. La diferencia es que ahora "al final" ya llegó.</Cita></div>
   </SlideClara>,
 
-  <SlideClara titulo="Tres cosas que no podés ignorar">
+  <SlideClara titulo="Tres cosas que revisar antes de compartir tu link">
     <Tarjetas items={[
-      { icon: ShieldAlert, t: 'Alucinaciones', d: 'El modelo puede inventar con seguridad. Si responde sobre datos, que cite la fuente. Verificá.' },
-      { icon: Sparkles, t: 'Costo por token', d: 'Cada llamada cuesta. Mandar PDFs enteros en cada pregunta se paga. Por eso RAG manda solo el pedazo.' },
-      { icon: Bot, t: 'Límites claros', d: 'Definí en el system prompt qué NO debe hacer (dar consejo legal, médico, prometer cosas).' },
+      { icon: KeyRound, t: 'Las claves cargadas', d: 'Variables de entorno en Vercel. Si la app falla online pero anda en local, casi siempre es esto.' },
+      { icon: ShieldCheck, t: 'Que el login proteja', d: 'Que un usuario no vea los datos de otro. Probalo con dos cuentas distintas.' },
+      { icon: Globe, t: 'Que ande en mobile', d: 'La mayoría te va a abrir el link desde el celular. Revisá que se vea bien ahí.' },
     ]} />
-  </SlideClara>,
-
-  <SlideClara titulo="¿Cuánto sale tener IA en tu producto?">
-    <DosCols
-      izq={
-        <Glosario items={[
-          { t: 'se cobra por uso', d: 'pagás por cada pregunta-respuesta, no una mensualidad fija.' },
-          { t: 'precio por token', d: 'un token es ~3/4 de una palabra. Una charla típica cuesta fracciones de centavo.' },
-          { t: 'modelos baratos', d: 'para tareas simples (clasificar, responder corto) hay modelos chicos que cuestan mucho menos.' },
-        ]} />
-      }
-      der={<Ejemplo titulo="Para un MVP, es muy poco">Validar tu idea con decenas o cientos de usuarios probando el chatbot cuesta pocos dólares. El costo recién importa cuando tenés volumen real — y para entonces ya validaste que vale la pena.</Ejemplo>}
-    />
+    <div className="mt-5"><Cita>No busques perfección: buscá que un desconocido pueda usarla sin que se rompa ni vea lo que no debe.</Cita></div>
   </SlideClara>,
 
   <SlideClara titulo="Tu entregable de hoy" kicker="Cierre">
-    <Checklist items={[
-      'Una feature de IA andando en local (chatbot, agente o RAG).',
-      'API key en variables de entorno.',
-      'Decidido en docs/brief.md qué hace y qué no hace el bot.',
-      'Probado que responde con sentido y sin inventar.',
+    <Bullets items={[
+      <>Tu app <b>publicada</b>, con una URL que cualquiera puede abrir.</>,
+      <>Datos <b>reales</b> en Supabase: lo que se carga, se guarda.</>,
+      <><b>Login</b> funcionando, en local y en producción.</>,
+      <>Las claves <b>seguras</b> (variables de entorno, no en el código).</>,
     ]} />
+    <div className="mt-5"><Ejemplo titulo="Lo lograste">De una idea (Clase 1) a una app online que la gente puede usar (hoy). Eso es un MVP en producción. La próxima: le sumamos IA adentro.</Ejemplo></div>
   </SlideClara>,
 
-  <Seccion kicker="Cierre" titulo="Ya tenés IA adentro. La próxima: que esté bien hecho y a producción." />,
+  <Seccion kicker="Cierre" titulo="Tu MVP está online. La próxima: le metemos IA adentro." />,
 ]

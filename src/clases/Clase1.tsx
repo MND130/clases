@@ -327,9 +327,9 @@ datos, stack, riesgos y criterios de éxito).`}
   <SlideClara titulo="El recorrido completo del curso" kicker="Para que veas el hilo">
     <Cronograma bloques={[
       { dur: 'Clase 1', t: 'Decidir: el método, las 8 decisiones y los docs de tu proyecto. ← estás acá' },
-      { dur: 'Clase 2', t: 'Construir: setup, prompting y build en fases, en local.' },
-      { dur: 'Clase 3', t: 'Sumar IA: chatbots y agentes adentro de tu producto.' },
-      { dur: 'Clase 4', t: 'Revisar y publicar: calidad, deploy a producción y presentación.' },
+      { dur: 'Clase 2', t: 'Construir: setup, prompting y la app navegable con datos mock, en local.' },
+      { dur: 'Clase 3', t: 'Publicar: datos reales (Supabase), login y la app online en Vercel.' },
+      { dur: 'Clase 4', t: 'Sumar IA: chatbots y agentes adentro de tu producto, y cierre.' },
     ]} />
     <div className="mt-7"><Cita>Cada clase es una fase del método y deja un entregable. Salís con algo real en la mano, no con apuntes.</Cita></div>
   </SlideClara>,

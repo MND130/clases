@@ -1,7 +1,7 @@
 # Guía — GitHub (MND130)
 
 > **Cuándo usás esto:** en la Clase 2, cuando vayas a guardar tu código y subirlo. No hace falta antes.
-> **Qué vas a lograr:** tener una cuenta de GitHub y dejarla conectada a Claude Code, para que la IA pueda crear repos y subir tu código por vos.
+> **Qué vas a lograr:** tener una cuenta de GitHub y dejar a Claude Code logueado con la GitHub CLI, para que la IA pueda crear repos y subir tu código por vos — sin generar tokens a mano.
 > **Tiempo estimado:** ~10 minutos.
 
 ---
@@ -31,46 +31,51 @@ GitHub es donde va a vivir tu código. Pensalo como un Google Drive para proyect
 
 ---
 
-## 2. Conectar GitHub a Claude Code
+## 2. Conectar GitHub a Claude Code (con la GitHub CLI)
 
-Para que Claude Code pueda crear repos y subir tu código, primero necesita un **token**: una especie de contraseña descartable y limitada que le da permiso para tocar tus repos, sin entregarle tu contraseña real.
+Para que Claude Code pueda crear repos y subir tu código, usamos la **GitHub CLI** (`gh`): una herramienta oficial de GitHub que se loguea **por el navegador**, sin que tengas que generar ni copiar ningún token a mano.
 
-### 2a. Generar el token
+### 2a. Instalar la GitHub CLI
 
-1. Logueado en GitHub, andá a **[github.com/settings/tokens](https://github.com/settings/tokens)** (o: foto de perfil → **Settings** → **Developer settings** → **Personal access tokens**).
-2. Hacé clic en **Generate new token** → elegí **Fine-grained token**.
-3. Ponele un nombre, por ejemplo `claude-code`.
-4. En **Expiration**, elegí una fecha cómoda (ej: 90 días).
-5. **El paso clave (no lo saltees):** bajá hasta **Permissions → Repository permissions** y hacé clic en **Add permissions**. Agregá estos dos y ponelos en **Read and write**:
-   - **Administration**
-   - **Contents**
-6. Bajá hasta el final y hacé clic en **Generate token**.
-7. **Copiá el token ahora** (empieza con `github_pat_...`). No vas a poder verlo de nuevo: si lo perdés, generás otro.
+En la terminal integrada de Cursor (menú **Terminal → New Terminal**, o `` Ctrl+` ``):
 
-### 2b. Pegarlo en Claude Code
+- **Mac:** pegá `brew install gh` y apretá Enter. (Si no tenés Homebrew, descargá el instalador desde **[cli.github.com](https://cli.github.com)**.)
+- **Windows:** pegá `winget install --id GitHub.cli` y apretá Enter. (O descargá el instalador desde **[cli.github.com](https://cli.github.com)**.)
 
-Abrí la terminal integrada de Cursor (menú **Terminal → New Terminal**, o `` Ctrl+` ``) y pegá esta línea **reemplazando `PEGÁ_TU_TOKEN_ACÁ`** por el token que copiaste:
+Cuando termine, cerrá y volvé a abrir la terminal.
+
+### 2b. Loguearte (todo por el navegador)
+
+En la terminal, pegá:
 
 ```
-claude mcp add --transport http github https://api.githubcopilot.com/mcp/ --header "Authorization: Bearer PEGÁ_TU_TOKEN_ACÁ"
+gh auth login
 ```
 
-Apretá Enter. Listo: GitHub quedó conectado.
+Te va a hacer unas preguntas. Elegí con las flechas y Enter:
+
+1. **What account do you want to log into?** → **GitHub.com**
+2. **What is your preferred protocol for Git operations?** → **HTTPS**
+3. **Authenticate Git with your GitHub credentials?** → **Yes**
+4. **How would you like to authenticate?** → **Login with a web browser**
+5. Te muestra un **código** (ej: `XXXX-XXXX`). Copialo, apretá Enter, y se te abre el navegador.
+6. Pegá el código en el navegador y autorizá. Volvé a la terminal: ya estás logueado.
+
+Listo. No generaste ningún token: GitHub CLI maneja todo por vos.
 
 ### 2c. Verificar
 
-Abrí un **chat nuevo** de Claude Code (las conexiones recién agregadas no aparecen en chats ya abiertos) y escribí:
+En la terminal, pegá:
 
 ```
-/mcp
+gh auth status
 ```
 
-Tenés que ver **github** en la lista. Si no aparece, abrí otro chat nuevo y probá de nuevo.
+Tiene que decir que estás logueado (`Logged in to github.com as tu-usuario`). Si lo ves, ya está: Claude Code puede crear repos y pushear por vos. Probalo pidiéndole *"creá un repo para mi proyecto y subí el código"*.
 
 ### Si algo no sale
 
-- **No me deja crear repos (error "403" o "permission")**: al token le faltaron permisos. Generá uno nuevo y asegurate de que **Repository permissions** tenga **Administration** y **Contents** en **Read and write** (los dos, no uno solo).
-- **`command not found: claude`**: la extensión de Claude Code no está instalada o Cursor no la detecta todavía. Volvé a la Guía de Setup, instalá la extensión y cerrá y volvé a abrir Cursor.
-- **No aparece github en `/mcp`**: abrí un **chat nuevo** de Claude Code. Las herramientas recién agregadas no aparecen en chats viejos.
-
-> **Tratá el token como una contraseña:** no lo compartas ni lo pegues en lugares públicos.
+- **`command not found: gh`**: la CLI no se instaló o la terminal no la detecta. Cerrá y volvé a abrir la terminal (o Cursor). Si sigue, reinstalala con el instalador de **[cli.github.com](https://cli.github.com)**.
+- **`command not found: brew` (Mac)**: no tenés Homebrew. Descargá el instalador de `gh` directo desde **[cli.github.com](https://cli.github.com)**.
+- **No se abre el navegador**: copiá el link que te muestra la terminal y pegalo a mano en el navegador.
+- **Claude Code no puede crear el repo**: pedile que use la GitHub CLI (`gh repo create`). Verificá con `gh auth status` que seguís logueado.

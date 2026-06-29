@@ -1,5 +1,5 @@
-import { Portada, Seccion, SlideClara, Bullets, Tarjetas, DosCols, Cita, Codigo, Glosario, Ejemplo, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
-import { FolderGit2, Database, ListOrdered, RefreshCw, AlertTriangle, Laptop, ShieldAlert } from 'lucide-react'
+import { Portada, Seccion, SlideClara, Bullets, BulletsIcono, DosCols, Cita, Codigo, Glosario, Ejemplo, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
+import { FolderGit2, ListOrdered, RefreshCw, AlertTriangle, Laptop, ShieldAlert } from 'lucide-react'
 
 export const clase2 = [
   <Portada
@@ -39,63 +39,54 @@ export const clase2 = [
 
   <Seccion kicker="Bloque 1" titulo="Setup del entorno" />,
 
-  <SlideClara titulo="Las dos cuentas que usás para construir">
-    <Tarjetas cols={2} items={[
-      { icon: FolderGit2, t: 'GitHub', d: 'El repositorio: guarda tu código y su historial. Cada cambio queda versionado y podés volver atrás.' },
-      { icon: Database, t: 'Supabase', d: 'Base de datos + login, sin servidor propio. Donde se guarda la info de tu app.' },
-    ]} />
-    <div className="mt-6">
-      <Ejemplo titulo="El circuito mientras construís">
-        Escribís código en tu máquina (<span className="font-mono text-[13px]">localhost</span>) → lo guardás en <b>GitHub</b> → tu app lee y guarda datos en <b>Supabase</b>. Todo en local. <b>Publicar online es la Clase 4</b> (ahí entra Vercel).
-      </Ejemplo>
-    </div>
-  </SlideClara>,
-
-  <SlideClara titulo="Supabase: la base de datos y el login, ya hechos">
+  <SlideClara titulo="Lo único que conectás hoy: GitHub">
     <DosCols
       izq={
-        <Glosario items={[
-          { t: 'Base de datos', d: 'donde tu app guarda la info de forma permanente. Pensá en una planilla de Excel, pero a la que la app consulta y escribe sola.' },
-          { t: 'Tabla', d: 'una "hoja" de esa planilla para un tipo de cosa: una tabla de usuarios, una de turnos. Filas = registros, columnas = campos.' },
-          { t: 'Auth (login)', d: 'el sistema de "quién entra y a qué accede". Registrarse, iniciar sesión, recuperar contraseña.' },
+        <BulletsIcono items={[
+          { icon: FolderGit2, children: <><b>GitHub</b> es tu repositorio: guarda tu código y su historial. Cada cambio queda versionado y podés volver atrás.</> },
+          { icon: Laptop, children: <>Hoy todo corre en tu <b>máquina</b> (localhost). No publicamos nada, no conectamos base de datos todavía.</> },
         ]} />
       }
-      der={<Ejemplo titulo="Qué te ahorra Supabase">Armar una base de datos y un login seguro desde cero es de lo más difícil y peligroso de una app. Supabase te lo da <b>listo</b>: vos le pedís a la IA "creá una tabla de turnos" o "sumá login", y se apoya en Supabase. No programás el sistema de usuarios: ya está resuelto.</Ejemplo>}
+      der={<Ejemplo titulo="Por qué solo GitHub hoy">La base de datos (Supabase) y publicar online (Vercel) son la <b>Clase 3</b>. Hoy nos enfocamos en una sola cosa: que tu app, con todas sus pantallas, ande en tu compu. GitHub es para no perder nada en el camino.</Ejemplo>}
     />
-    <div className="mt-5"><Cita>Para vos, Supabase son dos cosas: dónde viven los datos de tu app, y quién puede entrar. Las dos, sin montar ni mantener un servidor.</Cita></div>
+    <div className="mt-5"><Cita>El método: una cosa a la vez. Hoy construimos la app navegable en local. Datos reales y publicar vienen después, cuando esto ya funciona.</Cita></div>
   </SlideClara>,
 
-  <SlideClara titulo="MCP: el enchufe que conecta la IA con tus herramientas">
+  <SlideClara titulo="Claude Code no solo conversa: hace">
     <DosCols
       izq={<>
-        Pensalo como el <b>USB-C de la IA</b>: un enchufe estándar para conectar Claude con herramientas reales (tu GitHub, tu base de datos, tu plataforma para publicar).<br /><br />
-        Sin MCP, la IA solo <b>conversa</b>: te dice qué hacer. Con MCP, la IA <b>hace</b>: crea el repo, toca la base, publica la app. Vos no aprendés comandos — <b>conectás la herramienta una vez y le hablás</b>.
+        La IA que usás para construir no se queda en darte consejos: <b>ejecuta acciones reales</b> en tu compu. Crea archivos, corre tu proyecto, y —cuando lo conectás— crea tu repositorio y sube tu código.<br /><br />
+        Para GitHub usamos la <b>GitHub CLI</b>: te logueás una vez por el navegador (sin tokens a mano) y después le pedís en español <i>"creá un repo y subí el código"</i>, y lo hace.
       </>}
       der={<Glosario items={[
-        { t: 'MCP', d: 'el estándar que deja a la IA usar herramientas externas. "Model Context Protocol".' },
-        { t: 'Quién lo hace', d: 'el dueño de cada herramienta: GitHub escribió el suyo, Supabase el suyo. No es Anthropic integrando todo a mano.' },
-        { t: 'Por qué importa', d: 'cada app lo publica una vez y cualquier IA lo aprovecha. Por eso ya hay miles.' },
+        { t: 'GitHub CLI (gh)', d: 'la herramienta oficial de GitHub. Te logueás por el navegador y Claude Code la usa para crear repos y pushear.' },
+        { t: 'Login por navegador', d: 'sin generar ni copiar tokens: clickeás "autorizar" y listo. Una sola vez.' },
+        { t: 'Después, en español', d: 'no aprendés comandos: le pedís lo que querés y la IA corre la herramienta por vos.' },
       ]} />}
     />
-    <div className="mt-5"><Ejemplo titulo="Lo conectás hoy">Hoy conectás GitHub y Supabase a Claude Code por MCP (cada una con su guía en el material). Es pegar una línea y autorizar en el navegador, una sola vez. Después le pedís las cosas en español.</Ejemplo></div>
+    <div className="mt-5"><Ejemplo titulo="Lo conectás hoy">Hoy instalás y logueás la <b>GitHub CLI</b> (la guía está en el material). Es un login por el navegador, una sola vez. Supabase y publicar vienen en la Clase 3.</Ejemplo></div>
   </SlideClara>,
 
-  <SlideClara titulo="Local vs. producción: dos lugares, no se mezclan">
-    <AntesDespues
-      tituloAntes="Local (tu máquina)"
-      tituloDespues="Producción (online)"
-      antes={<>La app <b>construís y probás</b> en tu máquina: corre en <span className="font-mono text-[13px]">localhost</span>, solo la ves vos.<br /><br />Apunta a tu <b>proyecto de prueba</b> de Supabase: lo llenás de datos truchos, lo rompés, no importa.</>}
-      despues={<>Donde vivirá la app <b>para los usuarios</b>, online, cuando la publiques (eso es la Clase 4).<br /><br />Apuntará a tu <b>proyecto de producción</b> de Supabase: los datos reales. Acá no se experimenta.</>}
+  <SlideClara titulo="Datos mock: construí la app antes de tener la base">
+    <DosCols
+      izq={
+        <Bullets items={[
+          <>Hoy tus pantallas se llenan con <b>datos falsos</b> escritos en el código (mock). Una lista de turnos inventada, usuarios de mentira.</>,
+          <>Así ves y probás <b>toda la app navegable</b> sin depender de una base de datos todavía.</>,
+          <>En la <b>Clase 3</b> reemplazás esos mocks por datos <b>reales</b> de Supabase. La pantalla no cambia: cambia de dónde saca los datos.</>,
+        ]} />
+      }
+      der={<Ejemplo titulo="Por qué primero mock">Conectar una base es un paso aparte que puede trabar. Si primero armás la UI con datos falsos, ves el producto completo, lo mostrás, lo ajustás — y recién después le enchufás la base. Construir de a una capa.</Ejemplo>}
     />
-    <div className="mt-5"><Cita>Ojo: lo "local" es la <b>app</b>; la base de datos vive siempre en la nube (Supabase). Por eso tenés <b>dos proyectos</b> de Supabase — prueba y producción (el plan gratis te da 2, justo) — y nunca tocás el de producción a mano. No hace falta montar una base en tu máquina: con el de prueba ya rompés y experimentás tranquilo.</Cita></div>
+    <div className="mt-5"><Cita>Es como maquetar una casa con muebles de cartón antes de comprar los de verdad: ves cómo queda todo, y recién después gastás en lo real.</Cita></div>
   </SlideClara>,
 
-  <SlideClara titulo="El setup, en orden">
+  <SlideClara titulo="El setup de hoy, en orden">
     <Pasos pasos={[
-      { t: 'Crear las cuentas', d: 'GitHub y Supabase, hoy en clase (cada una tiene su guía en el material).' },
-      { t: 'Levantar el proyecto en local', d: 'que la app corra en tu máquina y la veas en localhost. Primero acá.' },
-      { t: 'Conectar GitHub y Supabase a Claude Code', d: 'por MCP: pegás una línea y autorizás en el navegador, una sola vez.' },
-      { t: 'Crear el proyecto de prueba en Supabase', d: 'tu app local apunta a él. Guardás las claves en variables de entorno (.env).' },
+      { t: 'Crear la cuenta de GitHub', d: 'si no la tenés (la guía está en el material). Es lo único que conectás hoy.' },
+      { t: 'Levantar el proyecto en local', d: 'que la app corra en tu máquina y la veas en localhost. Acá vivís toda la clase.' },
+      { t: 'Conectar GitHub a Claude Code', d: 'instalás la GitHub CLI y te logueás por el navegador, una sola vez. Sin tokens.' },
+      { t: 'Construir las pantallas con datos mock', d: 'la app navegable de punta a punta, con datos falsos. Sin base, sin login todavía.' },
     ]} />
     <div className="mt-6"><Cita>Lo hacemos con pantalla compartida, todos a la vez. Quien se traba comparte su pantalla; los bloqueos chicos van por el chat en paralelo.</Cita></div>
   </SlideClara>,
@@ -113,19 +104,19 @@ export const clase2 = [
     />
   </SlideClara>,
 
-  <SlideClara titulo="El archivo .env: dónde viven tus secretos">
+  <SlideClara titulo="El archivo .env: dónde vivirán tus secretos">
     <DosCols
       izq={
         <>
           <div className="inline-flex items-center gap-2 text-udesa-blue font-bold mb-3"><ShieldAlert size={20} /> Qué es y para qué</div>
           <Bullets items={[
-            <>Un archivo de texto donde guardás <b>claves y contraseñas</b> (de Supabase, de la IA).</>,
+            <>Un archivo de texto donde guardás <b>claves y contraseñas</b> (las de Supabase y la IA llegan en la Clase 3).</>,
             <>El código las <b>lee de ahí</b>, no las tiene escritas adentro.</>,
             <>Está en una lista (<span className="font-mono text-[13px]">.gitignore</span>) que hace que <b>NUNCA se suba a GitHub</b>.</>,
           ]} />
         </>
       }
-      der={<Ejemplo titulo="La regla de oro">Si una clave está en el código y subís a GitHub, queda pública para siempre (aunque la borres después). En el .env, no. Pedile a la IA: "poné esto en variables de entorno", y listo.</Ejemplo>}
+      der={<Ejemplo titulo="La regla de oro">Si una clave está en el código y subís a GitHub, queda pública para siempre (aunque la borres después). En el .env, no. Cuando tengas claves (Clase 3), pedile a la IA: "poné esto en variables de entorno", y listo.</Ejemplo>}
     />
   </SlideClara>,
 
@@ -222,14 +213,14 @@ No avances a la Fase 2 sin mi OK.`}
     />
   </SlideClara>,
 
-  <SlideClara titulo="El plan de fases típico (el skate → el auto)">
+  <SlideClara titulo="El plan de fases de hoy (el skate → el auto)">
     <Pasos pasos={[
-      { t: 'Fase 1 — La base (el skate)', d: 'estructura base + auth. Verificás: te registrás y entrás a un dashboard vacío, en local.' },
-      { t: 'Fase 2 — La feature principal (el monopatín)', d: 'el CRUD de tu entidad core. Verificás: creás, ves, editás y borrás.' },
-      { t: 'Fase 3 — Integración (la moto)', d: 'conectás las partes, permisos. Verificás: el flujo completo de punta a punta.' },
-      { t: 'Fase 4 — Pulido (el auto)', d: 'estados de carga y error, mobile. Recién acá pensamos en deploy (Clase 4).' },
+      { t: 'Fase 1 — El esqueleto (el skate)', d: 'el proyecto vacío que ya corre. Verificás: levantás localhost y ves "Hola [tu app]".' },
+      { t: 'Fase 2 — Las pantallas con datos mock', d: 'todas tus pantallas navegables, con datos falsos hardcodeados. Verificás: recorrés la app entera clickeando.' },
+      { t: 'Fase 3 — Estados y mobile', d: 'no solo el happy path: vacío, cargando, error. Y que se vea bien en el celular.' },
+      { t: 'Hasta acá llega hoy', d: 'datos reales (Supabase), login y publicar online son la Clase 3. Hoy: app navegable en local.' },
     ]} />
-    <div className="mt-4"><Cita>En cada paso tenés algo que anda. Si te quedás sin tiempo en la Fase 2, igual tenés un producto usable.</Cita></div>
+    <div className="mt-4"><Cita>En cada paso tenés algo que anda. Al terminar hoy, tu app se ve y se navega completa — aunque los datos todavía sean de mentira.</Cita></div>
   </SlideClara>,
 
   <SlideClara titulo="¿Cómo sé que una fase está realmente terminada?">
@@ -253,21 +244,21 @@ No avances a la Fase 2 sin mi OK.`}
 
   <ManosALaObra
     minutos="40 min"
-    titulo="Construí la base de tu MVP, en local"
-    objetivo={<>Primera mitad: de la estructura base a tu feature core andando en local. Después paramos y seguimos.</>}
+    titulo="Armá el esqueleto y tus primeras pantallas"
+    objetivo={<>Primera mitad: del proyecto vacío a las primeras pantallas navegables, con datos mock. Después paramos y seguimos.</>}
     pasos={[
       { t: 'Abrí tu docs/fases.md', d: 'el plan que armaste en la Clase 1. Revisalo con la IA y ajustalo si hace falta.' },
-      { t: 'Fase 1: estructura base + auth', d: 'que corra en local. Pedile que te explique las carpetas y que actualice docs/fases.md.' },
-      { t: 'Fase 2: arrancá tu feature core', d: 'el CRUD de tu entidad principal, contra Supabase de prueba.' },
+      { t: 'Fase 1: el esqueleto', d: 'el proyecto vacío que ya corre en local. Pedile que te explique las carpetas y que actualice docs/fases.md.' },
+      { t: 'Fase 2: tus primeras pantallas con datos mock', d: 'las principales de tu app, con datos falsos. Que se vean y se naveguen.' },
     ]}
   />,
 
   <Checkpoint
-    titulo="¿Quién tiene la base andando?"
+    titulo="¿Quién tiene la app navegando?"
     items={[
       'Tu proyecto corre en local (lo ves en localhost).',
-      'Auth funciona: te podés registrar y entrar.',
-      'Supabase de prueba conectado, con al menos una tabla.',
+      'Tenés al menos 2-3 pantallas navegables, con datos mock.',
+      'Podés clickear de una pantalla a otra.',
       'Hiciste al menos un commit en Git.',
     ]}
   />,
@@ -276,12 +267,12 @@ No avances a la Fase 2 sin mi OK.`}
 
   <ManosALaObra
     minutos="40 min"
-    titulo="Terminá tu feature core y commiteá"
-    objetivo={<>Segunda mitad: completás el CRUD, lo probás en local y guardás en Git.</>}
+    titulo="Completá las pantallas y los estados"
+    objetivo={<>Segunda mitad: terminás las pantallas que faltan, sumás los estados (vacío, error, cargando) y revisás mobile. Todo con datos mock, en local.</>}
     pasos={[
-      { t: 'Terminá el CRUD de tu entidad', d: 'crear, ver, editar y borrar — todo contra Supabase de prueba.' },
-      { t: 'Probá cada cosa en local', d: 'como si fueras el usuario. Pedile a la IA cómo verificar.' },
-      { t: 'Commiteá al cerrar la fase', d: 'guardás en Git lo que ya anda, antes de seguir.' },
+      { t: 'Terminá las pantallas que falten', d: 'tu app navegable de punta a punta, con datos mock. Recorrela como si fueras el usuario.' },
+      { t: 'Sumá los estados', d: 'no solo el happy path: pantalla vacía, cargando, error. Pedile a la IA que los contemple.' },
+      { t: 'Revisá mobile y commiteá', d: 'que se vea bien en el celular. Guardás en Git lo que ya anda.' },
     ]}
   />,
 
@@ -327,5 +318,5 @@ No avances a la Fase 2 sin mi OK.`}
     />
   </SlideClara>,
 
-  <Seccion kicker="Cierre" titulo="Tu MVP corre en local. La próxima: le metemos IA adentro." />,
+  <Seccion kicker="Cierre" titulo="Tu app se navega en local. La próxima: datos reales y online." />,
 ]

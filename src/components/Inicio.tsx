@@ -5,9 +5,9 @@ import { useFullscreen } from '../lib/useFullscreen'
 
 const CLASES = [
   { n: 1, t: 'El método: decidir antes de construir', d: 'The MND130 Way, las 8 decisiones y los docs de tu proyecto.' },
-  { n: 2, t: 'Construir: en fases y en local', d: 'Setup, prompting y build incremental en local.' },
-  { n: 3, t: 'Sumar IA: chatbots y agentes', d: 'IA adentro del producto: chatbot, agente y RAG.' },
-  { n: 4, t: 'Revisar y publicar', d: 'Calidad, analytics, deploy a producción y presentación.' },
+  { n: 2, t: 'Construir: en fases y en local', d: 'Setup, prompting y la app navegable con datos mock.' },
+  { n: 3, t: 'Publicar: datos reales y online', d: 'Conectar Supabase (datos + login) y publicar en Vercel.' },
+  { n: 4, t: 'Sumar IA: chatbots y agentes', d: 'IA adentro del producto: chatbot, agente y RAG, y cierre.' },
 ]
 
 export function Inicio({ onElegir, onMaterial }: { onElegir: (i: number) => void; onMaterial: () => void }) {

@@ -12,9 +12,9 @@ El que decide bien antes, construye 10x mejor con IA. El que decide *mientras* c
 | Fase | Qué hacés |
 |---|---|
 | **1. Decidir** | Antes de codear, tomás las 8 decisiones del brief (abajo). La IA las va escribiendo en `docs/brief.md` mientras las conversás. |
-| **2. Construir** | En fases incrementales y **en local primero** (probás en tu máquina; publicás solo lo que ya funciona). |
-| **3. Sumar IA** | Si tu producto lo pide: un chatbot, un agente o un asistente sobre tus documentos (RAG). |
-| **4. Revisar y publicar** | Auditás contra tu brief, sumás analytics, y deployás a producción. |
+| **2. Construir** | En fases y **en local**: la app navegable con datos mock (falsos). Probás todo en tu máquina antes de tener base. |
+| **3. Publicar** | Conectás Supabase (datos reales + login), reemplazás los mocks, y publicás la app online en Vercel. |
+| **4. Sumar IA** | Si tu producto lo pide: un chatbot, un agente o un asistente sobre tus documentos (RAG). |
 
 ### Las 8 decisiones del brief (Fase 1)
 

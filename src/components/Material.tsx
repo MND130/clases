@@ -22,8 +22,8 @@ const DOCS: Doc[] = [
   { id: 'cheatsheet', titulo: 'Cheatsheet', desc: 'Glosario, stacks, checklist de calidad y red flags.', icon: BookOpen, md: cheatsheet },
   { id: 'setup', titulo: 'Guía de Setup', desc: 'Lo previo a la Clase 1: Cursor y Claude Code.', icon: Wrench, md: guiaSetup },
   { id: 'github', titulo: 'Guía — GitHub', desc: 'Crear la cuenta y conectarla a Claude Code (Clase 2).', icon: Wrench, md: guiaGithub },
-  { id: 'vercel', titulo: 'Guía — Vercel', desc: 'Crear la cuenta y publicar tu app desde GitHub (Clase 2).', icon: Wrench, md: guiaVercel },
-  { id: 'supabase', titulo: 'Guía — Supabase', desc: 'Crear la cuenta y conectarla a Claude Code (Clase 2).', icon: Wrench, md: guiaSupabase },
+  { id: 'vercel', titulo: 'Guía — Vercel', desc: 'Crear la cuenta y publicar tu app desde GitHub (Clase 3).', icon: Wrench, md: guiaVercel },
+  { id: 'supabase', titulo: 'Guía — Supabase', desc: 'Crear la cuenta y conectarla a Claude Code (Clase 3).', icon: Wrench, md: guiaSupabase },
   { id: 'prompts', titulo: 'Prompt Templates', desc: 'Prompts modelo para cada etapa del MVP.', icon: MessageSquareText, md: prompts },
   { id: 'ejercicios', titulo: 'Proyectos de ejemplo', desc: 'Ideas de MVP desarrolladas como referencia.', icon: Lightbulb, md: ejercicios },
 ]
