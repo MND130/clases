@@ -883,9 +883,9 @@ Revisame:
 
 Ademas:
 - Dame el comando para hacer un build local y verificar que no hay errores
-- Explicame como hacer el primer deploy importando mi repo de GitHub desde la web de Vercel (vercel.com)
+- Guiame para el primer deploy con la herramienta de Vercel (la CLI): instalarla, loguearme por el navegador y publicar mi carpeta. Despues, como cargar las variables de entorno en la web de Vercel (Settings -> Environment Variables).
 
-Asumo que ya tengo cuenta en Vercel conectada a mi GitHub, y que el deploy se hace desde la web (no por CLI).
+Asumo que ya tengo cuenta en Vercel y que el deploy lo hace Claude Code corriendo la CLI de Vercel por mi (no uso GitHub).
 ```
 
 > Por qué funciona: "Cosas que funcionan en dev pero rompen en producción" es oro. Variables de entorno olvidadas, mixed content, y RLS desactivado son los errores más comunes.
@@ -903,9 +903,9 @@ Revisame:
 
 Ademas:
 - Dame el comando para hacer un build local y verificar que no hay errores
-- Explicame como hacer el primer deploy importando mi repo de GitHub desde la web de Vercel (vercel.com)
+- Guiame para el primer deploy con la herramienta de Vercel (la CLI): instalarla, loguearme por el navegador y publicar mi carpeta. Despues, como cargar las variables de entorno en la web de Vercel (Settings -> Environment Variables).
 
-Asumo que ya tengo cuenta en Vercel conectada a mi GitHub, y que el deploy se hace desde la web (no por CLI).
+Asumo que ya tengo cuenta en Vercel y que el deploy lo hace Claude Code corriendo la CLI de Vercel por mi (no uso GitHub).
 ```
 
 ---

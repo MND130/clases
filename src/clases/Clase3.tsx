@@ -77,8 +77,8 @@ export const clase3 = [
     <AntesDespues
       tituloAntes="Peligroso"
       tituloDespues="Correcto"
-      antes={<><span className="inline-flex items-center gap-1"><ShieldAlert size={16} className="text-[#b13434]" /> Pegar la URL y la clave de Supabase <b>directo en el código</b>.</span><br /><br />Cuando subís a GitHub, quedan públicas. Cualquiera entra a tu base.</>}
-      despues={<>Guardarlas en el archivo <b>.env</b> (variables de entorno), que <b>no se sube</b> a GitHub.<br /><br />Tu CLAUDE.md ya lo pide. Igual verificá: <i>"¿las claves de Supabase están en variables de entorno?"</i></>}
+      antes={<><span className="inline-flex items-center gap-1"><ShieldAlert size={16} className="text-[#b13434]" /> Pegar la URL y la clave de Supabase <b>directo en el código</b>.</span><br /><br />Cuando publicás tu app, quedan expuestas. Cualquiera entra a tu base.</>}
+      despues={<>Guardarlas en el archivo <b>.env</b> (variables de entorno), que vive <b>solo en tu compu</b> y no se publica con la app.<br /><br />Tu CLAUDE.md ya lo pide. Igual verificá: <i>"¿las claves de Supabase están en variables de entorno?"</i></>}
     />
   </SlideClara>,
 
@@ -185,17 +185,17 @@ que lo que cargo se guarda de verdad.`}
           { t: 'Dominio', d: 'la dirección de tu app. Empezás con una gratis (tu-app.vercel.app); comprar una propia es ~15 USD/año.' },
         ]} />
       }
-      der={<Ejemplo titulo="Cómo se publica, sin terminal">Vercel se conecta a tu <b>GitHub</b>. Importás tu repo desde la web de Vercel, le das <b>Deploy</b>, y listo: tu app tiene URL. De ahí en más, cada cambio que subís a GitHub se publica <b>solo</b>.</Ejemplo>}
+      der={<Ejemplo titulo="Cómo se publica, en español">Le pedís a Claude Code <i>"publicá mi app en Vercel"</i>. La IA corre la herramienta de Vercel, te logueás una vez por el navegador, y sube tu carpeta. En un par de minutos tu app tiene <b>URL</b>. Para republicar, le volvés a pedir <i>"publicá los cambios"</i>.</Ejemplo>}
     />
   </SlideClara>,
 
   <SlideClara titulo="El circuito completo, ahora sí">
     <Pasos pasos={[
-      { t: 'Subís tus cambios a GitHub', d: 'con un commit, como venís haciendo.' },
-      { t: 'Vercel lo detecta y publica solo', d: 'cada push actualiza tu app online, automático.' },
+      { t: 'Le pedís a la IA que publique', d: '"publicá mi app en Vercel". La IA corre la herramienta de Vercel y sube tu carpeta.' },
+      { t: 'Vercel te da una URL pública', d: 'tu app queda online, con una dirección que cualquiera puede abrir.' },
       { t: 'Tu app online lee y guarda en Supabase', d: 'datos reales, en la nube, para todos tus usuarios.' },
     ]} />
-    <div className="mt-5"><Ejemplo titulo="Las piezas se juntan">GitHub (el código) → Vercel (lo publica) → Supabase (los datos). Las tres herramientas que venís usando, ahora trabajando juntas para que tu app viva online.</Ejemplo></div>
+    <div className="mt-5"><Ejemplo titulo="Las piezas se juntan">Tu compu (el código) → Vercel (lo publica) → Supabase (los datos). Las dos herramientas que conectás hoy, trabajando juntas para que tu app viva online.</Ejemplo></div>
   </SlideClara>,
 
   <SlideClara titulo="El paso que más falla: las variables de entorno">
@@ -206,7 +206,7 @@ que lo que cargo se guarda de verdad.`}
           <Bullets items={[
             <>Tu app anda perfecto en local, pero <b>falla al publicarla</b>.</>,
             <>Casi siempre es lo mismo: las <b>claves de Supabase</b> están en tu <code>.env</code> local, pero no en Vercel.</>,
-            <>El <code>.env</code> no se sube a GitHub (¡bien!), así que Vercel no las tiene: <b>hay que cargarlas a mano</b> en Vercel.</>,
+            <>El <code>.env</code> vive solo en tu compu, así que Vercel no lo tiene: <b>hay que cargar las claves a mano</b> en Vercel.</>,
           ]} />
         </>
       }
@@ -218,13 +218,14 @@ que lo que cargo se guarda de verdad.`}
     titulo="Les muestro: publico la app en Vercel, en vivo"
     prompt={`Quiero publicar mi app en Vercel.
 
-Guiame paso a paso: subir mi código a GitHub,
-importar el repo desde la web de Vercel, cargar
-las variables de entorno (las claves de Supabase),
-y hacer el primer deploy.
+Guiame paso a paso: instalar y loguear la
+herramienta de Vercel (por el navegador), hacer
+el primer deploy de mi carpeta, y después cargar
+las variables de entorno (las claves de Supabase)
+en la web de Vercel.
 
 Si el deploy falla, ayudame a leer los logs.`}
-    mirar={<>Cómo <b>importo el repo</b> desde la web de Vercel, cargo las <b>variables de entorno</b> (el paso que más falla), y le doy Deploy. En un par de minutos la app tiene <b>URL pública</b> y la abro desde el celular. Después la publican ustedes.</>}
+    mirar={<>Cómo la IA <b>loguea Vercel</b> por el navegador y <b>sube mi carpeta</b>, cómo cargo las <b>variables de entorno</b> en la web (el paso que más falla), y cómo la app queda con <b>URL pública</b> y la abro desde el celular. Después la publican ustedes.</>}
   />,
 
   <Break minutos={15} etiqueta="Break 2 de 2" />,
@@ -236,8 +237,8 @@ Si el deploy falla, ayudame a leer los logs.`}
     titulo="Poné tu app online"
     objetivo={<>Publicás tu app en Vercel, con datos reales. Salís con una URL que cualquiera puede abrir desde su celular.</>}
     pasos={[
-      { t: 'Subí tu código a GitHub', d: 'commiteá lo que tenés y subilo a tu repo.' },
-      { t: 'Importá el repo en Vercel', d: 'desde la web de Vercel (Add New → Project). Con la Guía de Vercel.' },
+      { t: 'Pedile a la IA que publique', d: '"publicá mi app en Vercel". Logueás Vercel por el navegador (una vez) y sube tu carpeta. Con la Guía de Vercel.' },
+      { t: 'Esperá la URL', d: 'Vercel te devuelve la dirección pública de tu app cuando termina de publicar.' },
       { t: 'Cargá las variables de entorno', d: 'las claves de Supabase, en Settings → Environment Variables. El paso que más falla.' },
       { t: 'Deploy y abrí la URL', d: 'verificá que funciona online, no solo en tu compu. Probala desde el celular.' },
     ]}
@@ -261,7 +262,7 @@ Si el deploy falla, ayudame a leer los logs.`}
       tituloAntes="Lo riesgoso"
       tituloDespues="Lo correcto"
       antes={<>Probar cambios <b>directo en producción</b>, contra los datos reales de tus usuarios.<br /><br />Un experimento que sale mal te rompe la app que la gente está usando.</>}
-      despues={<>Construir y probar <b>en local</b> (con tu proyecto de prueba). Cuando anda, subís a GitHub y se publica.<br /><br />Producción recibe <b>solo lo que ya verificaste</b>.</>}
+      despues={<>Construir y probar <b>en local</b> (con tu proyecto de prueba). Cuando anda, le pedís a la IA que lo publique.<br /><br />Producción recibe <b>solo lo que ya verificaste</b>.</>}
     />
     <div className="mt-5"><Cita>El método no cambia al publicar: local primero, producción al final. La diferencia es que ahora "al final" ya llegó.</Cita></div>
   </SlideClara>,

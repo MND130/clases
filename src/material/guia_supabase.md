@@ -16,10 +16,9 @@ Supabase es tu base de datos y tu sistema de login, todo en uno. Cuando tu app n
 
 1. Andá a **[supabase.com](https://supabase.com)**
 2. Hacé clic en **Start your project** o **Sign Up**
-3. Elegí **Continue with GitHub** (usás la cuenta de GitHub que ya tenés)
-4. Autorizá la conexión con GitHub
-5. Una vez adentro, vas a ver un dashboard. No hace falta crear ningún proyecto todavía: eso lo hacés en clase.
-6. Listo.
+3. Registrate **con tu email** (poné tu mail y una contraseña). Revisá tu casilla y confirmá el mail si te lo pide.
+4. Una vez adentro, vas a ver un dashboard. No hace falta crear ningún proyecto todavía: eso lo hacés en clase.
+5. Listo.
 
 ### Si algo no sale
 
@@ -57,7 +56,7 @@ Tu app se conecta a la base con dos datos que van en el archivo `.env`: la **URL
 2. Copiá el **Project URL** y la **anon public** key.
 3. Pedile a Claude Code: *"conectá mi app a Supabase. Acá están la URL y la anon key, ponelas en variables de entorno (.env)"* y se las pegás.
 
-Claude Code crea el `.env` con `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`, y arma el cliente de Supabase. El `.env` no se sube a GitHub.
+Claude Code crea el `.env` con `NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`, y arma el cliente de Supabase. El `.env` vive solo en tu compu y no se publica con la app.
 
 > **¿Es seguro que la anon key esté en el navegador?** Sí: es pública a propósito. Lo que protege tus datos es **RLS** (Row Level Security), las reglas de "quién puede ver qué". Pedile a Claude Code que active RLS en tus tablas.
 
@@ -94,7 +93,7 @@ Pegale el connection string y decile, por ejemplo:
 
 Claude Code corre `psql` con ese string y crea todo por vos. No tenés que escribir SQL ni tocar la web.
 
-> **El connection string es secreto** (tiene tu password): que vaya en el `.env`, nunca en el código ni en GitHub.
+> **El connection string es secreto** (tiene tu password): que vaya en el `.env`, nunca escrito en el código.
 
 ### Si algo no sale
 

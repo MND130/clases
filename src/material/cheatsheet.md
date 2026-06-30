@@ -58,10 +58,8 @@ La feature que más te entusiasma suele ser la que NO va en la v1.
 | **Hosting** | El servicio que mantiene tu app corriendo y accesible 24/7 (ej: Vercel, Netlify). |
 | **Dominio** | La dirección web de tu producto (ej: `miapp.com`). Se compra aparte del hosting. |
 | **DNS** | El sistema que traduce tu dominio (`miapp.com`) a la dirección real del servidor. |
-| **Repo / Repositorio** | La carpeta de tu proyecto versionada con Git. Vive en GitHub y guarda todo el historial de cambios. |
-| **Git** | El sistema que trackea cada cambio en tu código. Permite volver atrás, trabajar en paralelo, y no perder nada. |
-| **Branch** | Una "copia paralela" de tu código donde podés experimentar sin romper lo que ya funciona. |
-| **Commit** | Un "checkpoint" — una foto del estado de tu código en un momento dado, con una descripción de qué cambiaste. |
+| **Localhost** | Tu propia compu corriendo la app, solo para vos, mientras la construís (ej: `localhost:3000`). |
+| **Datos mock** | Datos falsos escritos en el código para ver la app navegable antes de conectar una base de datos real. |
 | **Framework** | Una estructura pre-armada para construir apps (ej: Next.js para web, Express para backend). Te da las bases. |
 | **Librería** | Un paquete de código que resuelve un problema puntual (ej: una librería para mandar emails). |
 | **Dependencia** | Cualquier librería o paquete externo que tu proyecto necesita para funcionar. |
@@ -72,7 +70,7 @@ La feature que más te entusiasma suele ser la que NO va en la v1.
 | **CRUD** | Las 4 operaciones básicas sobre datos: Crear, Leer, Actualizar, Eliminar. La base de casi toda app. |
 | **Webhook** | Una notificación automática que un servicio manda a otro cuando pasa algo (ej: Stripe te avisa que se procesó un pago). |
 | **SDK** | Un kit de herramientas que un proveedor te da para integrar su servicio más fácil (ej: Vercel AI SDK). |
-| **CI/CD** | Automatización que testea y publica tu app cada vez que subís cambios al repositorio. |
+| **Deploy** | Publicar tu app para que viva online y otros la usen. En este curso, se lo pedís a la IA: *"publicá mi app en Vercel"*. |
 
 ---
 
@@ -308,7 +306,7 @@ Antes de dar por bueno lo que genera la IA, verificar:
 ### Seguridad
 
 - [ ] No hay API keys, passwords o secrets en el código (deben estar en `.env`)
-- [ ] El archivo `.env` está en `.gitignore` (nunca se sube al repositorio)
+- [ ] El archivo `.env` vive solo en tu compu (no se publica con la app)
 - [ ] Las rutas protegidas verifican autenticación (no se puede acceder sin login)
 - [ ] Los datos del usuario A no son accesibles por el usuario B (RLS en Supabase)
 - [ ] Los formularios validan input tanto en frontend como en backend
@@ -327,7 +325,6 @@ Antes de dar por bueno lo que genera la IA, verificar:
 
 - [ ] No hay bloques grandes de código duplicado (copy-paste es red flag)
 - [ ] Las dependencias que instalo son conocidas y mantenidas (revisar en npmjs.com)
-- [ ] El proyecto tiene un `.gitignore` que excluye `node_modules/`, `.env`, `.next/`
 - [ ] Los nombres de variables y funciones son descriptivos (no `x`, `data2`, `temp`)
 - [ ] No hay `console.log()` de debug en producción
 
@@ -346,12 +343,12 @@ Antes de dar por bueno lo que genera la IA, verificar:
 
 | Red flag | Por qué es grave |
 |---|---|
-| API keys o secrets en el código fuente | Cualquiera que vea tu repo tiene acceso a tus servicios (y tu tarjeta de crédito). |
+| API keys o secrets en el código fuente | Cuando publicás la app, quedan expuestas: cualquiera accede a tus servicios (y tu tarjeta de crédito). |
 | `dangerouslySetInnerHTML` sin sanitizar | Permite que alguien inyecte código malicioso en tu página. |
 | Queries SQL armadas con concatenación de strings | Abre la puerta a SQL injection — pueden leer/borrar toda tu base de datos. |
 | Sin verificación de auth en rutas protegidas | Cualquiera puede acceder a datos privados cambiando la URL. |
 | Passwords guardadas en texto plano | Si hackean tu DB, tienen todos los passwords. Siempre deben estar hasheadas. |
-| `.env` sin `.gitignore` | Tus secrets se suben a GitHub y quedan públicos para siempre (aunque borres el archivo después). |
+| Claves escritas en el código en vez del `.env` | Al publicar la app quedan expuestas. Las claves van siempre en variables de entorno. |
 
 ### Serias — revisar antes de publicar
 
@@ -381,7 +378,6 @@ Antes de dar por bueno lo que genera la IA, verificar:
 |---|---|---|---|
 | **Vercel** (hosting) | Gratis para proyectos personales | 100 GB bandwidth, builds ilimitados | Cuando necesitás dominio custom en equipo o más bandwidth (~USD 20/mes) |
 | **Supabase** (DB + auth) | Gratis | 500 MB database, 1 GB storage, 50k auth users | Cuando necesitás más de 500 MB de datos o querés backups diarios (~USD 25/mes) |
-| **GitHub** (repositorio) | Gratis para repos públicos y privados | Ilimitado para la mayoría de usos | Casi nunca para un MVP |
 | **Netlify** (hosting alternativo) | Gratis | 100 GB bandwidth, 300 build minutes/mes | Similar a Vercel (~USD 19/mes) |
 | **Cloudflare** (DNS + CDN) | Gratis | DNS ilimitado, CDN básico | Funciones avanzadas (Workers, R2 storage) |
 
@@ -419,10 +415,9 @@ Un token es aprox. 3/4 de una palabra. Una conversación típica de chatbot usa 
 
 ## Referencia rápida: comandos que vas a usar siempre
 
-```bash
-# Clonar un repositorio
-git clone https://github.com/usuario/proyecto.git
+> En este curso casi no tocás la terminal a mano: le pedís a la IA *"corré el proyecto"* o *"publicá mi app"* y ella corre estos comandos por vos. Los dejamos acá solo como referencia.
 
+```bash
 # Instalar dependencias del proyecto
 npm install
 
@@ -432,11 +427,9 @@ npm run dev
 # Ver tu app local en el navegador
 # Abrir http://localhost:3000
 
-# Guardar cambios en git
-git add .
-git commit -m "descripcion de que cambiaste"
-git push
-
 # Hacer build de produccion (para verificar que todo compila)
 npm run build
+
+# Publicar tu app online (Vercel) — la IA lo corre por vos
+vercel
 ```

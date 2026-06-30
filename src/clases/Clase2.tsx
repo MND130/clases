@@ -39,15 +39,15 @@ export const clase2 = [
 
   <Seccion kicker="Bloque 1" titulo="Setup del entorno" />,
 
-  <SlideClara titulo="Lo único que conectás hoy: GitHub">
+  <SlideClara titulo="Hoy no conectás nada: todo corre en tu compu">
     <DosCols
       izq={
         <BulletsIcono items={[
-          { icon: FolderGit2, children: <><b>GitHub</b> es tu repositorio: guarda tu código y su historial. Cada cambio queda versionado y podés volver atrás.</> },
           { icon: Laptop, children: <>Hoy todo corre en tu <b>máquina</b> (localhost). No publicamos nada, no conectamos base de datos todavía.</> },
+          { icon: FolderGit2, children: <>No hay cuentas que crear ni servicios que conectar. Ya tenés <b>Cursor y Claude Code</b>: con eso construís toda la clase de hoy.</> },
         ]} />
       }
-      der={<Ejemplo titulo="Por qué solo GitHub hoy">La base de datos (Supabase) y publicar online (Vercel) son la <b>Clase 3</b>. Hoy nos enfocamos en una sola cosa: que tu app, con todas sus pantallas, ande en tu compu. GitHub es para no perder nada en el camino.</Ejemplo>}
+      der={<Ejemplo titulo="Por qué nada externo hoy">La base de datos (Supabase) y publicar online (Vercel) son la <b>Clase 3</b>. Hoy nos enfocamos en una sola cosa: que tu app, con todas sus pantallas, ande en tu compu.</Ejemplo>}
     />
     <div className="mt-5"><Cita>El método: una cosa a la vez. Hoy construimos la app navegable en local. Datos reales y publicar vienen después, cuando esto ya funciona.</Cita></div>
   </SlideClara>,
@@ -55,16 +55,16 @@ export const clase2 = [
   <SlideClara titulo="Claude Code no solo conversa: hace">
     <DosCols
       izq={<>
-        La IA que usás para construir no se queda en darte consejos: <b>ejecuta acciones reales</b> en tu compu. Crea archivos, corre tu proyecto, y —cuando lo conectás— crea tu repositorio y sube tu código.<br /><br />
-        Para GitHub usamos la <b>GitHub CLI</b>: te logueás una vez por el navegador (sin tokens a mano) y después le pedís en español <i>"creá un repo y subí el código"</i>, y lo hace.
+        La IA que usás para construir no se queda en darte consejos: <b>ejecuta acciones reales</b> en tu compu. Crea archivos, corre tu proyecto, instala lo que hace falta y lo levanta en local.<br /><br />
+        Vos no aprendés comandos: le pedís en español <i>"armá esta pantalla"</i> o <i>"corré el proyecto"</i>, y lo hace. Tu trabajo es <b>dirigir y verificar</b>, no tipear.
       </>}
       der={<Glosario items={[
-        { t: 'GitHub CLI (gh)', d: 'la herramienta oficial de GitHub. Te logueás por el navegador y Claude Code la usa para crear repos y pushear.' },
-        { t: 'Login por navegador', d: 'sin generar ni copiar tokens: clickeás "autorizar" y listo. Una sola vez.' },
-        { t: 'Después, en español', d: 'no aprendés comandos: le pedís lo que querés y la IA corre la herramienta por vos.' },
+        { t: 'Ejecuta, no solo sugiere', d: 'crea y edita archivos, corre tu proyecto, instala librerías — acciones reales en tu compu.' },
+        { t: 'Vos dirigís', d: 'le pedís lo que querés en español; la IA hace el trabajo y vos confirmás que esté bien.' },
+        { t: 'Todo en local', d: 'hoy nada sale de tu máquina. Construís y probás donde el error es gratis.' },
       ]} />}
     />
-    <div className="mt-5"><Ejemplo titulo="Lo conectás hoy">Hoy instalás y logueás la <b>GitHub CLI</b> (la guía está en el material). Es un login por el navegador, una sola vez. Supabase y publicar vienen en la Clase 3.</Ejemplo></div>
+    <div className="mt-5"><Ejemplo titulo="El cambio de rol">No sos quien escribe el código: sos quien decide qué se construye y revisa que funcione. Esa es la habilidad que entrenamos hoy.</Ejemplo></div>
   </SlideClara>,
 
   <SlideClara titulo="Datos mock: construí la app antes de tener la base">
@@ -83,9 +83,8 @@ export const clase2 = [
 
   <SlideClara titulo="El setup de hoy, en orden">
     <Pasos pasos={[
-      { t: 'Crear la cuenta de GitHub', d: 'si no la tenés (la guía está en el material). Es lo único que conectás hoy.' },
-      { t: 'Levantar el proyecto en local', d: 'que la app corra en tu máquina y la veas en localhost. Acá vivís toda la clase.' },
-      { t: 'Conectar GitHub a Claude Code', d: 'instalás la GitHub CLI y te logueás por el navegador, una sola vez. Sin tokens.' },
+      { t: 'Abrir tu proyecto en Cursor', d: 'la carpeta con tu CLAUDE.md y tus docs de la Clase 1. Acá vivís toda la clase.' },
+      { t: 'Levantar el proyecto en local', d: 'que la app corra en tu máquina y la veas en localhost. La IA lo arma y lo corre por vos.' },
       { t: 'Construir las pantallas con datos mock', d: 'la app navegable de punta a punta, con datos falsos. Sin base, sin login todavía.' },
     ]} />
     <div className="mt-6"><Cita>Lo hacemos con pantalla compartida, todos a la vez. Quien se traba comparte su pantalla; los bloqueos chicos van por el chat en paralelo.</Cita></div>
@@ -112,27 +111,12 @@ export const clase2 = [
           <Bullets items={[
             <>Un archivo de texto donde guardás <b>claves y contraseñas</b> (las de Supabase y la IA llegan en la Clase 3).</>,
             <>El código las <b>lee de ahí</b>, no las tiene escritas adentro.</>,
-            <>Está en una lista (<span className="font-mono text-[13px]">.gitignore</span>) que hace que <b>NUNCA se suba a GitHub</b>.</>,
+            <>Vive <b>solo en tu compu</b>: no se publica con la app cuando la subís online (Clase 3).</>,
           ]} />
         </>
       }
-      der={<Ejemplo titulo="La regla de oro">Si una clave está en el código y subís a GitHub, queda pública para siempre (aunque la borres después). En el .env, no. Cuando tengas claves (Clase 3), pedile a la IA: "poné esto en variables de entorno", y listo.</Ejemplo>}
+      der={<Ejemplo titulo="La regla de oro">Si una clave está escrita en el código y publicás tu app, queda expuesta: cualquiera puede leerla y usarla (y te llega la factura). En el .env, no. Cuando tengas claves (Clase 3), pedile a la IA: "poné esto en variables de entorno", y listo.</Ejemplo>}
     />
-  </SlideClara>,
-
-  <SlideClara titulo="Git y GitHub: tu botón de guardado con historial">
-    <DosCols
-      izq={
-        <Glosario items={[
-          { t: 'Commit', d: 'un punto de guardado de tu código, con una nota de qué cambiaste. Podés volver a cualquiera.' },
-          { t: 'Git', d: 'la herramienta que guarda esos puntos en tu máquina y arma el historial.' },
-          { t: 'Repo (GitHub)', d: 'la copia de tu proyecto en la nube, con todo el historial. Es "subir" tus commits.' },
-          { t: 'Push', d: 'mandar tus commits locales a GitHub, para tenerlos a salvo y compartibles.' },
-        ]} />
-      }
-      der={<Ejemplo titulo="Por qué commiteás cada fase">Cada vez que una fase anda, hacés un commit. Así, si la próxima cosa rompe algo, <b>volvés al último punto que funcionaba</b> sin perder nada. No tenés que aprender comandos: le pedís a la IA <i>"commiteá esto"</i> y lo hace. Vos decidís cuándo guardar.</Ejemplo>}
-    />
-    <div className="mt-5"><Cita>Pensalo como el "guardar" de un videojuego: antes de algo arriesgado, guardás. Si sale mal, cargás la última partida.</Cita></div>
   </SlideClara>,
 
   <Seccion kicker="Bloque 2" titulo="Cómo promptear para desarrollo" />,
@@ -159,7 +143,7 @@ a la Fase 2 sin mi OK.`}</Codigo>
         { vos: 'Armá la pantalla de turnos.', ia: 'La construye. La mirás en tu compu.' },
         { vos: 'Está bien, pero movele el botón arriba y sumá un filtro por fecha.', ia: 'Lo ajusta. No empezó de cero: corrigió lo que ya había.' },
         { vos: 'El filtro no se ve bien en el celular.', ia: 'Arregla solo esa parte, sin romper el resto.' },
-        { vos: 'Perfecto. Guardalo y sigamos con lo próximo.', ia: 'Commitea y pasan a la siguiente cosa.' },
+        { vos: 'Perfecto. Sigamos con lo próximo.', ia: 'Pasa a la siguiente cosa, sin tocar lo que ya andaba.' },
       ].map((m, i) => (
         <div key={i} className={`grid grid-cols-[1fr_1.1fr] ${i ? 'border-t border-rule' : ''}`}>
           <div className="px-4 py-3 bg-udesa-blue/[0.06] border-r border-rule">
@@ -205,7 +189,7 @@ No avances a la Fase 2 sin mi OK.`}
           { t: '/app o /pages', d: 'tus pantallas. Cada archivo suele ser una página de la app.' },
           { t: '/components', d: 'piezas reutilizables (un botón, una tarjeta) que se usan en varias pantallas.' },
           { t: '/lib o /utils', d: 'funciones de ayuda: cálculos, conexión a la base, cosas que no son pantalla.' },
-          { t: '.env', d: 'tus claves secretas. No se sube a GitHub.' },
+          { t: '.env', d: 'tus claves secretas. Vive solo en tu compu, no se publica con la app.' },
           { t: 'package.json', d: 'la lista de "ingredientes" (librerías) que usa tu proyecto.' },
         ]} />
       }
@@ -232,7 +216,7 @@ No avances a la Fase 2 sin mi OK.`}
             <>Le pedís a la IA: <b>"decime cómo pruebo que esto funciona"</b>.</>,
             <>Hacés vos esos pasos, en local, como si fueras el usuario.</>,
             <>Si algo no anda, lo arreglás <b>antes</b> de avanzar.</>,
-            <>Recién cuando pasa el test, commiteás y seguís.</>,
+            <>Recién cuando pasa el test, avanzás a la siguiente fase.</>,
           ]} />
         </>
       }
@@ -259,7 +243,7 @@ No avances a la Fase 2 sin mi OK.`}
       'Tu proyecto corre en local (lo ves en localhost).',
       'Tenés al menos 2-3 pantallas navegables, con datos mock.',
       'Podés clickear de una pantalla a otra.',
-      'Hiciste al menos un commit en Git.',
+      'Probaste que cada pantalla anda antes de seguir con la próxima.',
     ]}
   />,
 
@@ -272,7 +256,7 @@ No avances a la Fase 2 sin mi OK.`}
     pasos={[
       { t: 'Terminá las pantallas que falten', d: 'tu app navegable de punta a punta, con datos mock. Recorrela como si fueras el usuario.' },
       { t: 'Sumá los estados', d: 'no solo el happy path: pantalla vacía, cargando, error. Pedile a la IA que los contemple.' },
-      { t: 'Revisá mobile y commiteá', d: 'que se vea bien en el celular. Guardás en Git lo que ya anda.' },
+      { t: 'Revisá mobile', d: 'que se vea bien en el celular. Probá cada pantalla antes de darla por lista.' },
     ]}
   />,
 
@@ -303,7 +287,7 @@ No avances a la Fase 2 sin mi OK.`}
       der={
         <>
           <div className="inline-flex items-center gap-2 text-udesa-dark font-bold mb-3"><RefreshCw size={20} /> La regla de los 3 intentos</div>
-          <Cita>Si después de 3 idas y vueltas la IA no lo resuelve, no insistas con el mismo enfoque: volvé un paso atrás (¡tenés Git!), explicá el objetivo de nuevo, o pedí un approach distinto.</Cita>
+          <Cita>Si después de 3 idas y vueltas la IA no lo resuelve, no insistas con el mismo enfoque: pedile que deshaga el último cambio, explicá el objetivo de nuevo, o pedí un approach distinto.</Cita>
         </>
       }
     />
@@ -313,7 +297,7 @@ No avances a la Fase 2 sin mi OK.`}
     <AntesDespues
       tituloAntes="Peligroso"
       tituloDespues="Correcto"
-      antes={<><span className="inline-flex items-center gap-1"><ShieldAlert size={16} className="text-[#b13434]" /> Pegar tu API key o la contraseña de la base <b>directo en el código</b>.</span><br /><br />Cuando subís a GitHub, queda pública. Cualquiera la usa y te llega la factura.</>}
+      antes={<><span className="inline-flex items-center gap-1"><ShieldAlert size={16} className="text-[#b13434]" /> Pegar tu API key o la contraseña de la base <b>directo en el código</b>.</span><br /><br />Cuando publicás tu app, queda expuesta. Cualquiera la lee, la usa y te llega la factura.</>}
       despues={<>Guardar las claves en <b>variables de entorno</b> (un archivo que no se sube).<br /><br />Tu CLAUDE.md ya lo pide. Igual, verificá: "¿usaste variables de entorno para las claves?"</>}
     />
   </SlideClara>,

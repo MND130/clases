@@ -6,7 +6,7 @@
 >
 > El curso es **virtual y en vivo** (videollamada por Zoom/Meet). Como no estamos en la misma sala, llegar con esto resuelto es clave: en una clase online un problema de instalación te puede dejar trabado un buen rato. Si algo no te sale, mandales un mail a los profesores y lo resolvemos antes de la clase.
 >
-> **Las cuentas de GitHub, Supabase y Vercel NO hacen falta para la Clase 1.** GitHub lo creás y conectás en la Clase 2; Supabase y Vercel en la Clase 3, cuando sumás datos reales y publicás. Cada uno tiene su propia guía. Para arrancar solo necesitás Cursor y Claude Code.
+> **Las cuentas de Supabase y Vercel NO hacen falta para la Clase 1 ni la 2.** Las creás y conectás en la Clase 3, cuando sumás datos reales y publicás. Cada una tiene su propia guía. Para arrancar (Clases 1 y 2) solo necesitás Cursor y Claude Code.
 
 ---
 

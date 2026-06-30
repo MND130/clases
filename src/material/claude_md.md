@@ -41,9 +41,9 @@ Diseñá y construí pensando primero en el celular. La mayoría del tráfico es
 - Nada de `any` por todos lados ni dependencias que no usamos.
 *Por qué: dentro de tres días yo (o vos) tenemos que poder entender este código. La prolijidad es lo que hace que el MVP sobreviva.*
 
-## 7. Git como red de seguridad
-Hacé commits frecuentes y con mensajes claros, sobre todo al cerrar cada fase.
-*Por qué: si algo se rompe y no sabemos qué, volvemos al último commit que funcionaba. Sin drama.*
+## 7. Verificar en local antes de avanzar
+No avances de fase sin antes probar que lo anterior funciona en local (localhost). Al cerrar cada fase, decime cómo probar que quedó bien.
+*Por qué: si construimos sobre algo que nunca verificamos y después se rompe, no sabemos si fue lo nuevo o algo viejo. Verificar cada fase es lo que nos da terreno firme.*
 
 ## 8. Cuando algo no sale
 Si después de ~3 intentos un problema no se resuelve, **no insistas con el mismo enfoque**.

@@ -126,10 +126,10 @@ export const clase1 = [
           <>A veces el proyecto se enredó tanto que <b>arreglarlo cuesta más</b> que volver a empezar.</>,
           <>Cuesta aceptarlo: <b>"le metí horas, no quiero borrarlo"</b>. Es la trampa.</>,
           <>Pero ahora ya <b>sabés más</b>: la segunda vez sale en una fracción del tiempo.</>,
-          <>Tenés Git: <b>volver a un punto limpio</b> no es perder, es no arrastrar el problema.</>,
+          <>Empezar de cero con <b>un plan más claro</b> no es perder: es no arrastrar el problema.</>,
         ]} />
       }
-      der={<Ejemplo titulo="La regla">Si después de varios intentos la IA da vueltas sobre el mismo enredo, no insistas: <b>dinamitá y volvé a arrancar</b> desde el último punto que funcionaba, con lo que aprendiste. Da miedo, pero es más rápido que parchar un desastre.</Ejemplo>}
+      der={<Ejemplo titulo="La regla">Si después de varios intentos la IA da vueltas sobre el mismo enredo, no insistas: <b>dinamitá y volvé a arrancar</b> con tu plan y lo que aprendiste. Da miedo, pero es más rápido que parchar un desastre.</Ejemplo>}
     />
   </SlideClara>,
 
@@ -148,14 +148,14 @@ export const clase1 = [
     <div className="mt-4 t-body-sm text-ink-soft">No hace falta saber programar. Sí saber qué pedir — y para eso alcanza con conocer estas palabras.</div>
   </SlideClara>,
 
-  <SlideClara titulo="Vocabulario (2/2): cómo vive online y cómo no perderla">
+  <SlideClara titulo="Vocabulario (2/2): cómo se construye y cómo vive online">
     <Glosario items={[
+      { t: 'Localhost', d: 'tu propia compu corriendo la app, solo para vos, mientras la construís. Antes de publicar nada.' },
+      { t: 'Datos mock', d: 'datos falsos escritos en el código para ver la app navegable antes de tener base de datos real.' },
       { t: 'Deploy', d: 'publicar la app para que viva online y otros la usen.' },
       { t: 'Hosting', d: 'el servicio que mantiene tu app prendida 24/7 (ej: Vercel). Casi siempre gratis para un MVP.' },
       { t: 'Dominio', d: 'la dirección web de tu app (ej: miapp.com). Se compra aparte, ~15 USD/año.' },
       { t: 'Variable de entorno', d: 'dónde guardás las claves secretas (.env), separadas del código. NUNCA en el código.' },
-      { t: 'Repo', d: 'la carpeta de tu proyecto versionada. Vive en GitHub y guarda todo el historial.' },
-      { t: 'Commit', d: 'un "punto de guardado" de tu código, con una nota de qué cambiaste. Podés volver atrás.' },
     ]} />
     <div className="mt-4 t-body-sm text-ink-soft">El glosario completo (más términos) está en el cheatsheet del material, para consultar cuando estés solo.</div>
   </SlideClara>,
@@ -268,7 +268,7 @@ export const clase1 = [
         <Glosario items={[
           { t: 'Next.js', d: 'el framework para frontend + backend en un solo lugar.' },
           { t: 'Supabase', d: 'base de datos + auth lista para usar, sin servidor propio.' },
-          { t: 'Vercel', d: 'deploy en un click, conectado a tu repo de GitHub.' },
+          { t: 'Vercel', d: 'publica tu app online con una URL, pidiéndoselo a la IA. Gratis para un MVP.' },
           { t: 'shadcn/ui', d: 'componentes de UI lindos y listos, sobre Tailwind.' },
         ]} />
       }
