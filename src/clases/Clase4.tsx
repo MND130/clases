@@ -17,15 +17,6 @@ export const clase4 = [
     </div>
   </SlideClara>,
 
-  <SlideClara titulo="Dos formas de usar IA (no las confundas)">
-    <AntesDespues
-      tituloAntes="IA como herramienta"
-      tituloDespues="IA dentro del producto"
-      antes={<><b>Para construir</b> el MVP.<br />Claude Code y Cursor escriben el código, explican errores, refactorean.<br /><br />Es lo que usaste <b>vos</b>, el constructor, en las clases 1, 2 y 3.</>}
-      despues={<><b>Como feature</b> del MVP.<br />Tu app llama a un modelo para responder, clasificar, resumir o redactar.<br /><br />Es lo que usa <b>tu cliente</b>. La clase de hoy.</>}
-    />
-  </SlideClara>,
-
   <Seccion kicker="Bloque 1" titulo="El chatbot: la versión más simple" />,
 
   <SlideClara titulo="Una feature de IA es, técnicamente, esto">
