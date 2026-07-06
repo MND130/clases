@@ -98,9 +98,14 @@ El prompt para pedirlo:
 
 ## ¿Y si tiene que HACER cosas? (agente)
 
-Si querés que el bot no solo responda sino que **ejecute acciones** (reservar, cancelar, agendar), eso es un agente con tool use: le declarás herramientas y el modelo elige cuál usar. Tu app sigue siendo la que ejecuta — el modelo decide, no toca la base.
+Si querés que el bot no solo responda sino que **ejecute acciones** (reservar, cancelar, agendar), eso es un agente con tool use: le declarás herramientas y el modelo elige cuándo usarlas. Tu app sigue siendo la que ejecuta — el modelo decide, no toca la base. El prompt (probado en el demo de CanchApp):
 
-> *"Convertí el bot en un agente con tool use de la API de Claude. Herramientas: buscar_canchas_libres(fecha, hora) y crear_reserva(cancha, fecha, hora). El modelo elige la herramienta según lo que pide el usuario, mi app la ejecuta contra Supabase y el modelo confirma en lenguaje natural. La reserva siempre valida que el usuario esté logueado."*
+> *"Convertí el bot en un agente con tool use de la API de Claude: agregá la herramienta `crear_reserva(complejo, cancha, fecha, hora)`. Cuando el modelo la pida, el endpoint ejecuta la función de reservar que la app YA tiene (con sus validaciones: login obligatorio y anti-doble-reserva). Reglas para el system prompt: (1) antes de reservar, el bot confirma con el usuario cancha, fecha, hora y precio, y espera un sí explícito; (2) si la función dice que no está logueado, le pide iniciar sesión en la app; (3) si el turno ya está tomado, avisa y ofrece las alternativas libres."*
+
+Dos cosas de ese prompt que son EL criterio (y valen para cualquier agente):
+
+- **Confirmar antes de ejecutar.** Una acción irreversible nunca se dispara de una. El bot repite qué va a hacer y espera el sí.
+- **Las validaciones viven en tu código, no en el modelo.** El login y el anti-doble-reserva los pone la función de tu app — la misma que usa la pantalla de reservar. Al modelo se lo puede engañar con prompts; a tu código no.
 
 ---
 
