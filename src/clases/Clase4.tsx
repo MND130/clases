@@ -1,5 +1,5 @@
-import { Portada, Seccion, SlideClara, Bullets, BulletsIcono, Tarjetas, Checklist, DosCols, Cita, Glosario, Ejemplo, PromptRespuesta, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
-import { Bot, FileText, MessageSquare, Wrench, Sparkles, ShieldAlert, Users, GitBranch, Presentation, GraduationCap } from 'lucide-react'
+import { Portada, Seccion, SlideClara, Bullets, BulletsIcono, Tarjetas, DosCols, Cita, Glosario, Ejemplo, PromptRespuesta, AntesDespues, Pasos, Fases, DemoEnVivo, Break, ManosALaObra, Checkpoint } from '../components/Slides'
+import { Bot, FileText, MessageSquare, Wrench, Sparkles, ShieldAlert, Users, GitBranch } from 'lucide-react'
 
 export const clase4 = [
   <Portada
@@ -118,21 +118,6 @@ usuario. Mostrame el flujo completo.`}
       respuesta={<>La IA te arma las 3 funciones contra Supabase, el endpoint que conecta el modelo con esas herramientas, y el chat. El usuario escribe "cancelá mi turno del jueves" y el agente lo hace.</>}
       nota={<>No necesitás la teoría de agentes. Necesitás saber describir bien las herramientas. Ese es tu trabajo.</>}
     />
-  </SlideClara>,
-
-  <SlideClara titulo="MCP: herramientas listas para enchufar">
-    <DosCols
-      izq={<>
-        Cuando declarás las herramientas vos (tool use), las programás en tu app. Pero muchas ya vienen <b>listas para enchufar</b>: eso es <b>MCP</b>.<br /><br />
-        El dueño de cada herramienta (un CRM, una base, un calendario) publica su MCP <b>una vez</b>, y cualquier IA que lo soporte lo usa. No programás la integración: la conectás. Por eso ya hay miles.
-      </>}
-      der={<Glosario items={[
-        { t: 'Chatbot', d: 'te responde.' },
-        { t: 'Tool use', d: 'usa herramientas que vos le declarás en tu app.' },
-        { t: 'MCP', d: 'la herramienta ya viene "lista para enchufar". La conectás, no la programás.' },
-      ]} />}
-    />
-    <div className="mt-5"><Cita>Para tu agente, MCP significa que muchas integraciones que pensabas programar ya están hechas: las enchufás y listo. Buscás "MCP de [la herramienta]" y suele existir.</Cita></div>
   </SlideClara>,
 
   <Seccion kicker="Bloque 3" titulo="Que la IA lea tus documentos (RAG)" />,
@@ -305,42 +290,6 @@ La API key va en el .env, solo en el server.`}
       { icon: GitBranch, t: 'Tu ventaja nueva', d: 'Ya hablás el idioma: sabés pedir, evaluar y dirigir a un dev. No te venden humo.' },
     ]} />
     <div className="mt-5"><Cita>Vercel y Supabase tienen free tiers que aguantan un MVP entero. Dominio ~15 USD/año. Podés validar una idea en producción gastando casi nada.</Cita></div>
-  </SlideClara>,
-
-  <SlideClara titulo="Cómo presentás tu MVP (~4 min)">
-    <DosCols
-      izq={
-        <>
-          <div className="inline-flex items-center gap-2 text-udesa-sigedu font-bold uppercase tracking-wide text-sm mb-3"><Presentation size={18} /> La estructura</div>
-          <Pasos pasos={[
-            { t: 'El problema', d: 'qué dolor resolvés, en una frase.' },
-            { t: 'Demo en vivo', d: 'abrís la URL pública y lo mostrás funcionando.' },
-            { t: 'Qué aprendiste', d: 'lo que te sorprendió del proceso.' },
-            { t: 'Qué sigue', d: 'el próximo paso si lo seguís.' },
-          ]} />
-        </>
-      }
-      der={
-        <>
-          <div className="inline-flex items-center gap-2 text-udesa-dark font-bold mb-3"><GraduationCap size={20} /> Te llevás del curso</div>
-          <Checklist items={[
-            'Un MVP real en producción, con URL pública.',
-            'El método (The MND130 Way) para repetirlo solo.',
-            'El CLAUDE.md, tus docs y el cheatsheet como referencia.',
-            'Criterio para dirigir a la IA y saber cuándo necesitás un dev.',
-          ]} />
-        </>
-      }
-    />
-  </SlideClara>,
-
-  <SlideClara titulo="Para seguir después del curso">
-    <Tarjetas items={[
-      { icon: GraduationCap, t: 'Repetí el método', d: 'Tu próxima idea: sumá el CLAUDE.md, armá tus docs con las 8 decisiones, construí en fases. Ya sabés cómo.' },
-      { icon: Users, t: 'La comunidad', d: 'El grupo del curso sigue activo. Mostrá lo que hacés, pedí ayuda cuando te trabes, aprendé de los demás.' },
-      { icon: GitBranch, t: 'Subí un escalón', d: 'Cuando tu MVP valide, ahí pensás en escalar: un dev, más features, o profundizar lo técnico vos.' },
-    ]} />
-    <div className="mt-5"><Cita>Lo más valioso que te llevás no es la app: es saber que la próxima idea también la podés llevar a producción vos.</Cita></div>
   </SlideClara>,
 
   <Seccion kicker="Fin del curso" titulo="Tenés un producto online con IA y un método. Seguilo." />,
