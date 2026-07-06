@@ -10,6 +10,8 @@ import cheatsheet from '../material/cheatsheet.md?raw'
 import guiaSetup from '../material/guia_setup.md?raw'
 import guiaVercel from '../material/guia_vercel.md?raw'
 import guiaSupabase from '../material/guia_supabase.md?raw'
+import guiaAnthropic from '../material/guia_anthropic.md?raw'
+import pasoAPasoChatbot from '../material/paso_a_paso_chatbot.md?raw'
 import prompts from '../material/prompt_templates.md?raw'
 import ejercicios from '../material/ejercicios_proyectos.md?raw'
 import claudeMd from '../material/claude_md.md?raw'
@@ -22,6 +24,8 @@ const DOCS: Doc[] = [
   { id: 'setup', titulo: 'Guía de Setup', desc: 'Lo previo a la Clase 1: Cursor y Claude Code.', icon: Wrench, md: guiaSetup },
   { id: 'vercel', titulo: 'Guía — Vercel', desc: 'Crear la cuenta y publicar tu app online (Clase 3).', icon: Wrench, md: guiaVercel },
   { id: 'supabase', titulo: 'Guía — Supabase', desc: 'Crear la cuenta y conectarla a Claude Code (Clase 3).', icon: Wrench, md: guiaSupabase },
+  { id: 'anthropic', titulo: 'Guía — API de Anthropic', desc: 'Sacar tu API key, cargar crédito y armar tu chatbot (Clase 4).', icon: Wrench, md: guiaAnthropic },
+  { id: 'chatbot', titulo: 'Paso a paso — Chatbot', desc: 'Los prompts para sumarle un chatbot a tu app, con RAG y agentes (Clase 4).', icon: MessageSquareText, md: pasoAPasoChatbot },
   { id: 'prompts', titulo: 'Prompt Templates', desc: 'Prompts modelo para cada etapa del MVP.', icon: MessageSquareText, md: prompts },
   { id: 'ejercicios', titulo: 'Proyectos de ejemplo', desc: 'Ideas de MVP desarrolladas como referencia.', icon: Lightbulb, md: ejercicios },
 ]

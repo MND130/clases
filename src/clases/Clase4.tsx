@@ -171,6 +171,24 @@ usuario. Mostrame el flujo completo.`}
     <div className="mt-5"><Ejemplo titulo="Dato importante">pgvector viene <b>gratis</b> en Supabase (free tier). No pagás nada extra para tener búsqueda semántica sobre tus documentos.</Ejemplo></div>
   </SlideClara>,
 
+  <SlideClara titulo="Pedirle a la IA que tu bot lea tus documentos">
+    <PromptRespuesta
+      prompt={`Quiero que mi bot responda usando mis
+documentos PDF. Armá el flujo RAG:
+
+- Extraé el texto de los PDFs de docs/manuales.
+- Guardalo troceado en Supabase con pgvector.
+- Al recibir una pregunta, buscá los pedazos
+  más relevantes y pasáselos al modelo junto
+  con la pregunta.
+
+Que responda SOLO con eso y cite de qué
+documento salió cada cosa.`}
+      respuesta={<>La IA conecta la librería de PDF, crea la tabla con pgvector y arma la búsqueda. Vos no programás nada de eso: decidiste qué documentos entran y que cite la fuente.</>}
+      nota={<>¿Cuándo lo necesitás? Cuando tus datos NO entran en el prompt (cientos de páginas). Si tu info entra cómoda — como las canchas del demo — no hace falta RAG: se la pasás directo.</>}
+    />
+  </SlideClara>,
+
   <SlideClara titulo="Juntando todo: un agente que también lee documentos">
     <Ejemplo titulo="El combo completo">
       "Buscar en mis documentos" es <b>una herramienta más</b> del agente. Un agente de soporte puede: buscar el ticket del cliente (herramienta 1), consultar el manual en PDF (herramienta 2 = RAG), y redactar la respuesta (el modelo). Las piezas de hoy se combinan.
@@ -195,33 +213,34 @@ usuario. Mostrame el flujo completo.`}
     />
   </SlideClara>,
 
-  <SlideClara titulo="El demo de hoy: un bot que se sabe este curso">
+  <SlideClara titulo="El demo de hoy: CanchApp responde dónde hay cancha libre">
     <DosCols
       izq={
         <Bullets items={[
-          <><b>Qué hace:</b> responde preguntas sobre el MND130 (stacks, el método, el setup).</>,
-          <><b>De dónde saca la info:</b> le pasamos el <b>material del curso</b> como contexto.</>,
-          <><b>El truco para confiar:</b> lo conocen, así que si inventa, <b>se nota al toque</b>.</>,
+          <><b>Qué hace:</b> le preguntás "¿hay cancha libre hoy a las 19?" y responde en lenguaje natural.</>,
+          <><b>De dónde saca la info:</b> de la <b>misma base</b> que ya usa la grilla (Supabase). Nada nuevo.</>,
+          <><b>El truco para confiar:</b> la <b>grilla es la verdad</b>. Comparamos la respuesta del bot contra la grilla, en vivo.</>,
         ]} />
       }
-      der={<Ejemplo titulo="Por qué este ejemplo">Un bot sobre un tema inventado no se puede verificar: nadie sabe si miente. Uno sobre algo que ustedes conocen — este curso — es el banco de pruebas perfecto para ver cuándo la IA acierta y cuándo alucina.</Ejemplo>}
+      der={<Ejemplo titulo="Por qué este ejemplo">Un bot sobre un tema que no podés verificar no te dice nada: no sabés si miente. Este responde sobre datos que la app ya muestra — si acierta o alucina, se ve al toque contra la grilla.</Ejemplo>}
     />
   </SlideClara>,
 
   <DemoEnVivo
-    titulo="Les muestro: armo un bot que responde sobre ESTE curso"
-    prompt={`En mi app Next.js, agregá un chatbot que
-responda preguntas sobre este curso (MND130).
+    titulo="Les muestro: CanchApp con asistente, en vivo"
+    prompt={`Agregá un chatbot a CanchApp: el usuario
+pregunta por canchas libres en lenguaje
+natural.
 
-Te paso el contenido del curso (el cheatsheet,
-el método, los stacks) como contexto en el
-system prompt. Que responda SOLO con eso, y si
-no está en el material, que diga que no lo sabe.
+El endpoint consulta canchas y reservas en
+Supabase, arma la lista de turnos LIBRES por
+fecha y hora, y se la pasa a Claude junto con
+la pregunta. El modelo solo redacta: responde
+SOLO con esos datos, no inventa, y no reserva
+(deriva a la grilla).
 
-Usá una variable de entorno para la API key.
-Mostrá la respuesta en una pantalla de chat, y
-arrancá por la versión más simple.`}
-    mirar={<>Le pregunto en vivo "<b>¿qué stack usamos?</b>" o "<b>¿qué es el CLAUDE.md?</b>" y responde con el material del curso. Ustedes saben si está bien o si <b>alucina</b> — por eso elegimos un tema que conocen. Es tu app + una llamada a un modelo, nada más.</>}
+La API key va en el .env, solo en el server.`}
+    mirar={<>Pregunto "<b>¿hay cancha libre hoy a las 19?</b>" y comparamos contra la grilla. Después: algo fuera de tema ("¿pádel en Rosario?") → dice que no sabe; y "reservámela" → no reserva, te manda a la app. Ojo al detalle del prompt: <b>los turnos libres los calcula el código</b> y el modelo solo redacta — si le pedís al modelo que deduzca, se equivoca (nos pasó armándolo).</>}
   />,
 
   <Break minutos={15} etiqueta="Break 1 de 2" />,
@@ -231,9 +250,9 @@ arrancá por la versión más simple.`}
     titulo="Sumá tu primer chatbot, en local"
     objetivo={<>Primera mitad: tu feature de IA respondiendo en local. Después paramos y la afinamos.</>}
     pasos={[
-      { t: 'Decidí qué bot querés', d: 'chatbot simple, agente con herramientas, o asistente sobre documentos.' },
-      { t: 'Conseguí tu API key', d: 'de Claude o OpenAI, y guardala en variables de entorno.' },
-      { t: 'Pedíselo a la IA con contexto', d: 'apoyado en tus docs (brief y fases). Empezá por la versión más simple.' },
+      { t: 'Decidí qué bot querés', d: 'qué hace, qué NO hace y con qué datos responde. Anotalo en tu brief.' },
+      { t: 'Conseguí tu API key', d: 'de Anthropic, con la guía del material: cuenta, crédito y clave al .env.' },
+      { t: 'Seguí el paso a paso del material', d: '"Paso a paso — Chatbot": el prompt de la versión más simple, adaptado a tu app.' },
     ]}
   />,
 
@@ -254,9 +273,9 @@ arrancá por la versión más simple.`}
     titulo="Afiná tu bot y probalo a fondo"
     objetivo={<>Segunda mitad: mejorás el system prompt, agregás lo que falte y verificás que no inventa.</>}
     pasos={[
-      { t: 'Ajustá el system prompt', d: 'definí bien qué hace, cómo habla y qué NO debe hacer.' },
-      { t: 'Sumá lo que tu bot necesite', d: 'una herramienta (agente) o tus documentos (RAG), si aplica.' },
-      { t: 'Probalo en local y publicá', d: 'verificá que responde con sentido y, si usa datos, que cite la fuente. Subí los cambios y se publica solo.' },
+      { t: 'Probalo con respuestas que conocés', d: 'preguntas verificables contra tu app, una repregunta, y algo fuera de tema (no debe inventar).' },
+      { t: 'Ajustá el system prompt', d: 'qué hace, cómo habla, qué NO debe hacer. Y recordá: lo que se calcula, en código.' },
+      { t: 'Publicá', d: 'cargá la ANTHROPIC_API_KEY en Vercel (Settings → Environment Variables) y pedile a la IA que publique de nuevo.' },
     ]}
   />,
 
